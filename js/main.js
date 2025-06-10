@@ -86,6 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
           backgroundColor: "#28a745"
         }).showToast();
 
+        // Limpiar el formulario tras la confirmación del turno
+        turnoForm.reset();
+
         setTimeout(() => {
           window.open("constancia.html", "_blank");
         }, 1500);
