@@ -10,13 +10,11 @@ Entrega Final
 
 ## Simulador elegido: Turnero para Casa de Préstamos - Entrega Final
 
-Este proyecto representa la evolución final del simulador de turnos para la casa de préstamos ficticia **"Préstamos Express S.A."**, integrando de forma funcional y coherente los contenidos vistos hasta la **unidad 9 del curso de JavaScript**.
+Este proyecto representa la evolución final del simulador de turnos para la casa de préstamos ficticia **"Préstamos Express S.A."**, integrando de forma funcional y coherente los contenidos vistos en el **del curso de JavaScript**.
 
 La aplicación permite a los usuarios solicitar un turno ingresando sus datos personales, seleccionando la sucursal, la fecha y el horario deseado. El sistema genera una constancia visual del turno confirmado en un nuevo HTML y ofrece al usuario la posibilidad de imprimirla.
 
 A diferencia de entregas anteriores, esta versión incorpora asincronismo, carga de datos desde un archivo JSON (horarios disponibles), y el uso de librerías externas para mejorar la experiencia del usuario.
-
----
 
 ## Funcionalidades
 
@@ -28,7 +26,6 @@ A diferencia de entregas anteriores, esta versión incorpora asincronismo, carga
 - La constancia de turno se presenta en un HTML separado con opción para imprimir.
 - La lógica está organizada en funciones claras, reutilizables y separadas por archivos.
 
----
 
 ## Estructura
 
@@ -40,22 +37,6 @@ A diferencia de entregas anteriores, esta versión incorpora asincronismo, carga
 - Se aplica Luxon para formatear correctamente la fecha del turno.
 - El botón "Imprimir constancia" utiliza `window.print()` para generar un PDF o copia impresa si se desea.
 - Toda la estructura del proyecto se encuentra dividida en carpetas: `/css`, `/js`, `/assets`.
-
----
-
-## Archivos y tecnologías utilizadas
-
-- HTML5, CSS3, JavaScript ES6+
-- JSON como fuente de datos estáticos.
-- Librerías externas:
-  - [SweetAlert2](https://sweetalert2.github.io/)
-  - [Toastify](https://apvarun.github.io/toastify-js/)
-  - [Luxon](https://moment.github.io/luxon/)
-- `fetch` para asincronismo y carga de datos
-- `localStorage` para persistencia
-- Separación de lógica en archivos: `main.js`, `constancia.js`, `turnos.json`, etc.
-
----
 
 ## Nota
 

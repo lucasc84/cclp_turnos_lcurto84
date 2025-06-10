@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!--Página principal para solicitar turnos-->
+  <!-- Metadatos y enlaces a estilos y librerías externas -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PRESTAMOS EXPRESS S.A. - Solicitud de Turno</title>
   <link rel="stylesheet" href="css/estilos.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"/>
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
   <div class="container">
     <header>
-      <img img class="logo" src="assets/logo.png" alt="Logo PRESTAMOS EXPRESS S.A." class="logo"/>
+      <!-- Logo y encabezado principal -->
+      <img class="logo" src="assets/logo.png" alt="Logo PRESTAMOS EXPRESS S.A." class="logo"/>
       <h1>PRESTAMOS EXPRESS S.A.</h1>
       <h2>Solicitá tu turno</h2>
     </header>
 
+    <!-- Formulario de solicitud de turno -->
     <form id="turnoForm">
       <input type="text" id="nombre" placeholder="Nombre completo" required />
       <input type="text" id="dni" placeholder="DNI" required />
@@ -36,6 +41,7 @@
     </form>
   </div>
 
+  <!-- librerías JS externas y script principal -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="js/main.js"></script>

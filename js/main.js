@@ -1,7 +1,15 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const horarioSelect = document.getElementById('horario');
+/*Script principal para la gestión de turnos.*/
 
-  // Cargar horarios disponibles desde turnos.json
+
+
+// Espera a que el DOM esté completamente cargado antes de ejecutar la lógica principal.
+document.addEventListener('DOMContentLoaded', () => {
+
+  // --- CARGA DINÁMICA DE HORARIOS ---
+  // Se obtienen los horarios disponibles desde un archivo JSON externo usando fetch.
+  // Los horarios se agregan como opciones al select del formulario.
+  // Si ocurre un error en la carga, se muestra un mensaje visual con Toastify.
+  const horarioSelect = document.getElementById('horario');
   fetch('js/turnos.json')
     .then(response => response.json())
     .then(data => {
@@ -13,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })
     .catch(error => {
-      console.error('Error al cargar horarios:', error);
       Toastify({
         text: "No se pudieron cargar los horarios.",
         duration: 4000,
@@ -21,10 +28,19 @@ document.addEventListener('DOMContentLoaded', () => {
       }).showToast();
     });
 
+  // --- GESTIÓN DEL FORMULARIO DE TURNOS ---
+  // Se captura el evento submit del formulario para validar y procesar los datos ingresados.
+  // Si algún campo está vacío, se muestra una alerta visual y se detiene el proceso.
+  // Si todo está correcto, se solicita confirmación al usuario mediante SweetAlert2.
+  // Al confirmar, se guarda el turno en localStorage y se notifica el éxito con Toastify.
+  // Finalmente, se abre una nueva ventana con la constancia del turno.
   const turnoForm = document.getElementById('turnoForm');
   turnoForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
+    // --- CAPTURA Y VALIDACIÓN DE DATOS ---
+    // Se obtienen los valores de todos los campos del formulario.
+    // Se realiza una validación básica para asegurar que no haya campos vacíos.
     const datos = {
       nombre: document.getElementById('nombre').value,
       dni: document.getElementById('dni').value,
@@ -36,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
       horario: document.getElementById('horario').value
     };
 
-    // Validación básica
     if (Object.values(datos).includes("")) {
       Toastify({
         text: "Por favor, completá todos los campos.",
@@ -46,11 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-
-    // PARTE III - SI TODOS LOS CAMPOS ESTAN COMPLETOS:
-
-    
-    // Confirmación con SweetAlert
+    // --- CONFIRMACIÓN Y ALMACENAMIENTO DEL TURNO ---
+    // Se utiliza SweetAlert2 para confirmar la acción del usuario.
+    // Si el usuario confirma, se guarda el turno en localStorage y se muestra una notificación de éxito.
+    // Luego, se abre la constancia en una nueva pestaña.
     Swal.fire({
       title: '¿Confirmar turno?',
       html: `

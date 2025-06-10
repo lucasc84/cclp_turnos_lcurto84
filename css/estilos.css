@@ -1,3 +1,5 @@
+/*Estilos*/
+
 body {
   font-family: Arial, sans-serif;
   background-image: url('../assets/fondo.jpg');
@@ -7,6 +9,7 @@ body {
   color: #333;
 }
 
+/*Contenedor principal */
 .container {
   background-color: rgba(255, 255, 255, 0.95);
   max-width: 550px;
@@ -18,7 +21,6 @@ body {
 }
 
 .logo {
-
   margin-bottom: 10px;
   width: 100px;
 }
@@ -33,6 +35,8 @@ h2 {
   color: #e32724;
   margin-bottom: 20px;
 }
+
+/*Estilos para los campos del formulario y botones.*/
 
 form input, form select {
   width: 100%;
@@ -59,6 +63,7 @@ form button:hover {
   background-color: #e3272497;
 }
 
+/*Mensaje informativo para la constancia (PDF/impresión).*/
 .mensaje-pdf {
   margin-top: 18px;
   color: #a12a2a;

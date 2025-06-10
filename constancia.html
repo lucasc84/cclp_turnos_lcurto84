@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!--Página de constancia de turno confirmado.
+    Muestra los datos del turno y permite imprimir o guardar como PDF.
+  -->
+
+  <!-- Metadatos y enlaces a estilos -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Constancia de Turno - PRESTAMOS EXPRESS S.A.</title>
   <link rel="stylesheet" href="css/estilos.css">
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
   <div class="container">
     <img class="logo" src="assets/logo.png" alt="Logo PRESTAMOS EXPRESS S.A." class="logo"/>
     <h1>Constancia de Turno</h1>
+
+    <!-- Contenedor donde se mostrarán los datos del turno -->
     <div id="detalleTurno"></div>
     <button onclick="window.print()">Imprimir Constancia</button>
     <p class="mensaje-pdf">Si no querés imprimir la constancia, elegí "Guardar como PDF" en el cuadro de impresión.</p>
   </div>
 
+  <!-- Inclusión de librería Luxon y script de constancia -->
   <script src="https://cdn.jsdelivr.net/npm/luxon@3/build/global/luxon.min.js"></script>
   <script src="js/constancia.js"></script>
 </body>
