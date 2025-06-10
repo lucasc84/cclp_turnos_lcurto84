@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PRESTAMOS EXPRESS S.A. - Solicitud de Turno</title>
+  <link rel="stylesheet" href="css/estilos.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"/>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img img class="logo" src="assets/logo.png" alt="Logo PRESTAMOS EXPRESS S.A." class="logo"/>
+      <h1>PRESTAMOS EXPRESS S.A.</h1>
+      <h2>Solicitá tu turno</h2>
+    </header>
+
+    <form id="turnoForm">
+      <input type="text" id="nombre" placeholder="Nombre completo" required />
+      <input type="text" id="dni" placeholder="DNI" required />
+      <input type="tel" id="telefono" placeholder="Teléfono" required />
+      <input type="text" id="direccion" placeholder="Dirección" required />
+      <input type="email" id="email" placeholder="Correo electrónico" required />
+      <select id="sucursal" required>
+        <option value="">Seleccione una sucursal</option>
+        <option value="Sucursal La Plata">La Plata</option>
+        <option value="Sucursal Ensenada">Ensenada</option>
+        <option value="Sucursal Berisso">Berisso</option>
+      </select>
+      <input type="date" id="fecha" required />
+      <select id="horario" required>
+        <option value="">Seleccione un horario</option>
+      </select>
+      <button type="submit">Confirmar Turno</button>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
