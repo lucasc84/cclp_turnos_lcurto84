@@ -1,41 +1,41 @@
 {
   "turnos": [
     {
-      "id": 1,
+      "id": "1",
       "hora": "09:00"
     },
     {
-      "id": 2,
+      "id": "2",
       "hora": "10:00"
     },
     {
-      "id": 3,
+      "id": "3",
       "hora": "11:00"
     },
     {
-      "id": 4,
+      "id": "4",
       "hora": "12:00"
     },
     {
-      "id": 5,
+      "id": "5",
       "hora": "13:00"
     },
     {
-      "id": 6,
+      "id": "6",
       "hora": "14:00"
     },
     {
-      "id": 7,
+      "id": "7",
       "hora": "15:00"
     },
     {
-      "id": 8,
+      "id": "8",
       "hora": "16:00"
     }
   ],
   "sucursales": [
     {
-      "id": 1,
+      "id": "1",
       "nombre": "Sucursal La Plata",
       "direccion": "Calle 46 Nº 549 esq. 6",
       "telefonos": "0810-666-0984 / 0221 426-2800",
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": 2,
+      "id": "2",
       "nombre": "Sucursal Ensenada",
       "direccion": "La Merced N° 301 - Esquina Perú",
       "telefonos": "(0221) 420-4214 / (0221) 358-2787",
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": 3,
+      "id": "3",
       "nombre": "Sucursal Berisso",
       "direccion": "Av. Montevideo Nº 841 e/10 y 11",
       "telefonos": "(0221) 464-1628 / (0221) 464-1327",
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": 4,
+      "id": "4",
       "nombre": "Sucursal Quilmes",
       "direccion": "Alem Nº 83",
       "telefonos": "(011) 4257-5315 / (011) 4257-1896",
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": 5,
+      "id": "5",
       "nombre": "Sucursal Lanus",
       "direccion": "Anatole France N° 2026 e/ Margarita Weild y 9 de Julio (Lanus Este)",
       "telefonos": "(011) 4225-2659",
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": 6,
+      "id": "6",
       "nombre": "Sucursal Mar del Plata",
       "direccion": "Avda Pedro Luro N° 2642",
       "telefonos": "0810-222-1298 / (0223) 492-4488",
@@ -240,7 +240,7 @@
       ]
     },
     {
-      "id": 7,
+      "id": "7",
       "nombre": "Sucursal La Plata (UPCN)",
       "direccion": "Calle 50 Nº 920",
       "telefonos": "(0221) 15 476-4871",
@@ -288,6 +288,56 @@
       "sucursal": "Sucursal La Plata",
       "fecha": "2025-06-29",
       "horario": "12:30"
+    },
+    {
+      "id": "6314",
+      "nombre": "LUCAS GASTON",
+      "dni": "234324aa",
+      "telefono": "02215485793",
+      "email": "lucascurto84@gmail.com",
+      "sucursal": "Sucursal Mar del Plata",
+      "fecha": "2025-06-26",
+      "horario": "11:45"
+    },
+    {
+      "id": "e254",
+      "nombre": "LUCAS GASTON",
+      "dni": "112",
+      "telefono": "23123123",
+      "email": "drlucasacurto@gmail.com",
+      "sucursal": "Sucursal Ensenada",
+      "fecha": "2025-06-13",
+      "horario": "11:45"
+    },
+    {
+      "id": "7a3b",
+      "nombre": "LUCAS ALBERTO",
+      "dni": "23123123123",
+      "telefono": "02215485793",
+      "email": "drlucasacurto@gmail.com",
+      "sucursal": "Sucursal Ensenada",
+      "fecha": "2025-06-20",
+      "horario": "13:45"
+    },
+    {
+      "id": "f9a5",
+      "nombre": "hhjh",
+      "dni": "333",
+      "telefono": "34334",
+      "email": "ccss@gmail.com",
+      "sucursal": "Sucursal Ensenada",
+      "fecha": "2025-06-13",
+      "horario": "14:00"
+    },
+    {
+      "id": "7421",
+      "nombre": "Lucas Curto",
+      "dni": "12121212",
+      "telefono": "02215485793",
+      "email": "drlucasacurto@gmail.com",
+      "sucursal": "Sucursal Ensenada",
+      "fecha": "2025-06-28",
+      "horario": "14:00"
     }
   ]
 }

@@ -32,6 +32,7 @@ A diferencia de entregas anteriores, esta versión incorpora asincronismo, carga
 - La lógica del simulador responde al flujo **entrada → procesamiento → salida**.
 - Se capturan los datos desde un formulario (`submit`) y se validan antes de confirmar el turno.
 - Se utiliza `fetch` para cargar dinámicamente los horarios disponibles desde un archivo `turnos.json`.
+- Los horarios y sucursales se cargan dinámicamente desde la API de JSON Server usando el archivo `db.json`.
 - Una vez confirmados los datos, se utiliza **SweetAlert2** para confirmar la acción del usuario.
 - Se guarda la información del turno en `localStorage` y se redirige a una nueva página (`constancia.html`) donde se presenta una constancia personalizada.
 - Se aplica Luxon para formatear correctamente la fecha del turno.

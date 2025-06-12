@@ -113,6 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
+        // Abrir la ventana antes del fetch para evitar bloqueos
+        const win = window.open("constancia.html", "_blank");
         fetch('http://localhost:3000/turnosConfirmados', {
           method: 'POST',
           headers: {
@@ -122,15 +124,16 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(response => {
           if (!response.ok) throw new Error('Error al guardar el turno');
+          // Guardar también en localStorage para la constancia
+          localStorage.setItem('turnoConfirmado', JSON.stringify(datos));
           Toastify({
             text: "¡Turno confirmado!",
             duration: 3000,
             backgroundColor: "#28a745"
           }).showToast();
           turnoForm.reset();
-          setTimeout(() => {
-            window.open("constancia.html", "_blank");
-          }, 1500);
+          // Recargar la ventana de la constancia para que lea el localStorage actualizado
+          if (win) win.location.reload();
         })
         .catch(() => {
           Toastify({
