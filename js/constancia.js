@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
     <p><strong>Nombre:</strong> ${turno.nombre}</p>
     <p><strong>DNI:</strong> ${turno.dni}</p>
     <p><strong>Teléfono:</strong> ${turno.telefono}</p>
-    <p><strong>Dirección:</strong> ${turno.direccion}</p>
     <p><strong>Email:</strong> ${turno.email}</p>
     <p><strong>Sucursal:</strong> ${turno.sucursal}</p>
     <p><strong>Fecha:</strong> ${fechaFormateada}</p>

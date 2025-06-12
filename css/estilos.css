@@ -22,18 +22,40 @@ body {
 
 .logo {
   margin-bottom: 10px;
-  width: 100px;
+  width: 15em
 }
 
 h1 {
-  color: #e32724;
-  margin: 0;
+  font-size: 24px;
+  font-weight: normal;
+  color: #000000;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 h2 {
+  font-size: 20px;
   font-weight: normal;
-  color: #e32724;
+  color: #000000;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+
+h3 {
+  font-weight: bold;
   margin-bottom: 20px;
+  text-align: left;
+
+    margin-top: 18px;
+  color: #a12a2a;
+  font-size: 14px;
+  background: #fff3f3;
+  border: 1.5px solid #e32724;
+  border-radius: 6px;
+  padding: 10px 18px;
+  box-shadow: 0 2px 8px rgba(227, 39, 36, 0.07);
+
 }
 
 /*Estilos para los campos del formulario y botones.*/
@@ -78,4 +100,13 @@ form button:hover {
   box-shadow: 0 2px 8px rgba(227, 39, 36, 0.07);
   text-align: center;
   font-family: inherit;
+}
+
+.direccion-sucursal {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  color: #444;
+  font-size: 12px;
+  font-style: normal;
+  text-align: center;
 }

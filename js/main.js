@@ -5,34 +5,70 @@
 // Espera a que el DOM esté completamente cargado antes de ejecutar la lógica principal.
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --- CARGA DINÁMICA DE HORARIOS ---
-  // Se obtienen los horarios disponibles desde un archivo JSON externo usando fetch.
-  // Los horarios se agregan como opciones al select del formulario.
-  // Si ocurre un error en la carga, se muestra un mensaje visual con Toastify.
+  // --- CARGA DINÁMICA DE SUCURSALES Y HORARIOS ---
+  let sucursalesData = [];
+  const sucursalSelect = document.getElementById('sucursal');
   const horarioSelect = document.getElementById('horario');
-  fetch('js/turnos.json')
+  const direccionDiv = document.getElementById('direccionSucursal');
+
+  // Cargar sucursales desde la API
+  fetch('http://localhost:3000/sucursales')
     .then(response => response.json())
     .then(data => {
-      data.forEach(turno => {
+      sucursalesData = data;
+      // Limpiar opciones actuales
+      sucursalSelect.innerHTML = '<option value="">Seleccione una sucursal</option>';
+      data.forEach(suc => {
         const option = document.createElement('option');
-        option.value = turno.hora;
-        option.textContent = turno.hora;
-        horarioSelect.appendChild(option);
+        option.value = suc.nombre;
+        option.textContent = suc.nombre.replace('Sucursal ', '');
+        option.setAttribute('data-direccion', suc.direccion);
+        option.setAttribute('data-telefonos', suc.telefonos);
+        option.setAttribute('data-id', suc.id);
+        sucursalSelect.appendChild(option);
       });
     })
-    .catch(error => {
+    .catch(() => {
       Toastify({
-        text: "No se pudieron cargar los horarios.",
+        text: "No se pudieron cargar las sucursales.",
         duration: 4000,
         backgroundColor: "#ff0000"
       }).showToast();
     });
 
+  // Al cambiar la sucursal, mostrar dirección y cargar horarios
+  sucursalSelect.addEventListener('change', function() {
+    const selected = sucursalSelect.options[sucursalSelect.selectedIndex];
+    const direccion = selected.getAttribute('data-direccion');
+    const telefonos = selected.getAttribute('data-telefonos');
+    const sucursalId = selected.getAttribute('data-id');
+    if (direccion) {
+      direccionDiv.innerHTML = `Dirección: ${direccion}<br>Teléfonos: ${telefonos}`;
+      direccionDiv.style.display = 'block';
+    } else {
+      direccionDiv.textContent = '';
+      direccionDiv.style.display = 'none';
+    }
+    // Cargar horarios de la sucursal seleccionada
+    horarioSelect.innerHTML = '<option value="">Seleccione un horario</option>';
+    if (sucursalId) {
+      const suc = sucursalesData.find(s => s.id == sucursalId);
+      if (suc && suc.horarios) {
+        suc.horarios.forEach(hora => {
+          const option = document.createElement('option');
+          option.value = hora;
+          option.textContent = hora;
+          horarioSelect.appendChild(option);
+        });
+      }
+    }
+  });
+
   // --- GESTIÓN DEL FORMULARIO DE TURNOS ---
   // Se captura el evento submit del formulario para validar y procesar los datos ingresados.
   // Si algún campo está vacío, se muestra una alerta visual y se detiene el proceso.
   // Si todo está correcto, se solicita confirmación al usuario mediante SweetAlert2.
-  // Al confirmar, se guarda el turno en localStorage y se notifica el éxito con Toastify.
+  // Al confirmar, se envía el turno a la API de JSON Server y se notifica el éxito con Toastify.
   // Finalmente, se abre una nueva ventana con la constancia del turno.
   const turnoForm = document.getElementById('turnoForm');
   turnoForm.addEventListener('submit', (e) => {
@@ -45,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
       nombre: document.getElementById('nombre').value,
       dni: document.getElementById('dni').value,
       telefono: document.getElementById('telefono').value,
-      direccion: document.getElementById('direccion').value,
       email: document.getElementById('email').value,
       sucursal: document.getElementById('sucursal').value,
       fecha: document.getElementById('fecha').value,
@@ -61,9 +96,9 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // --- CONFIRMACIÓN Y ALMACENAMIENTO DEL TURNO ---
+    // --- CONFIRMACIÓN Y ENVÍO DEL TURNO A JSON SERVER ---
     // Se utiliza SweetAlert2 para confirmar la acción del usuario.
-    // Si el usuario confirma, se guarda el turno en localStorage y se muestra una notificación de éxito.
+    // Si el usuario confirma, se envía el turno a la API de JSON Server y se muestra una notificación de éxito.
     // Luego, se abre la constancia en una nueva pestaña.
     Swal.fire({
       title: '¿Confirmar turno?',
@@ -78,20 +113,32 @@ document.addEventListener('DOMContentLoaded', () => {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        localStorage.setItem('turnoConfirmado', JSON.stringify(datos));
-
-        Toastify({
-          text: "¡Turno confirmado!",
-          duration: 3000,
-          backgroundColor: "#28a745"
-        }).showToast();
-
-        // Limpiar el formulario tras la confirmación del turno
-        turnoForm.reset();
-
-        setTimeout(() => {
-          window.open("constancia.html", "_blank");
-        }, 1500);
+        fetch('http://localhost:3000/turnosConfirmados', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(datos)
+        })
+        .then(response => {
+          if (!response.ok) throw new Error('Error al guardar el turno');
+          Toastify({
+            text: "¡Turno confirmado!",
+            duration: 3000,
+            backgroundColor: "#28a745"
+          }).showToast();
+          turnoForm.reset();
+          setTimeout(() => {
+            window.open("constancia.html", "_blank");
+          }, 1500);
+        })
+        .catch(() => {
+          Toastify({
+            text: "No se pudo confirmar el turno.",
+            duration: 3000,
+            backgroundColor: "#ff0000"
+          }).showToast();
+        });
       }
     });
   });

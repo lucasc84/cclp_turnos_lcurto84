@@ -5,41 +5,54 @@
   <!-- Metadatos y enlaces a estilos y librerías externas -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PRESTAMOS EXPRESS S.A. - Solicitud de Turno</title>
+  <title>Turnos | Cooperativa de Crédito La Plata</title>
   <link rel="stylesheet" href="css/estilos.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"/>
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="assets/favicon.png" type="image/png" />
 </head>
 <body>
   <div class="container">
     <header>
       <!-- Logo y encabezado principal -->
-      <img class="logo" src="assets/logo.png" alt="Logo PRESTAMOS EXPRESS S.A." class="logo"/>
-      <h1>PRESTAMOS EXPRESS S.A.</h1>
-      <h2>Solicitá tu turno</h2>
+      <img class="logo" src="assets/logo.png" alt="Logo Cooperativa de Crédito La Plata" class="logo"/>
+      <h1>RESERVA DE TURNOS</h1>
+      <h2>Para gestionar un turno complete todos los datos y haga click en "Reservar Turno"
+</h2>
     </header>
 
     <!-- Formulario de solicitud de turno -->
     <!-- Se utiliza contenido precargado porque lo pide la consigna -->
+      <h3>Datos Personales</h3>
 
     <form id="turnoForm">
-      <input type="text" id="nombre" placeholder="Nombre completo" required value="Juan Pérez" />
-      <input type="text" id="dni" placeholder="DNI" required value="12345678" />
-      <input type="tel" id="telefono" placeholder="Teléfono" required value="2211234567" />
-      <input type="text" id="direccion" placeholder="Dirección" required value="Calle XXXXX" />
-      <input type="email" id="email" placeholder="Correo electrónico" required value="juan.perez@email.com" />
+      <input type="text" id="nombre" placeholder="Nombre completo" required />
+      <input type="text" id="dni" placeholder="Número de Documento" required />
+      <input type="tel" id="telefono" placeholder="Teléfono" required />
+      <input type="email" id="email" placeholder="Correo electrónico" required />
+
+      <h3>Sucursal</h3>
+
+
       <select id="sucursal" required>
         <option value="">Seleccione una sucursal</option>
-        <option value="Sucursal La Plata" selected>La Plata</option>
-        <option value="Sucursal Ensenada">Ensenada</option>
-        <option value="Sucursal Berisso">Berisso</option>
+        <option value="Sucursal La Plata" data-direccion="Calle 46 Nº 549 esq. 6, 0810-666-0984 / 0221 426-2800">La Plata</option>
+        <option value="Sucursal Ensenada" data-direccion="La Merced N° 301 - Esquina Perú, (0221) 420-4214 / (0221) 358-2787">Ensenada</option>
+        <option value="Sucursal Berisso" data-direccion="Av. Montevideo Nº 841 e/10 y 11, (0221) 464-1628 / (0221) 464-1327">Berisso</option>
+        <option value="Sucursal Quilmes" data-direccion="Alem Nº 83, (011) 4257-5315 / (011) 4257-1896">Quilmes</option>
+        <option value="Sucursal Lanus" data-direccion="Anatole France N° 2026 e/ Margarita Weild y 9 de Julio (Lanus Este), (011) 4225-2659">Lanús</option>
+        <option value="Sucursal Mar del Plata" data-direccion="Avda Pedro Luro N° 2642, 0810-222-1298 / (0223) 492-4488">Mar del Plata</option>
+        <option value="Sucursal UPCN" data-direccion="Calle 50 Nº 920, (0221) 15 476-4871">La Plata (UPCN)</option>
       </select>
-      <input type="date" id="fecha" required value="2025-06-10" />
+      <div id="direccionSucursal" class="direccion-sucursal"></div>
+
+      <h3>Fecha y Horario</h3>
+
+      <input type="date" id="fecha" required />
       <select id="horario" required>
         <option value="">Seleccione un horario</option>
       </select>
-      <button type="submit">Confirmar Turno</button>
+      <button type="submit">Reservar Turno</button>
     </form>
   </div>
 
