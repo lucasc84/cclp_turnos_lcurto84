@@ -172,6 +172,9 @@ document.addEventListener('DOMContentLoaded', () => {
         cancelButtonText: 'Cancelar'
       }).then((result) => {
         if (result.isConfirmed) {
+          // Generar ID único (ejemplo: 4 caracteres hex)
+          const idTurno = Math.random().toString(16).slice(2, 6) + Date.now().toString(16).slice(-4);
+          datos.id = idTurno;
           const win = window.open("constancia.html", "_blank");
           fetch('http://localhost:3000/turnosConfirmados', {
             method: 'POST',
@@ -203,4 +206,51 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
   }); // fin obtenerFeriados
+
+  // --- CONSULTA Y CANCELACIÓN DE TURNO POR ID ---
+  const formConsulta = document.getElementById('formConsultaTurno');
+  const resultadoDiv = document.getElementById('resultadoConsulta');
+  if (formConsulta) {
+    formConsulta.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const id = document.getElementById('idConsulta').value.trim();
+      if (!id) return;
+      resultadoDiv.innerHTML = 'Buscando...';
+      fetch(`http://localhost:3000/turnosConfirmados?id=${encodeURIComponent(id)}`)
+        .then(res => res.json())
+        .then(turnos => {
+          if (!turnos.length) {
+            resultadoDiv.innerHTML = '<p style="color:red">No se encontró ningún turno con ese ID.</p>';
+            return;
+          }
+          const turno = turnos[0];
+          resultadoDiv.innerHTML = `
+            <div style="text-align:left; margin: 10px auto; max-width: 350px;">
+              <p><strong>ID:</strong> ${turno.id}</p>
+              <p><strong>Nombre:</strong> ${turno.nombre}</p>
+              <p><strong>DNI:</strong> ${turno.dni}</p>
+              <p><strong>Sucursal:</strong> ${turno.sucursal}</p>
+              <p><strong>Fecha:</strong> ${turno.fecha}</p>
+              <p><strong>Horario:</strong> ${turno.horario}</p>
+              <button id="btnCancelarTurno" style="background:#e32724;color:#fff;padding:8px 16px;border:none;border-radius:4px;cursor:pointer;">Cancelar Turno</button>
+            </div>
+          `;
+          document.getElementById('btnCancelarTurno').onclick = function() {
+            if (confirm('¿Seguro que deseas cancelar este turno? Esta acción no se puede deshacer.')) {
+              fetch(`http://localhost:3000/turnosConfirmados/${turno.id}`, { method: 'DELETE' })
+                .then(resp => {
+                  if (resp.ok) {
+                    resultadoDiv.innerHTML = '<p style="color:green">El turno fue cancelado correctamente.</p>';
+                  } else {
+                    resultadoDiv.innerHTML = '<p style="color:red">No se pudo cancelar el turno. Intente nuevamente.</p>';
+                  }
+                });
+            }
+          };
+        })
+        .catch(() => {
+          resultadoDiv.innerHTML = '<p style="color:red">Error al buscar el turno.</p>';
+        });
+    });
+  }
 });

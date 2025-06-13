@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- MOSTRAR DATOS EN EL DOM ---
   contenedor.innerHTML = `
+    <p><strong>ID de Turno:</strong> ${turno.id ? turno.id : '(sin ID)'}</p>
     <p><strong>Nombre:</strong> ${turno.nombre}</p>
     <p><strong>DNI:</strong> ${turno.dni}</p>
     <p><strong>Teléfono:</strong> ${turno.telefono}</p>
