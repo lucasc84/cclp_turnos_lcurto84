@@ -338,6 +338,26 @@
       "sucursal": "Sucursal Ensenada",
       "fecha": "2025-06-28",
       "horario": "14:00"
+    },
+    {
+      "id": "fa9e",
+      "nombre": "LUCAS GASTON",
+      "dni": "23123123123",
+      "telefono": "02215485793",
+      "email": "drlucasacurto@gmail.com",
+      "sucursal": "Sucursal Lanus",
+      "fecha": "2025-06-13",
+      "horario": "13:00"
+    },
+    {
+      "id": "06fc",
+      "nombre": "Juan Pérez",
+      "dni": "123123",
+      "telefono": "122112",
+      "email": "lucascurto84@gmail.com",
+      "sucursal": "Sucursal La Plata (UPCN)",
+      "fecha": "2025-06-20",
+      "horario": "12:45"
     }
   ]
 }
