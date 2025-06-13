@@ -358,6 +358,46 @@
       "sucursal": "Sucursal La Plata (UPCN)",
       "fecha": "2025-06-20",
       "horario": "12:45"
+    },
+    {
+      "id": "79f4",
+      "nombre": "MARCELO FABIAN",
+      "dni": "23123123123",
+      "telefono": "02215485793",
+      "email": "drlucasacurto@gmail.com",
+      "sucursal": "Sucursal Quilmes",
+      "fecha": "2025-06-14",
+      "horario": "15:20"
+    },
+    {
+      "id": "3825",
+      "nombre": "LUCAS GASTON",
+      "dni": "12345678",
+      "telefono": "122112",
+      "email": "lucascurto84@gmail.com",
+      "sucursal": "Sucursal Ensenada",
+      "fecha": "2025-06-14",
+      "horario": "13:45"
+    },
+    {
+      "id": "e35b",
+      "nombre": "LUCAS ALBERTO",
+      "dni": "123123",
+      "telefono": "12212121",
+      "email": "drlucasacurto@gmail.com",
+      "sucursal": "Sucursal Mar del Plata",
+      "fecha": "2025-06-14",
+      "horario": "11:45"
+    },
+    {
+      "id": "2248",
+      "nombre": "hhjh",
+      "dni": "333",
+      "telefono": "34334",
+      "email": "ccss@gmail.com",
+      "sucursal": "Sucursal Ensenada",
+      "fecha": "2025-06-20",
+      "horario": "14:00"
     }
   ]
 }

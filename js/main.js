@@ -93,13 +93,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Establecer el mínimo y máximo
     fechaInput.min = hoy.toISOString().split('T')[0];
     fechaInput.max = maxFecha.toISOString().split('T')[0];
-    // Al abrir el calendario, bloquear días inhábiles
-    fechaInput.addEventListener('input', function() {
+    // Validar también al intentar enviar el formulario
+    fechaInput.addEventListener('change', function() {
       const fecha = new Date(this.value);
       if (!esDiaHabil(fecha)) {
         this.setCustomValidity('No se puede seleccionar un día inhábil o feriado.');
+        this.reportValidity();
+        this.value = '';
       } else {
         this.setCustomValidity('');
+      }
+    });
+    fechaInput.addEventListener('invalid', function() {
+      if (!this.value) {
+        this.setCustomValidity('Por favor, seleccioná una fecha válida.');
       }
     });
 
