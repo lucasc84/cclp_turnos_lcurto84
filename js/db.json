@@ -398,6 +398,16 @@
       "sucursal": "Sucursal Ensenada",
       "fecha": "2025-06-20",
       "horario": "14:00"
+    },
+    {
+      "id": "577b",
+      "nombre": "Juan Pérez",
+      "dni": "23123123123",
+      "telefono": "02215485793",
+      "email": "drlucasacurto@gmail.com",
+      "sucursal": "Sucursal La Plata",
+      "fecha": "2025-06-17",
+      "horario": "12:30"
     }
   ]
 }

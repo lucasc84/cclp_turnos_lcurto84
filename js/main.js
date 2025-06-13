@@ -38,6 +38,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const sucursalSelect = document.getElementById('sucursal');
     const horarioSelect = document.getElementById('horario');
     const direccionDiv = document.getElementById('direccionSucursal');
+    const fechaInput = document.getElementById('fecha');
+    let fechaSeleccionada = null;
+    let sucursalSeleccionada = null;
+
+    // --- FLATPICKR PARA FECHA ---
+    flatpickr(fechaInput, {
+      dateFormat: 'Y-m-d',
+      minDate: new Date(),
+      maxDate: new Date().fp_incr(30),
+      disable: [
+        function(date) {
+          // Bloquear sábados, domingos y feriados
+          const dia = date.getDay();
+          const formato = date.toISOString().split('T')[0];
+          return (dia === 0 || dia === 6 || feriados.includes(formato));
+        }
+      ],
+      locale: 'es',
+      onChange: function(selectedDates, dateStr) {
+        fechaSeleccionada = dateStr;
+        actualizarHorarios();
+      }
+    });
 
     fetch('http://localhost:3000/sucursales')
       .then(response => response.json())
@@ -67,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const direccion = selected.getAttribute('data-direccion');
       const telefonos = selected.getAttribute('data-telefonos');
       const sucursalId = selected.getAttribute('data-id');
+      sucursalSeleccionada = selected.value;
       if (direccion) {
         direccionDiv.innerHTML = `Dirección: ${direccion}<br>Teléfonos: ${telefonos}`;
         direccionDiv.style.display = 'block';
@@ -74,41 +98,32 @@ document.addEventListener('DOMContentLoaded', () => {
         direccionDiv.textContent = '';
         direccionDiv.style.display = 'none';
       }
+      actualizarHorarios();
+    });
+
+    // --- ACTUALIZAR HORARIOS DISPONIBLES SEGÚN FECHA Y SUCURSAL ---
+    function actualizarHorarios() {
       horarioSelect.innerHTML = '<option value="">Seleccione un horario</option>';
-      if (sucursalId) {
-        const suc = sucursalesData.find(s => s.id == sucursalId);
-        if (suc && suc.horarios) {
+      if (!sucursalSeleccionada || !fechaSeleccionada) return;
+      const suc = sucursalesData.find(s => s.nombre === sucursalSeleccionada);
+      if (!suc || !suc.horarios) return;
+      // Consultar turnos ya tomados para esa sucursal y fecha
+      fetch(`http://localhost:3000/turnosConfirmados?sucursal=${encodeURIComponent(sucursalSeleccionada)}&fecha=${fechaSeleccionada}`)
+        .then(res => res.json())
+        .then(turnosTomados => {
+          const horariosOcupados = turnosTomados.map(t => t.horario);
           suc.horarios.forEach(hora => {
             const option = document.createElement('option');
             option.value = hora;
             option.textContent = hora;
+            if (horariosOcupados.includes(hora)) {
+              option.disabled = true;
+              option.textContent += ' (No disponible)';
+            }
             horarioSelect.appendChild(option);
           });
-        }
-      }
-    });
-
-    // --- BLOQUEAR DÍAS INHÁBILES EN EL INPUT DE FECHA ---
-    const fechaInput = document.getElementById('fecha');
-    // Establecer el mínimo y máximo
-    fechaInput.min = hoy.toISOString().split('T')[0];
-    fechaInput.max = maxFecha.toISOString().split('T')[0];
-    // Validar también al intentar enviar el formulario
-    fechaInput.addEventListener('change', function() {
-      const fecha = new Date(this.value);
-      if (!esDiaHabil(fecha)) {
-        this.setCustomValidity('No se puede seleccionar un día inhábil o feriado.');
-        this.reportValidity();
-        this.value = '';
-      } else {
-        this.setCustomValidity('');
-      }
-    });
-    fechaInput.addEventListener('invalid', function() {
-      if (!this.value) {
-        this.setCustomValidity('Por favor, seleccioná una fecha válida.');
-      }
-    });
+        });
+    }
 
     const turnoForm = document.getElementById('turnoForm');
     turnoForm.addEventListener('submit', (e) => {
