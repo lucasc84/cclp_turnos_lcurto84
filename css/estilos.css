@@ -58,6 +58,14 @@ h3 {
 
 }
 
+h4 {
+  font-size: 16px;
+  font-weight: normal;
+  color: #000000;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
 /*Estilos para los campos del formulario y botones.*/
 
 form input, form select {

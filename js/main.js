@@ -1,4 +1,3 @@
-
 /*Script principal para la gestión de turnos.*/
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -86,6 +85,21 @@ document.addEventListener('DOMContentLoaded', () => {
             horarioSelect.appendChild(option);
           });
         }
+      }
+    });
+
+    // --- BLOQUEAR DÍAS INHÁBILES EN EL INPUT DE FECHA ---
+    const fechaInput = document.getElementById('fecha');
+    // Establecer el mínimo y máximo
+    fechaInput.min = hoy.toISOString().split('T')[0];
+    fechaInput.max = maxFecha.toISOString().split('T')[0];
+    // Al abrir el calendario, bloquear días inhábiles
+    fechaInput.addEventListener('input', function() {
+      const fecha = new Date(this.value);
+      if (!esDiaHabil(fecha)) {
+        this.setCustomValidity('No se puede seleccionar un día inhábil o feriado.');
+      } else {
+        this.setCustomValidity('');
       }
     });
 
