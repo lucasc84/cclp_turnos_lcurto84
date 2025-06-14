@@ -408,6 +408,26 @@
       "sucursal": "Sucursal La Plata",
       "fecha": "2025-06-17",
       "horario": "12:30"
+    },
+    {
+      "id": "004bf569",
+      "nombre": "LUCAS GASTON",
+      "dni": "23123123123",
+      "telefono": "12212121",
+      "email": "lucascurto84@gmail.com",
+      "sucursal": "Sucursal La Plata",
+      "fecha": "2025-06-17",
+      "horario": "12:15"
+    },
+    {
+      "id": "f9b1ad8a",
+      "nombre": "LUCAS GASTON",
+      "dni": "23123123123",
+      "telefono": "02215485793",
+      "email": "drlucasacurto@gmail.com",
+      "sucursal": "Sucursal La Plata",
+      "fecha": "2025-06-17",
+      "horario": "12:00"
     }
   ]
 }

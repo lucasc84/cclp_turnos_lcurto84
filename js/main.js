@@ -130,19 +130,42 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
 
       const datos = {
-        nombre: document.getElementById('nombre').value,
-        dni: document.getElementById('dni').value,
-        telefono: document.getElementById('telefono').value,
-        email: document.getElementById('email').value,
+        nombre: document.getElementById('nombre').value.trim(),
+        dni: document.getElementById('dni').value.replace(/\D/g, ''),
+        telefono: document.getElementById('telefono').value.replace(/\D/g, ''),
+        email: document.getElementById('email').value.trim(),
         sucursal: document.getElementById('sucursal').value,
         fecha: document.getElementById('fecha').value,
         horario: document.getElementById('horario').value
       };
 
-      if (Object.values(datos).includes("")) {
+      // Validaciones adicionales
+      let errorMsg = '';
+      // DNI: solo números, 7-9 dígitos
+      if (!/^\d{7,9}$/.test(datos.dni)) {
+        errorMsg = 'El DNI debe contener solo números (7 a 9 dígitos).';
+        document.getElementById('dni').classList.add('input-error');
+      } else {
+        document.getElementById('dni').classList.remove('input-error');
+      }
+      // Teléfono: solo números, 8-15 dígitos
+      if (!/^\d{8,15}$/.test(datos.telefono)) {
+        errorMsg = 'El teléfono debe contener solo números (8 a 15 dígitos).';
+        document.getElementById('telefono').classList.add('input-error');
+      } else {
+        document.getElementById('telefono').classList.remove('input-error');
+      }
+      // Email: sintaxis básica
+      if (!/^\S+@\S+\.\S+$/.test(datos.email)) {
+        errorMsg = 'El email no tiene un formato válido.';
+        document.getElementById('email').classList.add('input-error');
+      } else {
+        document.getElementById('email').classList.remove('input-error');
+      }
+      if (errorMsg) {
         Toastify({
-          text: "Por favor, completá todos los campos.",
-          duration: 3000,
+          text: errorMsg,
+          duration: 3500,
           backgroundColor: "#ff0000"
         }).showToast();
         return;
@@ -159,50 +182,95 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      Swal.fire({
-        title: '¿Confirmar turno?',
-        html: `
-          <p><strong>Sucursal:</strong> ${datos.sucursal}</p>
-          <p><strong>Fecha:</strong> ${datos.fecha}</p>
-          <p><strong>Hora:</strong> ${datos.horario}</p>
-        `,
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonText: 'Sí, confirmar',
-        cancelButtonText: 'Cancelar'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // Generar ID único (ejemplo: 4 caracteres hex)
-          const idTurno = Math.random().toString(16).slice(2, 6) + Date.now().toString(16).slice(-4);
-          datos.id = idTurno;
-          const win = window.open("constancia.html", "_blank");
-          fetch('http://localhost:3000/turnosConfirmados', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(datos)
-          })
-          .then(response => {
-            if (!response.ok) throw new Error('Error al guardar el turno');
-            localStorage.setItem('turnoConfirmado', JSON.stringify(datos));
-            Toastify({
-              text: "¡Turno confirmado!",
-              duration: 3000,
-              backgroundColor: "#28a745"
-            }).showToast();
-            turnoForm.reset();
-            if (win) win.location.reload();
-          })
-          .catch(() => {
-            Toastify({
-              text: "No se pudo confirmar el turno.",
-              duration: 3000,
-              backgroundColor: "#ff0000"
-            }).showToast();
+      // --- Validar si el DNI ya tiene un turno pendiente ---
+      fetch(`http://localhost:3000/turnosConfirmados?dni=${encodeURIComponent(datos.dni)}`)
+        .then(res => res.json())
+        .then(turnosDni => {
+          // Filtrar solo turnos futuros o de hoy
+          const hoyStr = new Date().toISOString().split('T')[0];
+          const turnosPendientes = turnosDni.filter(t => t.fecha >= hoyStr);
+          if (turnosPendientes.length > 0) {
+            const t = turnosPendientes[0];
+            Swal.fire({
+              title: 'Ya tienes un turno pendiente',
+              html: `<p><strong>Sucursal:</strong> ${t.sucursal}</p>
+                     <p><strong>Fecha:</strong> ${t.fecha}</p>
+                     <p><strong>Hora:</strong> ${t.horario}</p>
+                     <p><strong>ID:</strong> ${t.id}</p>`,
+              icon: 'info',
+              showCancelButton: true,
+              confirmButtonText: 'Aceptar',
+              cancelButtonText: 'Cancelar este turno'
+            }).then((result) => {
+              if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire({
+                  title: '¿Seguro que deseas cancelar tu turno?',
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonText: 'Sí, cancelar',
+                  cancelButtonText: 'No'
+                }).then((r2) => {
+                  if (r2.isConfirmed) {
+                    fetch(`http://localhost:3000/turnosConfirmados/${t.id}`, { method: 'DELETE' })
+                      .then(resp => {
+                        if (resp.ok) {
+                          Swal.fire('Turno cancelado', 'Tu turno fue cancelado correctamente.', 'success');
+                        } else {
+                          Swal.fire('Error', 'No se pudo cancelar el turno. Intenta nuevamente.', 'error');
+                        }
+                      });
+                  }
+                });
+              }
+            });
+            return;
+          }
+          // Si no tiene turno, continuar con el flujo normal
+          Swal.fire({
+            title: '¿Confirmar turno?',
+            html: `
+              <p><strong>Sucursal:</strong> ${datos.sucursal}</p>
+              <p><strong>Fecha:</strong> ${datos.fecha}</p>
+              <p><strong>Hora:</strong> ${datos.horario}</p>
+            `,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, confirmar',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // Generar ID único (ejemplo: 4 caracteres hex)
+              const idTurno = Math.random().toString(16).slice(2, 6) + Date.now().toString(16).slice(-4);
+              datos.id = idTurno;
+              const win = window.open("constancia.html", "_blank");
+              fetch('http://localhost:3000/turnosConfirmados', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(datos)
+              })
+              .then(response => {
+                if (!response.ok) throw new Error('Error al guardar el turno');
+                localStorage.setItem('turnoConfirmado', JSON.stringify(datos));
+                Toastify({
+                  text: "¡Turno confirmado!",
+                  duration: 3000,
+                  backgroundColor: "#28a745"
+                }).showToast();
+                turnoForm.reset();
+                if (win) win.location.reload();
+              })
+              .catch(() => {
+                Toastify({
+                  text: "No se pudo confirmar el turno.",
+                  duration: 3000,
+                  backgroundColor: "#ff0000"
+                }).showToast();
+              });
+            }
           });
-        }
-      });
+        });
     });
 
   }); // fin obtenerFeriados

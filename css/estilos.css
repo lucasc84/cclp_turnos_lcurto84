@@ -126,3 +126,8 @@ form button:hover {
   font-style: normal;
   text-align: center;
 }
+
+.input-error {
+  border: 2px solid #e32724 !important;
+  background: #fff3f3;
+}
