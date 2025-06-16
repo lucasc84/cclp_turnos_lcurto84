@@ -55,19 +55,44 @@ document.addEventListener('DOMContentLoaded', () => {
           return (dia === 0 || dia === 6 || feriados.includes(formato));
         }
       ],
-      locale: 'es',
       onChange: function(selectedDates, dateStr) {
         fechaSeleccionada = dateStr;
         actualizarHorarios();
       }
     });
 
-    fetch('http://localhost:3000/sucursales')
+    // URLs y API Key de jsonbin.io
+    const URL_SUCURSALES = 'https://api.jsonbin.io/v3/b/684fa84c8561e97a5024ff1b';
+    const URL_TURNOS = 'https://api.jsonbin.io/v3/b/684fa8e48a456b7966aedbc3';
+    const API_KEY = '$2a$10$ABM3K8iF7DB3oCbwdnJTFOWHRzeRt6iMZ130laFA6kuuq5fihw7Xa';
+
+    // --- FUNCIONES AUXILIARES PARA TURNOS EN JSONBIN ---
+    async function getTurnosConfirmados() {
+      const res = await fetch(URL_TURNOS, { headers: { 'X-Master-Key': API_KEY } });
+      const data = await res.json();
+      return data.record;
+    }
+    async function setTurnosConfirmados(turnos) {
+      await fetch(URL_TURNOS, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Master-Key': API_KEY
+        },
+        body: JSON.stringify(turnos)
+      });
+    }
+
+    // --- CARGA DE SUCURSALES DESDE JSONBIN ---
+    fetch(URL_SUCURSALES, {
+      headers: { 'X-Master-Key': API_KEY }
+    })
       .then(response => response.json())
       .then(data => {
-        sucursalesData = data;
+        const sucursalesData = data.record;
+        const sucursalSelect = document.getElementById('sucursal');
         sucursalSelect.innerHTML = '<option value="">Seleccione una sucursal</option>';
-        data.forEach(suc => {
+        sucursalesData.forEach(suc => {
           const option = document.createElement('option');
           option.value = suc.nombre;
           option.textContent = suc.nombre.replace('Sucursal ', '');
@@ -76,6 +101,8 @@ document.addEventListener('DOMContentLoaded', () => {
           option.setAttribute('data-id', suc.id);
           sucursalSelect.appendChild(option);
         });
+        // Guardar en variable global para uso posterior
+        window.sucursalesData = sucursalesData;
       })
       .catch(() => {
         Toastify({
@@ -102,33 +129,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- ACTUALIZAR HORARIOS DISPONIBLES SEGÚN FECHA Y SUCURSAL ---
-    function actualizarHorarios() {
+    async function actualizarHorarios() {
+      const horarioSelect = document.getElementById('horario');
       horarioSelect.innerHTML = '<option value="">Seleccione un horario</option>';
+      const sucursalSeleccionada = document.getElementById('sucursal').value;
+      const fechaSeleccionada = document.getElementById('fecha').value;
       if (!sucursalSeleccionada || !fechaSeleccionada) return;
-      const suc = sucursalesData.find(s => s.nombre === sucursalSeleccionada);
+      const suc = window.sucursalesData.find(s => s.nombre === sucursalSeleccionada);
       if (!suc || !suc.horarios) return;
-      // Consultar turnos ya tomados para esa sucursal y fecha
-      fetch(`http://localhost:3000/turnosConfirmados?sucursal=${encodeURIComponent(sucursalSeleccionada)}&fecha=${fechaSeleccionada}`)
-        .then(res => res.json())
-        .then(turnosTomados => {
-          const horariosOcupados = turnosTomados.map(t => t.horario);
-          suc.horarios.forEach(hora => {
-            const option = document.createElement('option');
-            option.value = hora;
-            option.textContent = hora;
-            if (horariosOcupados.includes(hora)) {
-              option.disabled = true;
-              option.textContent += ' (No disponible)';
-            }
-            horarioSelect.appendChild(option);
-          });
-        });
+      const turnosTomados = (await getTurnosConfirmados()).filter(t => t.sucursal === sucursalSeleccionada && t.fecha === fechaSeleccionada);
+      const horariosOcupados = turnosTomados.map(t => t.horario);
+      suc.horarios.forEach(hora => {
+        const option = document.createElement('option');
+        option.value = hora;
+        option.textContent = hora;
+        if (horariosOcupados.includes(hora)) {
+          option.disabled = true;
+          option.textContent += ' (No disponible)';
+        }
+        horarioSelect.appendChild(option);
+      });
     }
 
+    // --- VALIDACIÓN DE DNI Y ALTA DE TURNO ---
     const turnoForm = document.getElementById('turnoForm');
-    turnoForm.addEventListener('submit', (e) => {
+    turnoForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-
       const datos = {
         nombre: document.getElementById('nombre').value.trim(),
         dni: document.getElementById('dni').value.replace(/\D/g, ''),
@@ -181,144 +207,108 @@ document.addEventListener('DOMContentLoaded', () => {
         }).showToast();
         return;
       }
-
-      // --- Validar si el DNI ya tiene un turno pendiente ---
-      fetch(`http://localhost:3000/turnosConfirmados?dni=${encodeURIComponent(datos.dni)}`)
-        .then(res => res.json())
-        .then(turnosDni => {
-          // Filtrar solo turnos futuros o de hoy
-          const hoyStr = new Date().toISOString().split('T')[0];
-          const turnosPendientes = turnosDni.filter(t => t.fecha >= hoyStr);
-          if (turnosPendientes.length > 0) {
-            const t = turnosPendientes[0];
+      // Validar si el DNI ya tiene un turno pendiente (solo futuro)
+      const turnosDni = (await getTurnosConfirmados()).filter(t => t.dni === datos.dni);
+      const hoyStr = new Date().toISOString().split('T')[0];
+      const turnosPendientes = turnosDni.filter(t => t.fecha >= hoyStr);
+      if (turnosPendientes.length > 0) {
+        const t = turnosPendientes[0];
+        Swal.fire({
+          title: 'Ya tienes un turno pendiente',
+          html: `<p><strong>Sucursal:</strong> ${t.sucursal}</p>
+                 <p><strong>Fecha:</strong> ${t.fecha}</p>
+                 <p><strong>Hora:</strong> ${t.horario}</p>
+                 <p><strong>ID:</strong> ${t.id}</p>`,
+          icon: 'info',
+          showCancelButton: true,
+          confirmButtonText: 'Aceptar',
+          cancelButtonText: 'Cancelar este turno'
+        }).then(async (result) => {
+          if (result.dismiss === Swal.DismissReason.cancel) {
             Swal.fire({
-              title: 'Ya tienes un turno pendiente',
-              html: `<p><strong>Sucursal:</strong> ${t.sucursal}</p>
-                     <p><strong>Fecha:</strong> ${t.fecha}</p>
-                     <p><strong>Hora:</strong> ${t.horario}</p>
-                     <p><strong>ID:</strong> ${t.id}</p>`,
-              icon: 'info',
+              title: '¿Seguro que deseas cancelar tu turno?',
+              icon: 'warning',
               showCancelButton: true,
-              confirmButtonText: 'Aceptar',
-              cancelButtonText: 'Cancelar este turno'
-            }).then((result) => {
-              if (result.dismiss === Swal.DismissReason.cancel) {
-                Swal.fire({
-                  title: '¿Seguro que deseas cancelar tu turno?',
-                  icon: 'warning',
-                  showCancelButton: true,
-                  confirmButtonText: 'Sí, cancelar',
-                  cancelButtonText: 'No'
-                }).then((r2) => {
-                  if (r2.isConfirmed) {
-                    fetch(`http://localhost:3000/turnosConfirmados/${t.id}`, { method: 'DELETE' })
-                      .then(resp => {
-                        if (resp.ok) {
-                          Swal.fire('Turno cancelado', 'Tu turno fue cancelado correctamente.', 'success');
-                        } else {
-                          Swal.fire('Error', 'No se pudo cancelar el turno. Intenta nuevamente.', 'error');
-                        }
-                      });
-                  }
-                });
+              confirmButtonText: 'Sí, cancelar',
+              cancelButtonText: 'No'
+            }).then(async (r2) => {
+              if (r2.isConfirmed) {
+                const turnos = await getTurnosConfirmados();
+                const nuevosTurnos = turnos.filter(tt => tt.id !== t.id);
+                await setTurnosConfirmados(nuevosTurnos);
+                Swal.fire('Turno cancelado', 'Tu turno fue cancelado correctamente.', 'success');
               }
             });
-            return;
           }
-          // Si no tiene turno, continuar con el flujo normal
-          Swal.fire({
-            title: '¿Confirmar turno?',
-            html: `
-              <p><strong>Sucursal:</strong> ${datos.sucursal}</p>
-              <p><strong>Fecha:</strong> ${datos.fecha}</p>
-              <p><strong>Hora:</strong> ${datos.horario}</p>
-            `,
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonText: 'Sí, confirmar',
-            cancelButtonText: 'Cancelar'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              // Generar ID único (ejemplo: 4 caracteres hex)
-              const idTurno = Math.random().toString(16).slice(2, 6) + Date.now().toString(16).slice(-4);
-              datos.id = idTurno;
-              const win = window.open("constancia.html", "_blank");
-              fetch('http://localhost:3000/turnosConfirmados', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(datos)
-              })
-              .then(response => {
-                if (!response.ok) throw new Error('Error al guardar el turno');
-                localStorage.setItem('turnoConfirmado', JSON.stringify(datos));
-                Toastify({
-                  text: "¡Turno confirmado!",
-                  duration: 3000,
-                  backgroundColor: "#28a745"
-                }).showToast();
-                turnoForm.reset();
-                if (win) win.location.reload();
-              })
-              .catch(() => {
-                Toastify({
-                  text: "No se pudo confirmar el turno.",
-                  duration: 3000,
-                  backgroundColor: "#ff0000"
-                }).showToast();
-              });
-            }
-          });
         });
+        return;
+      }
+      // Si no tiene turno pendiente, continuar con el flujo normal
+      Swal.fire({
+        title: '¿Confirmar turno?',
+        html: `
+          <p><strong>Sucursal:</strong> ${datos.sucursal}</p>
+          <p><strong>Fecha:</strong> ${datos.fecha}</p>
+          <p><strong>Hora:</strong> ${datos.horario}</p>
+        `,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, confirmar',
+        cancelButtonText: 'Cancelar'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const idTurno = Math.random().toString(16).slice(2, 6) + Date.now().toString(16).slice(-4);
+          datos.id = idTurno;
+          const win = window.open("constancia.html", "_blank");
+          const turnos = await getTurnosConfirmados();
+          turnos.push(datos);
+          await setTurnosConfirmados(turnos);
+          localStorage.setItem('turnoConfirmado', JSON.stringify(datos));
+          Toastify({
+            text: "¡Turno confirmado!",
+            duration: 3000,
+            backgroundColor: "#28a745"
+          }).showToast();
+          turnoForm.reset();
+          if (win) win.location.reload();
+        }
+      });
     });
 
+    // --- CONSULTA Y CANCELACIÓN DE TURNO POR ID ---
+    const formConsulta = document.getElementById('formConsultaTurno');
+    const resultadoDiv = document.getElementById('resultadoConsulta');
+    if (formConsulta) {
+      formConsulta.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const id = document.getElementById('idConsulta').value.trim();
+        if (!id) return;
+        resultadoDiv.innerHTML = 'Buscando...';
+        const turnos = await getTurnosConfirmados();
+        const turno = turnos.find(t => t.id === id);
+        if (!turno) {
+          resultadoDiv.innerHTML = '<p style="color:red">No se encontró ningún turno con ese ID.</p>';
+          return;
+        }
+        resultadoDiv.innerHTML = `
+          <div style="text-align:left; margin: 10px auto; max-width: 350px;">
+            <p><strong>ID:</strong> ${turno.id}</p>
+            <p><strong>Nombre:</strong> ${turno.nombre}</p>
+            <p><strong>DNI:</strong> ${turno.dni}</p>
+            <p><strong>Sucursal:</strong> ${turno.sucursal}</p>
+            <p><strong>Fecha:</strong> ${turno.fecha}</p>
+            <p><strong>Horario:</strong> ${turno.horario}</p>
+            <button id="btnCancelarTurno" style="background:#e32724;color:#fff;padding:8px 16px;border:none;border-radius:4px;cursor:pointer;">Cancelar Turno</button>
+          </div>
+        `;
+        document.getElementById('btnCancelarTurno').onclick = async function() {
+          if (confirm('¿Seguro que deseas cancelar este turno? Esta acción no se puede deshacer.')) {
+            const nuevosTurnos = turnos.filter(t => t.id !== id);
+            await setTurnosConfirmados(nuevosTurnos);
+            resultadoDiv.innerHTML = '<p style="color:green">El turno fue cancelado correctamente.</p>';
+          }
+        };
+      });
+    }
   }); // fin obtenerFeriados
-
-  // --- CONSULTA Y CANCELACIÓN DE TURNO POR ID ---
-  const formConsulta = document.getElementById('formConsultaTurno');
-  const resultadoDiv = document.getElementById('resultadoConsulta');
-  if (formConsulta) {
-    formConsulta.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const id = document.getElementById('idConsulta').value.trim();
-      if (!id) return;
-      resultadoDiv.innerHTML = 'Buscando...';
-      fetch(`http://localhost:3000/turnosConfirmados?id=${encodeURIComponent(id)}`)
-        .then(res => res.json())
-        .then(turnos => {
-          if (!turnos.length) {
-            resultadoDiv.innerHTML = '<p style="color:red">No se encontró ningún turno con ese ID.</p>';
-            return;
-          }
-          const turno = turnos[0];
-          resultadoDiv.innerHTML = `
-            <div style="text-align:left; margin: 10px auto; max-width: 350px;">
-              <p><strong>ID:</strong> ${turno.id}</p>
-              <p><strong>Nombre:</strong> ${turno.nombre}</p>
-              <p><strong>DNI:</strong> ${turno.dni}</p>
-              <p><strong>Sucursal:</strong> ${turno.sucursal}</p>
-              <p><strong>Fecha:</strong> ${turno.fecha}</p>
-              <p><strong>Horario:</strong> ${turno.horario}</p>
-              <button id="btnCancelarTurno" style="background:#e32724;color:#fff;padding:8px 16px;border:none;border-radius:4px;cursor:pointer;">Cancelar Turno</button>
-            </div>
-          `;
-          document.getElementById('btnCancelarTurno').onclick = function() {
-            if (confirm('¿Seguro que deseas cancelar este turno? Esta acción no se puede deshacer.')) {
-              fetch(`http://localhost:3000/turnosConfirmados/${turno.id}`, { method: 'DELETE' })
-                .then(resp => {
-                  if (resp.ok) {
-                    resultadoDiv.innerHTML = '<p style="color:green">El turno fue cancelado correctamente.</p>';
-                  } else {
-                    resultadoDiv.innerHTML = '<p style="color:red">No se pudo cancelar el turno. Intente nuevamente.</p>';
-                  }
-                });
-            }
-          };
-        })
-        .catch(() => {
-          resultadoDiv.innerHTML = '<p style="color:red">Error al buscar el turno.</p>';
-        });
-    });
-  }
 });

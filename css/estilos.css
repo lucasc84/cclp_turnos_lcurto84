@@ -26,6 +26,10 @@ body {
   width: 10em;
 }
 
+span {
+  font-weight: bold;
+}
+
 h1 {
   font-size: 1.1em;
   font-weight: normal;
@@ -130,6 +134,22 @@ form button:hover {
 .input-error {
   border: 0.125em solid #e32724 !important;
   background: #fff3f3;
+}
+
+.consulta-link {
+  margin: 0.5em 0 1.5em 0;
+  text-align: center;
+  font-size: 0.9em;
+}
+.consulta-link a {
+  color: #e32724;
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.consulta-link a:hover {
+  color: #a12a2a;
 }
 
 @media (min-width: 37.5em) { /* 600px */
