@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Esto permite que el resto del script espere a que los feriados estén disponibles antes de continuar.
   function obtenerFeriados() {
     const anio = new Date().getFullYear();
+    const URL_FERIADOS_BIN = 'https://api.jsonbin.io/v3/b/685451d58561e97a50275ef2';
+    const API_KEY = '$2a$10$ABM3K8iF7DB3oCbwdnJTFOWHRzeRt6iMZ130laFA6kuuq5fihw7Xa';
     return fetch(`https://corsproxy.io/?https://nolaborables.com.ar/api/v2/feriados/${anio}`)
       .then((res) => res.json())
       .then((data) => {
@@ -36,17 +38,32 @@ document.addEventListener("DOMContentLoaded", () => {
           const dia = String(f.dia).padStart(2, "0");
           return `${anio}-${mes}-${dia}`;
         });
+        // Guarda los feriados en el bin de jsonbin.io
+        fetch(URL_FERIADOS_BIN, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Master-Key": API_KEY
+          },
+          body: JSON.stringify(feriados)
+        });
       })
       .catch(() => {
-        console.warn("Fallo la carga de feriados, usando fallback local.");
-        feriados = [
-          "2025-01-01",
-          "2025-03-24",
-          "2025-04-02",
-          "2025-05-01",
-          "2025-07-09",
-          "2025-12-25",
-        ];
+        // Si falla la API, intenta leer el backup de jsonbin.io
+        fetch(URL_FERIADOS_BIN, {
+          headers: { "X-Master-Key": API_KEY }
+        })
+          .then(res => res.json())
+          .then(data => {
+            feriados = data.record || [];
+          })
+          .catch(() => {
+            // Si también falla, usa la lista hardcodeada
+            feriados = [
+              "2025-01-01", "2025-03-24", "2025-04-02",
+              "2025-05-01", "2025-07-09", "2025-12-25"
+            ];
+          });
       });
   }
 
@@ -80,8 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // URLs y API Key de jsonbin.io
     const URL_SUCURSALES =
-      "https://api.jsonbin.io/v3/b/684fa84c8561e97a5024ff1b";
-    const URL_TURNOS = "https://api.jsonbin.io/v3/b/684fa8e48a456b7966aedbc3";
+      "https://api.jsonbin.io/v3/b/68544e568960c979a5acfb7d";
+    const URL_TURNOS = "https://api.jsonbin.io/v3/b/6854507a8a456b7966b139ee";
     const API_KEY =
       "$2a$10$ABM3K8iF7DB3oCbwdnJTFOWHRzeRt6iMZ130laFA6kuuq5fihw7Xa";
 
