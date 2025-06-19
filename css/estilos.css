@@ -2,7 +2,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-image: url('../assets/fondo.jpg');
+  background-image: url("../assets/fondo.jpg");
   background-size: cover;
   margin: 0;
   padding: 0;
@@ -52,7 +52,6 @@ h2 {
   text-align: center;
 }
 
-
 h3 {
   font-weight: bold;
   margin-bottom: 1em;
@@ -84,7 +83,8 @@ h5 {
 }
 
 /*Estilos para los campos del formulario y botones.*/
-form input, form select {
+form input,
+form select {
   width: 100%;
   padding: 0.5em;
   margin: 0.4em 0;
@@ -98,7 +98,8 @@ form input, form select {
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-form input:focus, form select:focus {
+form input:focus,
+form select:focus {
   border: 0.125em solid #000 !important; /* negro al enfocar */
   box-shadow: 0 0 0 0.1em #e3272497;
   background: #fff !important;
@@ -115,12 +116,14 @@ form input:-webkit-autofill {
   color: #222 !important;
 }
 
-select option:checked, select option[selected] {
+select option:checked,
+select option[selected] {
   background: #e3272497 !important;
   color: #fff !important;
 }
 
-select option:hover, select option:focus {
+select option:hover,
+select option:focus {
   background: #e3272497 !important;
   color: #fff !important;
 }
@@ -200,7 +203,8 @@ form button:hover {
   color: #a12a2a;
 }
 
-@media (min-width: 37.5em) { /* 600px */
+@media (min-width: 37.5em) {
+  /* 600px */
   .container {
     max-width: 34.375em;
     margin: 3.75em auto;

@@ -1,7 +1,8 @@
-# CODERHOUSE  
+# CODERHOUSE
+
 Curso de JavaScript  
 Comisión 73445  
-Alumno: Lucas Curto  
+Alumno: Lucas Curto
 
 Proyecto:  
 Entrega Final
@@ -26,7 +27,6 @@ A diferencia de entregas anteriores, esta versión incorpora asincronismo, carga
 - La constancia de turno se presenta en un HTML separado con opción para imprimir.
 - La lógica está organizada en funciones claras, reutilizables y separadas por archivos.
 
-
 ## Estructura
 
 - La lógica del simulador responde al flujo **entrada → procesamiento → salida**.
@@ -44,4 +44,3 @@ A diferencia de entregas anteriores, esta versión incorpora asincronismo, carga
 Esta entrega final sintetiza los conocimientos adquiridos a lo largo del curso, con foco en la interactividad, asincronismo, modularización y experiencia de usuario.
 
 El proyecto está preparado para ser escalado fácilmente en versiones futuras (por ejemplo, integrando API reales o validación de disponibilidad de turnos), respetando una estructura ordenada y coherente.
-

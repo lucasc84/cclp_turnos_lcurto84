@@ -4,26 +4,28 @@
   - Muestra los datos en el DOM
 */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   // --- RECUPERACIÓN Y VISUALIZACIÓN DE DATOS DEL TURNO ---
   // Se obtiene el turno confirmado desde localStorage.
   // Si no hay datos, se muestra un mensaje informativo.
   // Si existen datos, se formatea la fecha y se muestran todos los detalles en el DOM.
-  const turno = JSON.parse(localStorage.getItem('turnoConfirmado'));
-  const contenedor = document.getElementById('detalleTurno');
+  const turno = JSON.parse(localStorage.getItem("turnoConfirmado"));
+  const contenedor = document.getElementById("detalleTurno");
 
   if (!turno) {
-    contenedor.innerHTML = '<p>No hay datos de turno para mostrar.</p>';
+    contenedor.innerHTML = "<p>No hay datos de turno para mostrar.</p>";
     return;
   }
 
   // --- FORMATEO DE FECHA CON LUXON ---
   const { DateTime } = luxon;
-  const fechaFormateada = DateTime.fromISO(turno.fecha).setLocale('es').toLocaleString(DateTime.DATE_HUGE);
+  const fechaFormateada = DateTime.fromISO(turno.fecha)
+    .setLocale("es")
+    .toLocaleString(DateTime.DATE_HUGE);
 
   // --- MOSTRAR DATOS EN EL DOM ---
   contenedor.innerHTML = `
-    <p><strong>ID de Turno:</strong> ${turno.id ? turno.id : '(sin ID)'}</p>
+    <p><strong>ID de Turno:</strong> ${turno.id ? turno.id : "(sin ID)"}</p>
     <p><strong>Nombre:</strong> ${turno.nombre}</p>
     <p><strong>DNI:</strong> ${turno.dni}</p>
     <p><strong>Teléfono:</strong> ${turno.telefono}</p>

@@ -1,83 +1,115 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <!--Página principal para solicitar turnos-->
-  <!-- Metadatos y enlaces a estilos y librerías externas -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Turnos | Cooperativa de Crédito La Plata</title>
-  <link rel="stylesheet" href="css/estilos.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"/>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"/>
-  <link rel="icon" href="assets/favicon.png" type="image/png" />
-</head>
-<body>
-  <div class="container">
-    <header>
-      <!-- Logo y encabezado principal -->
-      <a href="https://www.cooperativalaplata.com.ar/">
-        <img class="logo" src="assets/logo.png" alt="Logo Cooperativa de Crédito La Plata" />
-      </a>
-      <h1>RESERVA DE TURNOS</h1>
+  <head>
+    <!--Página principal para solicitar turnos-->
+    <!-- Metadatos y enlaces a estilos y librerías externas -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Turnos | Cooperativa de Crédito La Plata</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <link rel="icon" href="assets/favicon.png" type="image/png" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <!-- Logo y encabezado principal -->
+        <a href="https://www.cooperativalaplata.com.ar/">
+          <img
+            class="logo"
+            src="assets/logo.png"
+            alt="Logo Cooperativa de Crédito La Plata"
+          />
+        </a>
+        <h1>RESERVA DE TURNOS</h1>
 
-      <h2>Para gestionar un turno complete todos los datos y haga click en <span>"Reservar Turno"</span>
-</h2>
-      <p class="consulta-link">
-        ¿Ya tenés un turno y querés consultarlo o cancelarlo?
-        <a href="#consultaTurno">Hacé click aquí</a>
-      </p>
-    </header>
-          <hr style="margin: 30px 0;">
+        <h2>
+          Para gestionar un turno complete todos los datos y haga click en
+          <span>"Reservar Turno"</span>
+        </h2>
+        <p class="consulta-link">
+          ¿Ya tenés un turno y querés consultarlo o cancelarlo?
+          <a href="#consultaTurno">Hacé click aquí</a>
+        </p>
+      </header>
+      <hr style="margin: 30px 0" />
 
-    <!-- Formulario de solicitud de turno -->
-    <!-- Se utiliza contenido precargado porque lo pide la consigna -->
+      <!-- Formulario de solicitud de turno -->
+      <!-- Se utiliza contenido precargado porque lo pide la consigna -->
       <h3>Datos Personales</h3>
 
-    <form id="turnoForm">
-      <input type="text" id="nombre" placeholder="Nombre completo" required />
-      <input type="text" id="dni" placeholder="Número de Documento" required />
-      <input type="tel" id="telefono" placeholder="Teléfono" required />
-      <input type="email" id="email" placeholder="Correo electrónico" required />
+      <form id="turnoForm">
+        <input type="text" id="nombre" placeholder="Nombre completo" required />
+        <input
+          type="text"
+          id="dni"
+          placeholder="Número de Documento"
+          required
+        />
+        <input type="tel" id="telefono" placeholder="Teléfono" required />
+        <input
+          type="email"
+          id="email"
+          placeholder="Correo electrónico"
+          required
+        />
 
-      <h3>Sucursal</h3>
+        <h3>Sucursal</h3>
 
+        <select id="sucursal" required>
+          <option value="">Seleccione una sucursal</option>
+        </select>
+        <div id="direccionSucursal" class="direccion-sucursal"></div>
 
-      <select id="sucursal" required>
-        <option value="">Seleccione una sucursal</option>
-      </select>
-      <div id="direccionSucursal" class="direccion-sucursal"></div>
+        <h3>Fecha y Horario</h3>
 
-      <h3>Fecha y Horario</h3>
+        <h4 class="mensaje-fecha">
+          Solo es posible seleccionar fechas hábiles dentro de los próximos 30
+          días. Fines de semana y feriados no están disponibles.
+        </h4>
+        <h5 class="mensaje-fecha">
+          <strong>Importante:</strong> Verificá que el día elegido sea hábil. Si
+          el sistema permite sacar turno en un día inhábil, el turno no será
+          validado. Ante cualquier duda, comunicate con la sucursal elegida.
+        </h5>
 
-      <h4 class="mensaje-fecha">
-        Solo es posible seleccionar fechas hábiles dentro de los próximos 30 días. Fines de semana y feriados no están disponibles.
-      </h4>
-      <h5 class="mensaje-fecha">
-        <strong>Importante:</strong> Verificá que el día elegido sea hábil. Si el sistema permite sacar turno en un día inhábil, el turno no será validado. Ante cualquier duda, comunicate con la sucursal elegida.
-      </h5>
-
-      <input type="text" id="fecha" required />
-      <select id="horario" required>
-        <option value="">Seleccione un horario</option>
-      </select>
-      <button type="submit">Reservar Turno</button>
-    </form>
-    <hr style="margin: 30px 0;">
-    <div id="consultaTurno">
-      <h3>Consultar o Cancelar Turno</h3>
-      <form id="formConsultaTurno">
-        <input type="text" id="idConsulta" placeholder="Ingresá el ID de tu turno" required />
-        <button type="submit">Buscar Turno</button>
+        <input type="text" id="fecha" required />
+        <select id="horario" required>
+          <option value="">Seleccione un horario</option>
+        </select>
+        <button type="submit">Reservar Turno</button>
       </form>
-      <div id="resultadoConsulta"></div>
+      <hr style="margin: 30px 0" />
+      <div id="consultaTurno">
+        <h3>Consultar o Cancelar Turno</h3>
+        <form id="formConsultaTurno">
+          <input
+            type="text"
+            id="idConsulta"
+            placeholder="Ingresá el ID de tu turno"
+            required
+          />
+          <button type="submit">Buscar Turno</button>
+        </form>
+        <div id="resultadoConsulta"></div>
+      </div>
     </div>
-  </div>
 
-  <!-- librerías JS externas y script principal -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script src="js/main.js"></script>
-</body>
+    <!-- librerías JS externas y script principal -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>

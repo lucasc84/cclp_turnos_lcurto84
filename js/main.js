@@ -1,13 +1,19 @@
 /*Script principal para la gestión de turnos.*/
 
-document.addEventListener('DOMContentLoaded', () => {
+/* se establece el evento DOMContentLoaded para asegurar que el DOM esté completamente cargado antes de ejecutar el script. */
+document.addEventListener("DOMContentLoaded", () => {
 
   // --- CARGA DE FERIADOS DESDE API Y FILTRO DE DÍAS HÁBILES ---
+
   let feriados = [];
+
+  // Se define la fecha actual y la fecha máxima (30 días hacia adelante)
   const hoy = new Date();
   const maxFecha = new Date();
-  maxFecha.setDate(hoy.getDate() + 30); // ventana de 30 días hacia adelante
+  maxFecha.setDate(hoy.getDate() + 30); // crea una ventana de 30 días hacia adelante
+  // o sea tenemos la fecha de inicioi (hoy) una final (30 días desde hoy)
 
+  // Se define una función para verificar si un día es hábil (sabado o domingo no los feriados)
   function esDiaHabil(fecha) {
     const dia = fecha.getDay(); // 0 domingo, 6 sábado
     if (dia === 0 || dia === 6) return false;
@@ -15,90 +21,106 @@ document.addEventListener('DOMContentLoaded', () => {
     return !feriados.includes(formato);
   }
 
+  // Se define una función para obtener los feriados desde la API
+  // Si falla la carga, se usa un fallback local con algunos feriados comunes.
+  // La función devuelve una promesa que se resuelve cuando los feriados están cargados
+  // y se formatean en el formato YYYY-MM-DD.
+  // Esto permite que el resto del script espere a que los feriados estén disponibles antes de continuar.
   function obtenerFeriados() {
     const anio = new Date().getFullYear();
-    return fetch(`https://nolaborables.com.ar/api/v2/feriados/${anio}`)
-      .then(res => res.json())
-      .then(data => {
-        feriados = data.map(f => {
-          const mes = String(f.mes).padStart(2, '0');
-          const dia = String(f.dia).padStart(2, '0');
+    return fetch(`https://corsproxy.io/?https://nolaborables.com.ar/api/v2/feriados/${anio}`)
+      .then((res) => res.json())
+      .then((data) => {
+        feriados = data.map((f) => {
+          const mes = String(f.mes).padStart(2, "0");
+          const dia = String(f.dia).padStart(2, "0");
           return `${anio}-${mes}-${dia}`;
         });
       })
       .catch(() => {
         console.warn("Fallo la carga de feriados, usando fallback local.");
-        feriados = ["2025-01-01", "2025-03-24", "2025-04-02", "2025-05-01", "2025-07-09", "2025-12-25"];
+        feriados = [
+          "2025-01-01",
+          "2025-03-24",
+          "2025-04-02",
+          "2025-05-01",
+          "2025-07-09",
+          "2025-12-25",
+        ];
       });
   }
 
   obtenerFeriados().then(() => {
-
     let sucursalesData = [];
-    const sucursalSelect = document.getElementById('sucursal');
-    const horarioSelect = document.getElementById('horario');
-    const direccionDiv = document.getElementById('direccionSucursal');
-    const fechaInput = document.getElementById('fecha');
+    const sucursalSelect = document.getElementById("sucursal");
+    const horarioSelect = document.getElementById("horario");
+    const direccionDiv = document.getElementById("direccionSucursal");
+    const fechaInput = document.getElementById("fecha");
     let fechaSeleccionada = null;
     let sucursalSeleccionada = null;
 
     // --- FLATPICKR PARA FECHA ---
     flatpickr(fechaInput, {
-      dateFormat: 'Y-m-d',
+      dateFormat: "Y-m-d",
       minDate: new Date(),
       maxDate: new Date().fp_incr(30),
       disable: [
-        function(date) {
+        function (date) {
           // Bloquear sábados, domingos y feriados
           const dia = date.getDay();
-          const formato = date.toISOString().split('T')[0];
-          return (dia === 0 || dia === 6 || feriados.includes(formato));
-        }
+          const formato = date.toISOString().split("T")[0];
+          return dia === 0 || dia === 6 || feriados.includes(formato);
+        },
       ],
-      onChange: function(selectedDates, dateStr) {
+      onChange: function (selectedDates, dateStr) {
         fechaSeleccionada = dateStr;
         actualizarHorarios();
-      }
+      },
     });
 
     // URLs y API Key de jsonbin.io
-    const URL_SUCURSALES = 'https://api.jsonbin.io/v3/b/684fa84c8561e97a5024ff1b';
-    const URL_TURNOS = 'https://api.jsonbin.io/v3/b/684fa8e48a456b7966aedbc3';
-    const API_KEY = '$2a$10$ABM3K8iF7DB3oCbwdnJTFOWHRzeRt6iMZ130laFA6kuuq5fihw7Xa';
+    const URL_SUCURSALES =
+      "https://api.jsonbin.io/v3/b/684fa84c8561e97a5024ff1b";
+    const URL_TURNOS = "https://api.jsonbin.io/v3/b/684fa8e48a456b7966aedbc3";
+    const API_KEY =
+      "$2a$10$ABM3K8iF7DB3oCbwdnJTFOWHRzeRt6iMZ130laFA6kuuq5fihw7Xa";
 
     // --- FUNCIONES AUXILIARES PARA TURNOS EN JSONBIN ---
     async function getTurnosConfirmados() {
-      const res = await fetch(URL_TURNOS, { headers: { 'X-Master-Key': API_KEY } });
+      const res = await fetch(URL_TURNOS, {
+        headers: { "X-Master-Key": API_KEY },
+      });
       const data = await res.json();
       return data.record;
     }
     async function setTurnosConfirmados(turnos) {
       await fetch(URL_TURNOS, {
-        method: 'PUT',
+        method: "PUT",
         headers: {
-          'Content-Type': 'application/json',
-          'X-Master-Key': API_KEY
+          "Content-Type": "application/json",
+          "X-Master-Key": API_KEY,
         },
-        body: JSON.stringify(turnos)
+        body: JSON.stringify(turnos),
       });
     }
 
     // --- CARGA DE SUCURSALES DESDE JSONBIN ---
     fetch(URL_SUCURSALES, {
-      headers: { 'X-Master-Key': API_KEY }
+      headers: { "X-Master-Key": API_KEY },
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         const sucursalesData = data.record;
-        const sucursalSelect = document.getElementById('sucursal');
-        sucursalSelect.innerHTML = '<option value="">Seleccione una sucursal</option>';
-        sucursalesData.forEach(suc => {
-          const option = document.createElement('option');
+        const sucursalSelect = document.getElementById("sucursal");
+        sucursalSelect.innerHTML =
+          '<option value="">Seleccione una sucursal</option>';
+        sucursalesData.forEach((suc) => {
+          const option = document.createElement("option");
           option.value = suc.nombre;
-          option.textContent = suc.nombre.replace('Sucursal ', '');
-          option.setAttribute('data-direccion', suc.direccion);
-          option.setAttribute('data-telefonos', suc.telefonos);
-          option.setAttribute('data-id', suc.id);
+          option.textContent = suc.nombre.replace("Sucursal ", "");
+          option.setAttribute("data-direccion", suc.direccion);
+          option.setAttribute("data-telefonos", suc.telefonos);
+          option.setAttribute("data-id", suc.id);
           sucursalSelect.appendChild(option);
         });
         // Guardar en variable global para uso posterior
@@ -108,91 +130,97 @@ document.addEventListener('DOMContentLoaded', () => {
         Toastify({
           text: "No se pudieron cargar las sucursales.",
           duration: 4000,
-          backgroundColor: "#ff0000"
+          backgroundColor: "#ff0000",
         }).showToast();
       });
 
-    sucursalSelect.addEventListener('change', function() {
+    sucursalSelect.addEventListener("change", function () {
       const selected = sucursalSelect.options[sucursalSelect.selectedIndex];
-      const direccion = selected.getAttribute('data-direccion');
-      const telefonos = selected.getAttribute('data-telefonos');
-      const sucursalId = selected.getAttribute('data-id');
+      const direccion = selected.getAttribute("data-direccion");
+      const telefonos = selected.getAttribute("data-telefonos");
+      const sucursalId = selected.getAttribute("data-id");
       sucursalSeleccionada = selected.value;
       if (direccion) {
         direccionDiv.innerHTML = `Dirección: ${direccion}<br>Teléfonos: ${telefonos}`;
-        direccionDiv.style.display = 'block';
+        direccionDiv.style.display = "block";
       } else {
-        direccionDiv.textContent = '';
-        direccionDiv.style.display = 'none';
+        direccionDiv.textContent = "";
+        direccionDiv.style.display = "none";
       }
       actualizarHorarios();
     });
 
     // --- ACTUALIZAR HORARIOS DISPONIBLES SEGÚN FECHA Y SUCURSAL ---
     async function actualizarHorarios() {
-      const horarioSelect = document.getElementById('horario');
-      horarioSelect.innerHTML = '<option value="">Seleccione un horario</option>';
-      const sucursalSeleccionada = document.getElementById('sucursal').value;
-      const fechaSeleccionada = document.getElementById('fecha').value;
+      const horarioSelect = document.getElementById("horario");
+      horarioSelect.innerHTML =
+        '<option value="">Seleccione un horario</option>';
+      const sucursalSeleccionada = document.getElementById("sucursal").value;
+      const fechaSeleccionada = document.getElementById("fecha").value;
       if (!sucursalSeleccionada || !fechaSeleccionada) return;
-      const suc = window.sucursalesData.find(s => s.nombre === sucursalSeleccionada);
+      const suc = window.sucursalesData.find(
+        (s) => s.nombre === sucursalSeleccionada
+      );
       if (!suc || !suc.horarios) return;
-      const turnosTomados = (await getTurnosConfirmados()).filter(t => t.sucursal === sucursalSeleccionada && t.fecha === fechaSeleccionada);
-      const horariosOcupados = turnosTomados.map(t => t.horario);
-      suc.horarios.forEach(hora => {
-        const option = document.createElement('option');
+      const turnosTomados = (await getTurnosConfirmados()).filter(
+        (t) =>
+          t.sucursal === sucursalSeleccionada && t.fecha === fechaSeleccionada
+      );
+      const horariosOcupados = turnosTomados.map((t) => t.horario);
+      suc.horarios.forEach((hora) => {
+        const option = document.createElement("option");
         option.value = hora;
         option.textContent = hora;
         if (horariosOcupados.includes(hora)) {
           option.disabled = true;
-          option.textContent += ' (No disponible)';
+          option.textContent += " (No disponible)";
         }
         horarioSelect.appendChild(option);
       });
     }
 
     // --- VALIDACIÓN DE DNI Y ALTA DE TURNO ---
-    const turnoForm = document.getElementById('turnoForm');
-    turnoForm.addEventListener('submit', async (e) => {
+    const turnoForm = document.getElementById("turnoForm");
+    turnoForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       const datos = {
-        nombre: document.getElementById('nombre').value.trim(),
-        dni: document.getElementById('dni').value.replace(/\D/g, ''),
-        telefono: document.getElementById('telefono').value.replace(/\D/g, ''),
-        email: document.getElementById('email').value.trim(),
-        sucursal: document.getElementById('sucursal').value,
-        fecha: document.getElementById('fecha').value,
-        horario: document.getElementById('horario').value
+        nombre: document.getElementById("nombre").value.trim(),
+        dni: document.getElementById("dni").value.replace(/\D/g, ""),
+        telefono: document.getElementById("telefono").value.replace(/\D/g, ""),
+        email: document.getElementById("email").value.trim(),
+        sucursal: document.getElementById("sucursal").value,
+        fecha: document.getElementById("fecha").value,
+        horario: document.getElementById("horario").value,
       };
 
       // Validaciones adicionales
-      let errorMsg = '';
+      let errorMsg = "";
       // DNI: solo números, 7-9 dígitos
       if (!/^\d{7,9}$/.test(datos.dni)) {
-        errorMsg = 'El DNI debe contener solo números (7 a 9 dígitos).';
-        document.getElementById('dni').classList.add('input-error');
+        errorMsg = "El DNI debe contener solo números (7 a 9 dígitos).";
+        document.getElementById("dni").classList.add("input-error");
       } else {
-        document.getElementById('dni').classList.remove('input-error');
+        document.getElementById("dni").classList.remove("input-error");
       }
       // Teléfono: solo números, 8-15 dígitos
       if (!/^\d{8,15}$/.test(datos.telefono)) {
-        errorMsg = 'El teléfono debe contener solo números (8 a 15 dígitos).';
-        document.getElementById('telefono').classList.add('input-error');
+        errorMsg = "El teléfono debe contener solo números (8 a 15 dígitos).";
+        document.getElementById("telefono").classList.add("input-error");
       } else {
-        document.getElementById('telefono').classList.remove('input-error');
+        document.getElementById("telefono").classList.remove("input-error");
       }
       // Email: sintaxis básica
       if (!/^\S+@\S+\.\S+$/.test(datos.email)) {
-        errorMsg = 'El email no tiene un formato válido.';
-        document.getElementById('email').classList.add('input-error');
+        errorMsg = "El email no tiene un formato válido.";
+        document.getElementById("email").classList.add("input-error");
       } else {
-        document.getElementById('email').classList.remove('input-error');
+        document.getElementById("email").classList.remove("input-error");
       }
       if (errorMsg) {
         Toastify({
           text: errorMsg,
           duration: 3500,
-          backgroundColor: "#ff0000"
+          backgroundColor: "#ff0000",
         }).showToast();
         return;
       }
@@ -203,40 +231,46 @@ document.addEventListener('DOMContentLoaded', () => {
         Toastify({
           text: "La fecha seleccionada no es hábil.",
           duration: 3000,
-          backgroundColor: "#ff0000"
+          backgroundColor: "#ff0000",
         }).showToast();
         return;
       }
       // Validar si el DNI ya tiene un turno pendiente (solo futuro)
-      const turnosDni = (await getTurnosConfirmados()).filter(t => t.dni === datos.dni);
-      const hoyStr = new Date().toISOString().split('T')[0];
-      const turnosPendientes = turnosDni.filter(t => t.fecha >= hoyStr);
+      const turnosDni = (await getTurnosConfirmados()).filter(
+        (t) => t.dni === datos.dni
+      );
+      const hoyStr = new Date().toISOString().split("T")[0];
+      const turnosPendientes = turnosDni.filter((t) => t.fecha >= hoyStr);
       if (turnosPendientes.length > 0) {
         const t = turnosPendientes[0];
         Swal.fire({
-          title: 'Ya tienes un turno pendiente',
+          title: "Ya tienes un turno pendiente",
           html: `<p><strong>Sucursal:</strong> ${t.sucursal}</p>
                  <p><strong>Fecha:</strong> ${t.fecha}</p>
                  <p><strong>Hora:</strong> ${t.horario}</p>
                  <p><strong>ID:</strong> ${t.id}</p>`,
-          icon: 'info',
+          icon: "info",
           showCancelButton: true,
-          confirmButtonText: 'Aceptar',
-          cancelButtonText: 'Cancelar este turno'
+          confirmButtonText: "Aceptar",
+          cancelButtonText: "Cancelar este turno",
         }).then(async (result) => {
           if (result.dismiss === Swal.DismissReason.cancel) {
             Swal.fire({
-              title: '¿Seguro que deseas cancelar tu turno?',
-              icon: 'warning',
+              title: "¿Seguro que deseas cancelar tu turno?",
+              icon: "warning",
               showCancelButton: true,
-              confirmButtonText: 'Sí, cancelar',
-              cancelButtonText: 'No'
+              confirmButtonText: "Sí, cancelar",
+              cancelButtonText: "No",
             }).then(async (r2) => {
               if (r2.isConfirmed) {
                 const turnos = await getTurnosConfirmados();
-                const nuevosTurnos = turnos.filter(tt => tt.id !== t.id);
+                const nuevosTurnos = turnos.filter((tt) => tt.id !== t.id);
                 await setTurnosConfirmados(nuevosTurnos);
-                Swal.fire('Turno cancelado', 'Tu turno fue cancelado correctamente.', 'success');
+                Swal.fire(
+                  "Turno cancelado",
+                  "Tu turno fue cancelado correctamente.",
+                  "success"
+                );
               }
             });
           }
@@ -245,29 +279,31 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       // Si no tiene turno pendiente, continuar con el flujo normal
       Swal.fire({
-        title: '¿Confirmar turno?',
+        title: "¿Confirmar turno?",
         html: `
           <p><strong>Sucursal:</strong> ${datos.sucursal}</p>
           <p><strong>Fecha:</strong> ${datos.fecha}</p>
           <p><strong>Hora:</strong> ${datos.horario}</p>
         `,
-        icon: 'question',
+        icon: "question",
         showCancelButton: true,
-        confirmButtonText: 'Sí, confirmar',
-        cancelButtonText: 'Cancelar'
+        confirmButtonText: "Sí, confirmar",
+        cancelButtonText: "Cancelar",
       }).then(async (result) => {
         if (result.isConfirmed) {
-          const idTurno = Math.random().toString(16).slice(2, 6) + Date.now().toString(16).slice(-4);
+          const idTurno =
+            Math.random().toString(16).slice(2, 6) +
+            Date.now().toString(16).slice(-4);
           datos.id = idTurno;
           const win = window.open("constancia.html", "_blank");
           const turnos = await getTurnosConfirmados();
           turnos.push(datos);
           await setTurnosConfirmados(turnos);
-          localStorage.setItem('turnoConfirmado', JSON.stringify(datos));
+          localStorage.setItem("turnoConfirmado", JSON.stringify(datos));
           Toastify({
             text: "¡Turno confirmado!",
             duration: 3000,
-            backgroundColor: "#28a745"
+            backgroundColor: "#28a745",
           }).showToast();
           turnoForm.reset();
           if (win) win.location.reload();
@@ -276,18 +312,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- CONSULTA Y CANCELACIÓN DE TURNO POR ID ---
-    const formConsulta = document.getElementById('formConsultaTurno');
-    const resultadoDiv = document.getElementById('resultadoConsulta');
+    const formConsulta = document.getElementById("formConsultaTurno");
+    const resultadoDiv = document.getElementById("resultadoConsulta");
     if (formConsulta) {
-      formConsulta.addEventListener('submit', async function(e) {
+      formConsulta.addEventListener("submit", async function (e) {
         e.preventDefault();
-        const id = document.getElementById('idConsulta').value.trim();
+        const id = document.getElementById("idConsulta").value.trim();
         if (!id) return;
-        resultadoDiv.innerHTML = 'Buscando...';
+        resultadoDiv.innerHTML = "Buscando...";
         const turnos = await getTurnosConfirmados();
-        const turno = turnos.find(t => t.id === id);
+        const turno = turnos.find((t) => t.id === id);
         if (!turno) {
-          resultadoDiv.innerHTML = '<p style="color:red">No se encontró ningún turno con ese ID.</p>';
+          resultadoDiv.innerHTML =
+            '<p style="color:red">No se encontró ningún turno con ese ID.</p>';
           return;
         }
         resultadoDiv.innerHTML = `
@@ -301,13 +338,19 @@ document.addEventListener('DOMContentLoaded', () => {
             <button id="btnCancelarTurno" style="background:#e32724;color:#fff;padding:8px 16px;border:none;border-radius:4px;cursor:pointer;">Cancelar Turno</button>
           </div>
         `;
-        document.getElementById('btnCancelarTurno').onclick = async function() {
-          if (confirm('¿Seguro que deseas cancelar este turno? Esta acción no se puede deshacer.')) {
-            const nuevosTurnos = turnos.filter(t => t.id !== id);
-            await setTurnosConfirmados(nuevosTurnos);
-            resultadoDiv.innerHTML = '<p style="color:green">El turno fue cancelado correctamente.</p>';
-          }
-        };
+        document.getElementById("btnCancelarTurno").onclick =
+          async function () {
+            if (
+              confirm(
+                "¿Seguro que deseas cancelar este turno? Esta acción no se puede deshacer."
+              )
+            ) {
+              const nuevosTurnos = turnos.filter((t) => t.id !== id);
+              await setTurnosConfirmados(nuevosTurnos);
+              resultadoDiv.innerHTML =
+                '<p style="color:green">El turno fue cancelado correctamente.</p>';
+            }
+          };
       });
     }
   }); // fin obtenerFeriados
