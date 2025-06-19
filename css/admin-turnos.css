@@ -1,0 +1,29 @@
+/* Estilos específicos para admin-turnos.html */
+.admin-container { max-width: 1100px; margin: 2em auto; background: #fff; border-radius: 10px; box-shadow: 0 0 20px #0001; padding: 2em; }
+.admin-controls { display: flex; flex-wrap: wrap; gap: 1em; margin-bottom: 1.5em; align-items: center; }
+.admin-controls label { font-weight: bold; }
+.admin-controls select, .admin-controls input { padding: 0.5em; border-radius: 4px; border: 1px solid #b71c1c; }
+table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+th, td { padding: 0.6em 0.4em; border-bottom: 1px solid #eee; text-align: left; }
+th { background: #fdeaea; color: #b71c1c; cursor: pointer; user-select: none; }
+tr:hover { background: #fff3f3; }
+@media (max-width: 700px) {
+  .admin-container { padding: 0.5em; }
+  table, thead, tbody, th, td, tr { display: block; }
+  th, td { padding: 0.5em; }
+  th { position: sticky; top: 0; background: #fdeaea; }
+  tr { margin-bottom: 1em; }
+}
+@media print {
+  .admin-controls, button[onclick*="print"] {
+    display: none !important;
+  }
+  .admin-container {
+    box-shadow: none;
+    padding: 0;
+    background: #fff;
+  }
+  body {
+    background: #fff !important;
+  }
+}

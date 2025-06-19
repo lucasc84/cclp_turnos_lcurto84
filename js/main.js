@@ -58,11 +58,14 @@ document.addEventListener("DOMContentLoaded", () => {
             feriados = data.record || [];
           })
           .catch(() => {
-            // Si también falla, usa la lista hardcodeada
-            feriados = [
-              "2025-01-01", "2025-03-24", "2025-04-02",
-              "2025-05-01", "2025-07-09", "2025-12-25"
-            ];
+            // Si también falla, usa la lista local de feriados.json
+            fetch('js/feriados.json')
+              .then(res => res.json())
+              .then(data => { feriados = data; })
+              .catch(() => {
+                // Si todo falla, deja el array vacío
+                feriados = [];
+              });
           });
       });
   }

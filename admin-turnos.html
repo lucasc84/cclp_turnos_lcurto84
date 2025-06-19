@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Turnos Confirmados</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/admin-turnos.css">
+</head>
+<body>
+    <div class="admin-container">
+      <h1>Panel de Turnos Confirmados</h1>
+      <p style="color:#b71c1c; background:#fdeaea; border:1.5px solid #b71c1c; border-radius:0.375em; padding:0.7em 1em; margin-bottom:1.5em; text-align:center; font-weight:bold;">
+        <strong>ATENCIÓN:</strong> Esta es una página de prueba interna. En la versión final se requerirá login para acceder a esta información.
+      </p>
+      <div class="admin-controls">
+        <label for="filtroSucursal">Sucursal:</label>
+        <select id="filtroSucursal">
+          <option value="">Todas</option>
+        </select>
+        <label for="buscador">Buscar:</label>
+        <input type="text" id="buscador" placeholder="Nombre, DNI, Email...">
+      </div>
+      <button onclick="window.print()" style="margin-bottom:1em; background:#b71c1c; color:#fff; border:none; border-radius:4px; padding:0.7em 1.5em; font-weight:bold; cursor:pointer;">Imprimir lista</button>
+      <table id="tablaTurnos">
+        <thead>
+          <tr>
+            <th data-sort="apellido">Apellido</th>
+            <th data-sort="nombre">Nombre</th>
+            <th data-sort="dni">DNI</th>
+            <th data-sort="sucursal">Sucursal</th>
+            <th data-sort="fecha">Fecha</th>
+            <th data-sort="horario">Horario</th>
+            <th data-sort="email">Email</th>
+            <th data-sort="telefono">Teléfono</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="8" style="text-align:center;">Cargando...</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <script src="js/admin-turnos.js"></script>
+  </body>
+</html>
