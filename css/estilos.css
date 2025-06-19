@@ -218,25 +218,23 @@ form button:hover {
   display: block;
   width: 100%;
   background-color: #e32724;
-  color: white !important;
+  color: white;
   padding: 0.6em;
   border: none;
   border-radius: 0.25em;
   font-size: 1em;
   margin-top: 0.5em;
   cursor: pointer;
-  font-weight: 700;
   letter-spacing: 0.04em;
   transition: background 0.2s, color 0.2s;
   box-shadow: 0 0.05em 0.2em rgba(227, 39, 36, 0.04);
   text-align: center;
   text-decoration: none;
-  font-family: Arial, sans-serif;
   text-transform: none;
 }
 .boton-interno:hover, .boton-interno:focus {
   background-color: #e3272497;
-  color: white !important;
+  color: white;
   text-decoration: none;
 }
 
