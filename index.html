@@ -18,95 +18,105 @@
     <link rel="icon" href="assets/favicon.png" type="image/png" />
   </head>
   <body>
-    <div class="container">
-      <header>
-        <!-- Logo y encabezado principal -->
-        <a href="https://www.cooperativalaplata.com.ar/">
-          <img
-            class="logo"
-            src="assets/logo.png"
-            alt="Logo Cooperativa de Crédito La Plata"
-          />
-        </a>
-        <h1>RESERVA DE TURNOS</h1>
-
-        <h2>
-          Para gestionar un turno complete todos los datos y haga click en
-          <span>"Reservar Turno"</span>
-        </h2>
-        <p class="consulta-link">
-          ¿Ya tenés un turno y querés consultarlo o cancelarlo?
-          <a href="#consultaTurno">Hacé click aquí</a>
-        </p>
-      </header>
-      <hr style="margin: 30px 0" />
-
-      <!-- Formulario de solicitud de turno -->
-      <!-- Se utiliza contenido precargado porque lo pide la consigna -->
-      <h3>Datos Personales</h3>
-
-      <form id="turnoForm">
-        <input type="text" id="nombre" placeholder="Nombre completo" required />
-        <input
-          type="text"
-          id="dni"
-          placeholder="Número de Documento"
-          required
+    <header>
+      <!-- Logo y encabezado principal -->
+      <a href="https://www.cooperativalaplata.com.ar/">
+        <img
+          class="logo"
+          src="assets/logo.png"
+          alt="Logo Cooperativa de Crédito La Plata"
         />
-        <input type="tel" id="telefono" placeholder="Teléfono" required />
-        <input
-          type="email"
-          id="email"
-          placeholder="Correo electrónico"
-          required
-        />
-
-        <h3>Sucursal</h3>
-
-        <select id="sucursal" required>
-          <option value="">Seleccione una sucursal</option>
-        </select>
-        <div id="direccionSucursal" class="direccion-sucursal"></div>
-
-        <h3>Fecha y Horario</h3>
-
-        <h4 class="mensaje-fecha">
-          Solo es posible seleccionar fechas hábiles dentro de los próximos 30
-          días. Fines de semana y feriados no están disponibles.
-        </h4>
-        <h5 class="mensaje-fecha">
-          <strong>Importante:</strong> Verificá que el día elegido sea hábil. Si
-          el sistema permite sacar turno en un día inhábil, el turno no será
-          validado. Ante cualquier duda, comunicate con la sucursal elegida.
-        </h5>
-
-        <input type="text" id="fecha" required />
-        <select id="horario" required>
-          <option value="">Seleccione un horario</option>
-        </select>
-        <button type="submit">Reservar Turno</button>
-      </form>
-      <hr style="margin: 30px 0" />
-      <div id="consultaTurno">
-        <h3>Consultar o Cancelar Turno</h3>
-        <form id="formConsultaTurno">
+      </a>
+      <h1>RESERVA DE TURNOS</h1>
+      <h2>
+        Para gestionar un turno complete todos los datos y haga click en
+        <span>"Reservar Turno"</span>
+      </h2>
+      <p class="consulta-link desktop-hide">
+        ¿Ya tenés un turno y querés consultarlo o cancelarlo?
+        <a href="#consultaTurno">Hacé click aquí</a>
+      </p>
+    </header>
+    <hr style="margin: 30px 0" />
+    <div class="main-flex-externo">
+      <div class="container main-form">
+        <!-- Formulario de solicitud de turno -->
+        <h3>Datos Personales</h3>
+        <form id="turnoForm">
           <input
             type="text"
-            id="idConsulta"
-            placeholder="Ingresá el ID de tu turno"
+            id="nombre"
+            placeholder="Nombre completo"
             required
           />
-          <button type="submit">Buscar Turno</button>
+          <input
+            type="text"
+            id="dni"
+            placeholder="Número de Documento"
+            required
+          />
+          <input type="tel" id="telefono" placeholder="Teléfono" required />
+          <input
+            type="email"
+            id="email"
+            placeholder="Correo electrónico"
+            required
+          />
+
+          <h3>Sucursal</h3>
+
+          <select id="sucursal" required>
+            <option value="">Seleccione una sucursal</option>
+          </select>
+          <div id="direccionSucursal" class="direccion-sucursal"></div>
+
+          <h3>Fecha y Horario</h3>
+
+          <h4 class="mensaje-fecha">
+            Solo es posible seleccionar fechas hábiles dentro de los próximos 30
+            días. Fines de semana y feriados no están disponibles.
+          </h4>
+          <h5 class="mensaje-fecha">
+            <strong>Importante:</strong> Verificá que el día elegido sea hábil. Si
+            el sistema permite sacar turno en un día inhábil, el turno no será
+            validado. Ante cualquier duda, comunicate con la sucursal elegida.
+          </h5>
+
+          <input type="text" id="fecha" required />
+          <select id="horario" required>
+            <option value="">Seleccione un horario</option>
+          </select>
+          <button type="submit">Reservar Turno</button>
         </form>
-        <div id="resultadoConsulta"></div>
       </div>
-      <hr style="margin: 30px 0" />
-      <div id="usoInterno" style="margin-top:2em;">
-        <h3>USO INTERNO</h3>
-                <h5 class="mensaje-fecha">
-          <strong>ATENCIÓN: </strong>Esta es una página de prueba interna. En la versión final se requerirá login para acceder a esta información.
-        </h5>
-        <a href="admin-turnos.html" target="_blank" class="boton-interno">Ir al panel de turnos confirmados</a>
+      <div class="container main-lateral">
+        <div id="consultaTurno">
+          <h3>Consultar o Cancelar Turno</h3>
+          <p class="consulta-link desktop-only">
+            ¿Ya tenés un turno y querés consultarlo o cancelarlo?
+          </p>
+          <form id="formConsultaTurno">
+            <input
+              type="text"
+              id="idConsulta"
+              placeholder="Ingresá el ID de tu turno"
+              required
+            />
+            <button type="submit">Buscar Turno</button>
+          </form>
+          <div id="resultadoConsulta"></div>
+        </div>
+        <div id="usoInterno">
+          <h3 class="uso-interno-titulo">USO INTERNO</h3>
+          <p style="text-align:center;">
+            <a
+              href="admin-turnos.html"
+              target="_blank"
+              class="boton-interno"
+              >Ir al panel de turnos confirmados</a
+            >
+          </p>
+        </div>
       </div>
     </div>
 
