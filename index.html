@@ -20,14 +20,16 @@
   <body>
     <header>
       <!-- Logo y encabezado principal -->
-      <a href="https://www.cooperativalaplata.com.ar/">
-        <img
-          class="logo"
-          src="assets/logo.png"
-          alt="Logo Cooperativa de Crédito La Plata"
-        />
-      </a>
-      <h1>RESERVA DE TURNOS</h1>
+      <div class="header-row">
+        <a href="https://www.cooperativalaplata.com.ar/">
+          <img
+            class="logo"
+            src="assets/logo.png"
+            alt="Logo Cooperativa de Crédito La Plata"
+          />
+        </a>
+        <h1>RESERVA DE TURNOS</h1>
+      </div>
       <h2>
         Para gestionar un turno complete todos los datos y haga click en
         <span>"Reservar Turno"</span>
@@ -37,31 +39,38 @@
         <a href="#consultaTurno">Hacé click aquí</a>
       </p>
     </header>
-    <hr style="margin: 30px 0" />
+
     <div class="main-flex-externo">
       <div class="container main-form">
         <!-- Formulario de solicitud de turno -->
         <h3>Datos Personales</h3>
         <form id="turnoForm">
-          <input
-            type="text"
-            id="nombre"
-            placeholder="Nombre completo"
-            required
-          />
-          <input
-            type="text"
-            id="dni"
-            placeholder="Número de Documento"
-            required
-          />
-          <input type="tel" id="telefono" placeholder="Teléfono" required />
-          <input
-            type="email"
-            id="email"
-            placeholder="Correo electrónico"
-            required
-          />
+          <div class="inputs-row-nombre-dni">
+            <input
+              type="text"
+              id="nombre"
+              class="input-nombre"
+              placeholder="Nombre completo"
+              required
+            />
+            <input
+              type="text"
+              id="dni"
+              class="input-dni"
+              placeholder="Número de Documento"
+              required
+            />
+          </div>
+          <div class="inputs-row-tel-mail">
+            <input type="tel" id="telefono" class="input-tel" placeholder="Teléfono" required />
+            <input
+              type="email"
+              id="email"
+              class="input-mail"
+              placeholder="Correo electrónico"
+              required
+            />
+          </div>
 
           <h3>Sucursal</h3>
 
@@ -73,19 +82,17 @@
           <h3>Fecha y Horario</h3>
 
           <h4 class="mensaje-fecha">
-            Solo es posible seleccionar fechas hábiles dentro de los próximos 30
-            días. Fines de semana y feriados no están disponibles.
+            <span>Importante: </span> Solo es posible seleccionar fechas hábiles dentro de los próximos 30
+            días. Verificá que el día elegido sea hábil. Si
+            el sistema te permite sacar turno en un día que resulta inhábil, el turno no será
+            validado. Ante cualquier duda sobre los días de atención, comunicate con la sucursal elegida.
           </h4>
-          <h5 class="mensaje-fecha">
-            <strong>Importante:</strong> Verificá que el día elegido sea hábil. Si
-            el sistema permite sacar turno en un día inhábil, el turno no será
-            validado. Ante cualquier duda, comunicate con la sucursal elegida.
-          </h5>
-
-          <input type="text" id="fecha" required />
-          <select id="horario" required>
-            <option value="">Seleccione un horario</option>
-          </select>
+          <div class="inputs-row-fecha-horario">
+            <input type="text" id="fecha" required placeholder="Seleccione una fecha" />
+            <select id="horario" required>
+              <option value="">Seleccione un horario</option>
+            </select>
+          </div>
           <button type="submit">Reservar Turno</button>
         </form>
       </div>
@@ -93,7 +100,7 @@
         <div id="consultaTurno">
           <h3>Consultar o Cancelar Turno</h3>
           <p class="consulta-link desktop-only">
-            ¿Ya tenés un turno y querés consultarlo o cancelarlo?
+            ¿Tenés un turno y querés consultarlo o cancelarlo?
           </p>
           <form id="formConsultaTurno">
             <input
