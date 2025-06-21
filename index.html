@@ -72,27 +72,18 @@
             />
           </div>
 
-          <h3>Sucursal</h3>
+          <h3>Elegí Sucursal, Fecha y Horario</h3>
 
-          <select id="sucursal" required>
-            <option value="">Seleccione una sucursal</option>
-          </select>
-          <div id="direccionSucursal" class="direccion-sucursal"></div>
-
-          <h3>Fecha y Horario</h3>
-
-          <h4 class="mensaje-fecha">
-            <span>Importante: </span> Solo es posible seleccionar fechas hábiles dentro de los próximos 30
-            días. Verificá que el día elegido sea hábil. Si
-            el sistema te permite sacar turno en un día que resulta inhábil, el turno no será
-            validado. Ante cualquier duda sobre los días de atención, comunicate con la sucursal elegida.
-          </h4>
-          <div class="inputs-row-fecha-horario">
+          <div class="inputs-row-sucursal-fecha-horario">
+            <select id="sucursal" required>
+              <option value="">Seleccione una sucursal</option>
+            </select>
             <input type="text" id="fecha" required placeholder="Seleccione una fecha" />
             <select id="horario" required>
               <option value="">Seleccione un horario</option>
             </select>
           </div>
+          <div id="direccionSucursal" class="direccion-sucursal"></div>
           <button type="submit">Reservar Turno</button>
         </form>
       </div>

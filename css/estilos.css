@@ -226,6 +226,45 @@ form button:hover {
   font-size: 0.8em;
   font-style: normal;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2em;
+}
+.direccion-sucursal .direccion,
+.direccion-sucursal .telefono {
+  font-weight: normal;
+  display: block;
+}
+@media (min-width: 900px) {
+  .direccion-sucursal {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    text-align: left;
+  }
+  .direccion-sucursal .direccion,
+  .direccion-sucursal .telefono {
+    display: inline;
+  }
+}
+
+.separador-dir-tel {
+  display: none;
+}
+@media (min-width: 900px) {
+  .separador-dir-tel {
+    display: inline-block;
+    margin: 0 1em;
+    color: #bbb;
+    font-weight: normal;
+    content: '|';
+    position: relative;
+  }
+  .separador-dir-tel::before {
+    content: '|';
+  }
 }
 
 .input-error {
@@ -267,8 +306,7 @@ form button:hover {
   }
   header {
     max-width: 1200px;
-    margin: 0.5em auto 0.5em auto;
-    padding: 1em 1em 1.2em 1em;
+
   }
   .main-form {
     flex: 0 1 65%;
@@ -411,6 +449,23 @@ form button:hover {
   .inputs-row-fecha-horario input,
   .inputs-row-fecha-horario select {
     flex: 1 1 0;
+  }
+}
+
+.inputs-row-sucursal-fecha-horario {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+@media (min-width: 900px) {
+  .inputs-row-sucursal-fecha-horario {
+    flex-direction: row;
+    gap: 1em;
+  }
+  .inputs-row-sucursal-fecha-horario select,
+  .inputs-row-sucursal-fecha-horario input[type="text"] {
+    flex: 1 1 0;
+    min-width: 0;
   }
 }
 

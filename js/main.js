@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const sucursalId = selected.getAttribute("data-id");
       sucursalSeleccionada = selected.value;
       if (direccion) {
-        direccionDiv.innerHTML = `Dirección: ${direccion}<br>Teléfonos: ${telefonos}`;
+        direccionDiv.innerHTML = `<span class="direccion">Dirección: ${direccion}</span><span class="separador-dir-tel"></span><span class="telefono">Teléfonos: ${telefonos}</span>`;
         direccionDiv.style.display = "block";
       } else {
         direccionDiv.textContent = "";
