@@ -2,8 +2,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-image: url("../assets/fondo.jpg");
-  background-size: cover;
+  background-color: #fff3f3;
   margin: 0;
   padding: 0;
   color: #333;
@@ -92,6 +91,9 @@ h1 {
   border-radius: 0.375em;
   padding: 0.5em 0.75em;
   box-shadow: 0 0.125em 0.5em rgba(227, 39, 36, 0.07);
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
 }
 
 h2 {
@@ -461,11 +463,23 @@ form button:hover {
   .inputs-row-sucursal-fecha-horario {
     flex-direction: row;
     gap: 1em;
+    align-items: flex-start;
+    flex-wrap: wrap;
   }
   .inputs-row-sucursal-fecha-horario select,
   .inputs-row-sucursal-fecha-horario input[type="text"] {
     flex: 1 1 0;
     min-width: 0;
+  }
+  .inputs-row-sucursal-fecha-horario .direccion-sucursal {
+    flex-basis: 100%;
+    width: 100%;
+    order: 2;
+    margin-top: 0.2em;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: left;
+    justify-content: flex-start;
   }
 }
 
@@ -497,4 +511,20 @@ form button:hover {
   h4.mensaje-fecha {
     text-align: left;
   }
+    h2 {
+    font-size: 1.125em;
+    text-align: right;
+}
+}
+
+.comprobante-container {
+  background: #fff;
+  box-shadow: 0 0 0.625em rgba(150, 0, 0, 0.2);
+  border-radius: 0.5em;
+  padding: 1.5em 1em 2em 1em;
+  margin: 1em auto;
+  width: 100%;
+  max-width: 34em;
+  box-sizing: border-box;
+  border: 1.5px solid #fff;
 }
