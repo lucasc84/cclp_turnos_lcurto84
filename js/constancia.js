@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <p><strong>Teléfono:</strong> ${turno.telefono}</p>
     <p><strong>Email:</strong> ${turno.email}</p>
     <p><strong>Sucursal:</strong> ${turno.sucursal}</p>
+    ${turno.direccionSucursal || turno.telefonoSucursal ? `<p><strong>Dirección:</strong> ${turno.direccionSucursal || '-'}<br><strong>Teléfonos:</strong> ${turno.telefonoSucursal || '-'}</p>` : ''}
     <p><strong>Fecha:</strong> ${fechaFormateada}</p>
     <p><strong>Hora:</strong> ${turno.horario}</p>
   `;

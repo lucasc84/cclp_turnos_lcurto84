@@ -315,6 +315,12 @@ document.addEventListener("DOMContentLoaded", () => {
             Math.random().toString(16).slice(2, 6) +
             Date.now().toString(16).slice(-4);
           datos.id = idTurno;
+
+          // Agregar dirección y teléfonos de la sucursal seleccionada al objeto de datos
+          const selected = document.getElementById("sucursal").options[document.getElementById("sucursal").selectedIndex];
+          datos.direccionSucursal = selected.getAttribute("data-direccion") || '';
+          datos.telefonoSucursal = selected.getAttribute("data-telefonos") || '';
+
           const win = window.open("constancia.html", "_blank");
           const turnos = await getTurnosConfirmados();
           turnos.push(datos);
