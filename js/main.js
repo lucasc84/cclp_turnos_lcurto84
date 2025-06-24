@@ -372,14 +372,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (formConsulta) {
       formConsulta.addEventListener("submit", async function (e) {
         e.preventDefault();
-        const id = document.getElementById("idConsulta").value.trim();
-        if (!id) return;
+        const valor = document.getElementById("idConsulta").value.trim();
+        if (!valor) return;
         resultadoDiv.innerHTML = "Buscando...";
         const turnos = await getTurnosConfirmados();
-        const turno = turnos.find((t) => t.id === id);
+        let turno = turnos.find((t) => t.id === valor);
+        if (!turno) {
+          // Si no se encuentra por ID, buscar por DNI (último turno futuro)
+          const hoyStr = new Date().toISOString().split("T")[0];
+          const turnosDni = turnos.filter((t) => t.dni === valor && t.fecha >= hoyStr);
+          if (turnosDni.length > 0) {
+            turno = turnosDni[0];
+          }
+        }
         if (!turno) {
           resultadoDiv.innerHTML =
-            '<p style="color:red">No se encontró ningún turno con ese ID.</p>';
+            '<p style="color:red">No se encontró ningún turno con ese ID o DNI.</p>';
           return;
         }
         resultadoDiv.innerHTML = `
@@ -400,7 +408,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 "¿Seguro que deseas cancelar este turno? Esta acción no se puede deshacer."
               )
             ) {
-              const nuevosTurnos = turnos.filter((t) => t.id !== id);
+              const nuevosTurnos = turnos.filter((t) => t.id !== turno.id);
               await setTurnosConfirmados(nuevosTurnos);
               resultadoDiv.innerHTML =
                 '<p style="color:green">El turno fue cancelado correctamente.</p>';

@@ -73,4 +73,34 @@ document.addEventListener('DOMContentLoaded', function() {
       renderTabla();
     });
   });
+  // --- ORDENAR EN MOBILE ---
+  const btnOrdenarMobile = document.getElementById('btnOrdenarMobile');
+  const btnAscDescMobile = document.getElementById('btnAscDescMobile');
+  const menuOrdenarMobile = document.getElementById('menuOrdenarMobile');
+  if (btnOrdenarMobile && menuOrdenarMobile) {
+    btnOrdenarMobile.addEventListener('click', function() {
+      menuOrdenarMobile.classList.toggle('oculto');
+    });
+    menuOrdenarMobile.querySelectorAll('button[data-sort]').forEach(btn => {
+      btn.addEventListener('click', function() {
+        sortKey = btn.getAttribute('data-sort');
+        sortAsc = true;
+        renderTabla();
+        menuOrdenarMobile.classList.add('oculto');
+      });
+    });
+    // Cerrar menú si se hace click fuera
+    document.addEventListener('click', function(e) {
+      if (!menuOrdenarMobile.contains(e.target) && e.target !== btnOrdenarMobile) {
+        menuOrdenarMobile.classList.add('oculto');
+      }
+    });
+  }
+  if (btnAscDescMobile) {
+    btnAscDescMobile.addEventListener('click', function() {
+      sortAsc = !sortAsc;
+      renderTabla();
+      btnAscDescMobile.classList.toggle('desc', !sortAsc);
+    });
+  }
 });

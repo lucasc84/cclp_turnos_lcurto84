@@ -33,6 +33,25 @@
         </select>
         <label for="buscador">Buscar:</label>
         <input type="text" id="buscador" placeholder="Nombre, DNI, Email..." />
+        <div class="orden-mobile">
+          <button id="btnOrdenarMobile" type="button" aria-label="Ordenar por" class="menu-hamburguesa">
+            &#9776; Ordenar por
+          </button>
+          <button id="btnAscDescMobile" type="button" aria-label="Ascendente/Descendente" class="ascdesc-mobile" title="Cambiar orden">
+            &#8597; Orden
+          </button>
+          <div id="menuOrdenarMobile" class="menu-ordenar-mobile oculto">
+            <button data-sort="nombre">Nombre</button>
+            <button data-sort="apellido">Apellido</button>
+            <button data-sort="dni">DNI</button>
+            <button data-sort="sucursal">Sucursal</button>
+            <button data-sort="fecha">Fecha</button>
+            <button data-sort="horario">Horario</button>
+            <button data-sort="email">Email</button>
+            <button data-sort="telefono">Teléfono</button>
+            <button data-sort="id">ID</button>
+          </div>
+        </div>
       </div>
       <button
         onclick="window.print()"
@@ -49,9 +68,9 @@
       >
         Imprimir lista
       </button>
-      <table id="tablaTurnos">
+      <table id="tablaTurnos" class="tabla-admin">
         <thead>
-          <tr>
+          <tr class="encabezado-desktop">
             <th data-sort="nombre">Nombre</th>
             <th data-sort="apellido">Apellido</th>
             <th data-sort="dni">DNI</th>
