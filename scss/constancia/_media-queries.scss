@@ -1,0 +1,8 @@
+// Media queries: responsividad y print
+
+@media print {
+  button,
+  .mensaje-pdf {
+    display: none !important;
+  }
+}

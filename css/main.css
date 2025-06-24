@@ -1,0 +1,210 @@
+@charset "UTF-8";
+/*Estilos*/
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff3f3;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  font-size: 1rem;
+  overflow-x: hidden;
+}
+
+header {
+  width: 100%;
+  max-width: 34em;
+  margin: 0.5em auto 0.5em auto;
+  padding: 1em 1em 1.2em 1em;
+  background: rgba(255, 255, 255, 0.97);
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 0.5em;
+  box-shadow: 0 0 0.625em rgba(150, 0, 0, 0.2);
+  border: 1.5px solid #fff;
+}
+
+span {
+  font-weight: bold;
+}
+
+h1 {
+  font-weight: bold;
+  margin-bottom: 1em;
+  text-align: center;
+  margin-top: 1em;
+  color: #a12a2a;
+  font-size: 0.9em;
+  background: #fff3f3;
+  border: 0.094em solid #e32724;
+  border-radius: 0.375em;
+  padding: 0.5em 0.75em;
+  box-shadow: 0 0.125em 0.5em rgba(227, 39, 36, 0.07);
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+}
+
+@media (min-width: 900px) {
+  .header-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2em;
+  }
+  .header-row .logo {
+    margin-bottom: 0;
+    width: 15em;
+    max-width: 100%;
+  }
+  .header-row h1 {
+    margin: 0;
+    font-size: 1.7em;
+    text-align: right;
+    flex: 1 1 auto;
+  }
+}
+/* Personalización de SweetAlert2 para que combine con la identidad visual del sitio */
+.swal2-popup {
+  font-family: Arial, sans-serif;
+  border-radius: 0.5em;
+  background: #fff3f3;
+  color: #a12a2a;
+  border: 2px solid #e32724;
+}/*# sourceMappingURL=main.css.map */ border: none;
+  color: #b71c1c;
+  padding: 0.7em 1em;
+  text-align: left;
+  font-size: 1em;
+  cursor: pointer;
+  border-bottom: 1px solid #fdeaea;
+}
+
+.menu-ordenar-mobile button:last-child {
+  border-bottom: none;
+}
+
+.menu-ordenar-mobile.oculto {
+  display: none;
+}
+
+.ascdesc-mobile {
+  background: #fdeaea;
+  color: #b71c1c;
+  border: 1.5px solid #b71c1c;
+  border-radius: 0.375em;
+  padding: 0.5em 0.8em;
+  font-weight: bold;
+  font-size: 1.1em;
+  cursor: pointer;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  vertical-align: middle;
+}
+
+.mensaje-alerta {
+  color: #b71c1c;
+  background: #fdeaea;
+  border: 1.5px solid #b71c1c;
+  border-radius: 0.375em;
+  padding: 0.7em 1em;
+  margin-bottom: 1.5em;
+  text-align: center;
+  font-weight: bold;
+}
+
+.celda-cargando {
+  text-align: center;
+}
+
+.btn-cancelar-turno {
+  background: #e32724;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.mensaje-error {
+  color: #e32724;
+  font-weight: bold;
+  margin: 0.5em 0;
+}
+
+.mensaje-exito {
+  color: #28a745;
+  font-weight: bold;
+  margin: 0.5em 0;
+}
+
+.tabla-admin td, .tabla-admin th {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+@media (max-width: 700px) {
+  .admin-container {
+    padding: 0.5em;
+  }
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  th, td {
+    padding: 0.5em;
+  }
+  th {
+    position: sticky;
+    top: 0;
+    background: #fdeaea;
+  }
+  tr {
+    margin-bottom: 1em;
+  }
+  .encabezado-desktop {
+    display: none;
+  }
+  .orden-mobile {
+    display: block;
+    position: relative;
+    width: 100%;
+    margin-top: 0.5em;
+  }
+  .tabla-admin tr {
+    margin-bottom: 1.5em;
+    border-radius: 0.5em;
+    box-shadow: 0 2px 8px rgba(183, 28, 28, 0.1333333333);
+    border: 2px solid #fdeaea;
+    background: #fff;
+    overflow: hidden;
+  }
+  .tabla-admin td {
+    border: none;
+    border-bottom: 1px solid #fdeaea;
+  }
+  .tabla-admin td:last-child {
+    border-bottom: none;
+  }
+  .ascdesc-mobile {
+    display: inline-block;
+  }
+  .tabla-admin td, .tabla-admin th {
+    max-width: 90vw;
+  }
+}
+@media print {
+  .admin-controls, button[onclick*=print] {
+    display: none !important;
+  }
+  .admin-container {
+    box-shadow: none;
+    padding: 0;
+    background: #fff;
+  }
+  body {
+    background: #fff !important;
+  }
+}/*# sourceMappingURL=main.css.map */
