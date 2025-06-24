@@ -2,13 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const URL_TURNOS = "https://api.jsonbin.io/v3/b/6854507a8a456b7966b139ee";
   const API_KEY = "$2a$10$ABM3K8iF7DB3oCbwdnJTFOWHRzeRt6iMZ130laFA6kuuq5fihw7Xa";
   let turnos = [];
-  let sortKey = 'apellido';
+  let sortKey = 'nombre';
   let sortAsc = true;
-
-  function extraerApellido(nombreCompleto) {
-    const partes = nombreCompleto.trim().split(' ');
-    return partes.length > 1 ? partes[partes.length-1].toUpperCase() : nombreCompleto.toUpperCase();
-  }
 
   function renderTabla() {
     const filtroSucursal = document.getElementById('filtroSucursal').value;
@@ -16,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let filtrados = turnos.filter(t =>
       (!filtroSucursal || t.sucursal === filtroSucursal) &&
       (
-        t.nombre.toLowerCase().includes(buscador) ||
+        (t.nombre + ' ' + t.apellido).toLowerCase().includes(buscador) ||
         t.dni.toLowerCase().includes(buscador) ||
         t.email.toLowerCase().includes(buscador)
       )
@@ -24,8 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
     filtrados.sort((a, b) => {
       let valA, valB;
       if (sortKey === 'apellido') {
-        valA = extraerApellido(a.nombre);
-        valB = extraerApellido(b.nombre);
+        valA = (a.apellido || '').toUpperCase();
+        valB = (b.apellido || '').toUpperCase();
       } else {
         valA = (a[sortKey] || '').toUpperCase ? a[sortKey].toUpperCase() : a[sortKey];
         valB = (b[sortKey] || '').toUpperCase ? b[sortKey].toUpperCase() : b[sortKey];
@@ -41,14 +36,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     tbody.innerHTML = filtrados.map(t => `
       <tr>
-        <td>${extraerApellido(t.nombre)}</td>
         <td>${t.nombre}</td>
+        <td>${t.apellido || ''}</td>
         <td>${t.dni}</td>
-        <td>${t.sucursal}</td>
+        <td>${(t.sucursal || '').replace(/^Sucursal /i, '')}</td>
         <td>${t.fecha}</td>
         <td>${t.horario}</td>
         <td>${t.email}</td>
         <td>${t.telefono}</td>
+        <td>${t.id || ''}</td>
       </tr>
     `).join('');
   }

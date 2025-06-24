@@ -173,20 +173,33 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- ACTUALIZAR HORARIOS DISPONIBLES SEGÚN FECHA Y SUCURSAL ---
     async function actualizarHorarios() {
       const horarioSelect = document.getElementById("horario");
+      horarioSelect.disabled = true;
+      horarioSelect.classList.add("loading");
       horarioSelect.innerHTML =
-        '<option value="">Seleccione un horario</option>';
+        '<option value="">Cargando horarios...</option>';
       const sucursalSeleccionada = document.getElementById("sucursal").value;
       const fechaSeleccionada = document.getElementById("fecha").value;
-      if (!sucursalSeleccionada || !fechaSeleccionada) return;
+      if (!sucursalSeleccionada || !fechaSeleccionada) {
+        horarioSelect.disabled = false;
+        horarioSelect.classList.remove("loading");
+        horarioSelect.innerHTML = '<option value="">Seleccione un horario</option>';
+        return;
+      }
       const suc = window.sucursalesData.find(
         (s) => s.nombre === sucursalSeleccionada
       );
-      if (!suc || !suc.horarios) return;
+      if (!suc || !suc.horarios) {
+        horarioSelect.disabled = false;
+        horarioSelect.classList.remove("loading");
+        horarioSelect.innerHTML = '<option value="">Sin horarios disponibles</option>';
+        return;
+      }
       const turnosTomados = (await getTurnosConfirmados()).filter(
         (t) =>
           t.sucursal === sucursalSeleccionada && t.fecha === fechaSeleccionada
       );
       const horariosOcupados = turnosTomados.map((t) => t.horario);
+      horarioSelect.innerHTML = '<option value="">Seleccione un horario</option>';
       suc.horarios.forEach((hora) => {
         const option = document.createElement("option");
         option.value = hora;
@@ -197,6 +210,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         horarioSelect.appendChild(option);
       });
+      horarioSelect.disabled = false;
+      horarioSelect.classList.remove("loading");
     }
 
     // --- VALIDACIÓN DE DNI Y ALTA DE TURNO ---
@@ -205,6 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       const datos = {
         nombre: document.getElementById("nombre").value.trim(),
+        apellido: document.getElementById("apellido").value.trim(),
         dni: document.getElementById("dni").value.replace(/\D/g, ""),
         telefono: document.getElementById("telefono").value.replace(/\D/g, ""),
         email: document.getElementById("email").value.trim(),
@@ -235,6 +251,19 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("email").classList.add("input-error");
       } else {
         document.getElementById("email").classList.remove("input-error");
+      }
+      // Validación de nombre y apellido
+      if (!datos.nombre || datos.nombre.length < 2) {
+        errorMsg = "El nombre debe tener al menos 2 caracteres.";
+        document.getElementById("nombre").classList.add("input-error");
+      } else {
+        document.getElementById("nombre").classList.remove("input-error");
+      }
+      if (!datos.apellido || datos.apellido.length < 2) {
+        errorMsg = "El apellido debe tener al menos 2 caracteres.";
+        document.getElementById("apellido").classList.add("input-error");
+      } else {
+        document.getElementById("apellido").classList.remove("input-error");
       }
       if (errorMsg) {
         Toastify({
@@ -301,7 +330,7 @@ document.addEventListener("DOMContentLoaded", () => {
       Swal.fire({
         title: "¿Confirmar turno?",
         html: `
-          <p><strong>Sucursal:</strong> ${datos.sucursal}</p>
+          <p><strong>Sucursal:</strong> ${datos.sucursal.replace(/^Sucursal /i, '')}</p>
           <p><strong>Fecha:</strong> ${datos.fecha}</p>
           <p><strong>Hora:</strong> ${datos.horario}</p>
         `,

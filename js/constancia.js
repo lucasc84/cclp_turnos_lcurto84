@@ -26,11 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- MOSTRAR DATOS EN EL DOM ---
   contenedor.innerHTML = `
     <p><strong>ID de Turno:</strong> ${turno.id ? turno.id : "(sin ID)"}</p>
-    <p><strong>Nombre:</strong> ${turno.nombre}</p>
+    <p><strong>Nombre:</strong> ${turno.nombre} ${turno.apellido}</p>
     <p><strong>DNI:</strong> ${turno.dni}</p>
     <p><strong>Teléfono:</strong> ${turno.telefono}</p>
     <p><strong>Email:</strong> ${turno.email}</p>
-    <p><strong>Sucursal:</strong> ${turno.sucursal}</p>
+    <p><strong>Sucursal:</strong> ${(turno.sucursal || '').replace(/^Sucursal /i, '')}</p>
     ${turno.direccionSucursal || turno.telefonoSucursal ? `<p><strong>Dirección:</strong> ${turno.direccionSucursal || '-'}<br><strong>Teléfonos:</strong> ${turno.telefonoSucursal || '-'}</p>` : ''}
     <p><strong>Fecha:</strong> ${fechaFormateada}</p>
     <p><strong>Hora:</strong> ${turno.horario}</p>

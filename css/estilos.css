@@ -415,6 +415,9 @@ form button:hover {
   .inputs-row-nombre-dni .input-nombre {
     flex: 2 1 0;
   }
+  .inputs-row-nombre-dni .input-apellido {
+    flex: 2 1 0;
+  }
   .inputs-row-nombre-dni .input-dni {
     flex: 1 1 0;
   }
@@ -527,4 +530,16 @@ form button:hover {
   max-width: 34em;
   box-sizing: border-box;
   border: 1.5px solid #fff;
+}
+
+#horario:disabled {
+  background-color: #f8dada;
+  color: #a12a2a;
+  cursor: not-allowed;
+}
+#horario.loading {
+  background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="%23e32724" stroke-width="4" stroke-linecap="round" stroke-dasharray="31.415, 31.415" transform="rotate(72 12 12)"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/></circle></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.7em center;
+  background-size: 1.5em 1.5em;
 }
