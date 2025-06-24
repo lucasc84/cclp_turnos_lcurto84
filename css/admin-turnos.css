@@ -62,6 +62,45 @@ tr:hover { background: #fff3f3; }
   margin-right: 0.5em;
   vertical-align: middle;
 }
+.mensaje-alerta {
+  color: #b71c1c;
+  background: #fdeaea;
+  border: 1.5px solid #b71c1c;
+  border-radius: 0.375em;
+  padding: 0.7em 1em;
+  margin-bottom: 1.5em;
+  text-align: center;
+  font-weight: bold;
+}
+.celda-cargando {
+  text-align: center;
+}
+.btn-cancelar-turno {
+  background: #e32724;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.mensaje-error {
+  color: #e32724;
+  font-weight: bold;
+  margin: 0.5em 0;
+}
+.mensaje-exito {
+  color: #28a745;
+  font-weight: bold;
+  margin: 0.5em 0;
+}
+.tabla-admin td, .tabla-admin th {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
 @media (max-width: 700px) {
   .admin-container { padding: 0.5em; }
   table, thead, tbody, th, td, tr { display: block; }
@@ -94,6 +133,9 @@ tr:hover { background: #fff3f3; }
   }
   .ascdesc-mobile {
     display: inline-block;
+  }
+  .tabla-admin td, .tabla-admin th {
+    max-width: 90vw;
   }
 }
 @media print {

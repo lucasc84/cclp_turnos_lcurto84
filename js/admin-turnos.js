@@ -31,20 +31,20 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     const tbody = document.querySelector('#tablaTurnos tbody');
     if (filtrados.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;">Sin resultados</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="9" class="celda-cargando">Sin resultados</td></tr>';
       return;
     }
     tbody.innerHTML = filtrados.map(t => `
       <tr>
-        <td>${t.nombre}</td>
-        <td>${t.apellido || ''}</td>
-        <td>${t.dni}</td>
-        <td>${(t.sucursal || '').replace(/^Sucursal /i, '')}</td>
-        <td>${t.fecha}</td>
-        <td>${t.horario}</td>
-        <td>${t.email}</td>
-        <td>${t.telefono}</td>
-        <td>${t.id || ''}</td>
+        <td title="${t.nombre}">${t.nombre}</td>
+        <td title="${t.apellido || ''}">${t.apellido || ''}</td>
+        <td title="${t.dni}">${t.dni}</td>
+        <td title="${(t.sucursal || '').replace(/^Sucursal /i, '')}">${(t.sucursal || '').replace(/^Sucursal /i, '')}</td>
+        <td title="${t.fecha}">${t.fecha}</td>
+        <td title="${t.horario}">${t.horario}</td>
+        <td title="${t.email}">${t.email}</td>
+        <td title="${t.telefono}">${t.telefono}</td>
+        <td title="${t.id || ''}">${t.id || ''}</td>
       </tr>
     `).join('');
   }

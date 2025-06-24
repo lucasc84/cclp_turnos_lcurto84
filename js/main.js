@@ -387,20 +387,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         if (!turno) {
           resultadoDiv.innerHTML =
-            '<p style="color:red">No se encontró ningún turno con ese ID o DNI.</p>';
+            '<p class="mensaje-error">No se encontró ningún turno con ese ID o DNI.</p>';
           return;
         }
         resultadoDiv.innerHTML = `
-          <div style="text-align:left; margin: 10px auto; max-width: 350px;">
-            <p><strong>ID:</strong> ${turno.id}</p>
-            <p><strong>Nombre:</strong> ${turno.nombre}</p>
-            <p><strong>DNI:</strong> ${turno.dni}</p>
-            <p><strong>Sucursal:</strong> ${turno.sucursal}</p>
-            <p><strong>Fecha:</strong> ${turno.fecha}</p>
-            <p><strong>Horario:</strong> ${turno.horario}</p>
-            <button id="btnCancelarTurno" style="background:#e32724;color:#fff;padding:8px 16px;border:none;border-radius:4px;cursor:pointer;">Cancelar Turno</button>
-          </div>
-        `;
+      <div style="text-align:left; margin: 10px auto; max-width: 350px;">
+        <p><strong>ID:</strong> ${turno.id}</p>
+        <p><strong>Nombre:</strong> ${turno.nombre}</p>
+        <p><strong>DNI:</strong> ${turno.dni}</p>
+        <p><strong>Sucursal:</strong> ${turno.sucursal}</p>
+        <p><strong>Fecha:</strong> ${turno.fecha}</p>
+        <p><strong>Horario:</strong> ${turno.horario}</p>
+        <button id="btnCancelarTurno" class="btn-cancelar-turno">Cancelar Turno</button>
+      </div>
+    `;
         document.getElementById("btnCancelarTurno").onclick =
           async function () {
             if (
@@ -411,7 +411,7 @@ document.addEventListener("DOMContentLoaded", () => {
               const nuevosTurnos = turnos.filter((t) => t.id !== turno.id);
               await setTurnosConfirmados(nuevosTurnos);
               resultadoDiv.innerHTML =
-                '<p style="color:green">El turno fue cancelado correctamente.</p>';
+                '<p class="mensaje-exito">El turno fue cancelado correctamente.</p>';
             }
           };
       });
