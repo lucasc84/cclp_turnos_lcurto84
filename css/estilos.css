@@ -1,4 +1,6 @@
-/*Estilos*/
+/* =========================
+   RESET Y BASE
+   ========================= */
 
 body {
   font-family: Arial, sans-serif;
@@ -10,6 +12,9 @@ body {
   overflow-x: hidden;
 }
 
+/* =========================
+   HEADER Y LAYOUT PRINCIPAL
+   ========================= */
 header {
   width: 100%;
   max-width: 34em;
@@ -28,25 +33,6 @@ header {
   flex-direction: column;
   align-items: center;
   gap: 1em;
-}
-@media (min-width: 900px) {
-  .header-row {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2em;
-  }
-  .header-row .logo {
-    margin-bottom: 0;
-    width: 15em;
-    max-width: 100%;
-  }
-  .header-row h1 {
-    margin: 0;
-    font-size: 1.7em;
-    text-align: right;
-    flex: 1 1 auto;
-  }
 }
 
 .container {
@@ -75,6 +61,9 @@ header {
   width: 10em;
 }
 
+/* =========================
+   TIPOGRAFÍA Y TITULOS
+   ========================= */
 span {
   font-weight: bold;
 }
@@ -130,7 +119,9 @@ h4.mensaje-fecha span {
   font-weight: bold;
 }
 
-/*Estilos para los campos del formulario y botones.*/
+/* =========================
+   FORMULARIOS Y CAMPOS
+   ========================= */
 form input,
 form select {
   width: 100%;
@@ -204,7 +195,14 @@ form button:hover {
   background-color: #e3272497;
 }
 
-/*Mensaje informativo para la constancia (PDF/impresión).*/
+.input-error {
+  border: 0.125em solid #e32724 !important;
+  background: #fff3f3;
+}
+
+/* =========================
+   MENSAJES, UTILIDADES Y COMPONENTES
+   ========================= */
 .mensaje-pdf {
   margin-top: 1em;
   color: #a12a2a;
@@ -238,40 +236,9 @@ form button:hover {
   font-weight: normal;
   display: block;
 }
-@media (min-width: 900px) {
-  .direccion-sucursal {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 2em;
-    text-align: left;
-  }
-  .direccion-sucursal .direccion,
-  .direccion-sucursal .telefono {
-    display: inline;
-  }
-}
 
 .separador-dir-tel {
   display: none;
-}
-@media (min-width: 900px) {
-  .separador-dir-tel {
-    display: inline-block;
-    margin: 0 1em;
-    color: #bbb;
-    font-weight: normal;
-    content: '|';
-    position: relative;
-  }
-  .separador-dir-tel::before {
-    content: '|';
-  }
-}
-
-.input-error {
-  border: 0.125em solid #e32724 !important;
-  background: #fff3f3;
 }
 
 .consulta-link {
@@ -295,39 +262,6 @@ form button:hover {
 }
 .consulta-link.desktop-only {
   display: none;
-}
-@media (min-width: 900px) {
-  .consulta-link.desktop-hide {
-    display: none !important;
-  }
-  .consulta-link.desktop-only {
-    display: block !important;
-    margin-bottom: 1.5em;
-    font-size: 1em;
-    text-align: left;
-  }
-  header {
-    max-width: 1200px;
-
-  }
-  .main-form {
-    flex: 0 1 65%;
-    max-width: none;
-    min-width: 320px;
-  }
-  .main-lateral {
-    flex: 0 1 35%;
-    max-width: none;
-    min-width: 240px;
-  }
-  .main-form, .main-lateral {
-    padding: 1em 1em 1.2em 1em;
-    margin: 0.5em 0;
-  }
-  .main-flex-externo {
-    max-width: 1200px;
-    gap: 1.2em;
-  }
 }
 
 .container h1,
@@ -377,50 +311,11 @@ form button:hover {
   width: 100%;
   box-sizing: border-box;
 }
-@media (min-width: 900px) {
-  .main-flex-externo {
-    display: flex;
-    flex-direction: row;
-    gap: 2em;
-    align-items: flex-start;
-    justify-content: center;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2em 0;
-    box-sizing: border-box;
-  }
-  .main-form {
-    flex: 0 1 65%;
-    max-width: none;
-    min-width: 320px;
-  }
-  .main-lateral {
-    flex: 0 1 35%;
-    max-width: none;
-    min-width: 240px;
-  }
-}
 
 .inputs-row-nombre-dni {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
-}
-@media (min-width: 900px) {
-  .inputs-row-nombre-dni {
-    flex-direction: row;
-    gap: 1em;
-  }
-  .inputs-row-nombre-dni .input-nombre {
-    flex: 2 1 0;
-  }
-  .inputs-row-nombre-dni .input-apellido {
-    flex: 2 1 0;
-  }
-  .inputs-row-nombre-dni .input-dni {
-    flex: 1 1 0;
-  }
 }
 
 .inputs-row-tel-mail {
@@ -428,96 +323,17 @@ form button:hover {
   flex-direction: column;
   gap: 0.5em;
 }
-@media (min-width: 900px) {
-  .inputs-row-tel-mail {
-    flex-direction: row;
-    gap: 1em;
-  }
-  .inputs-row-tel-mail .input-tel {
-    flex: 2 1 0;
-  }
-  .inputs-row-tel-mail .input-mail {
-    flex: 3 1 0;
-  }
-}
 
 .inputs-row-fecha-horario {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
 }
-@media (min-width: 900px) {
-  .inputs-row-fecha-horario {
-    flex-direction: row;
-    gap: 1em;
-  }
-  .inputs-row-fecha-horario input,
-  .inputs-row-fecha-horario select {
-    flex: 1 1 0;
-  }
-}
 
 .inputs-row-sucursal-fecha-horario {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
-}
-@media (min-width: 900px) {
-  .inputs-row-sucursal-fecha-horario {
-    flex-direction: row;
-    gap: 1em;
-    align-items: flex-start;
-    flex-wrap: wrap;
-  }
-  .inputs-row-sucursal-fecha-horario select,
-  .inputs-row-sucursal-fecha-horario input[type="text"] {
-    flex: 1 1 0;
-    min-width: 0;
-  }
-  .inputs-row-sucursal-fecha-horario .direccion-sucursal {
-    flex-basis: 100%;
-    width: 100%;
-    order: 2;
-    margin-top: 0.2em;
-    margin-left: 0;
-    margin-right: 0;
-    text-align: left;
-    justify-content: flex-start;
-  }
-}
-
-@media (min-width: 37.5em) {
-  /* 600px */
-  .logo {
-    width: 15em;
-  }
-  h1 {
-    font-size: 1.375em;
-  }
-  h2 {
-    font-size: 1.125em;
-  }
-  h3 {
-    font-size: 0.875em;
-    padding: 0.625em 1.125em;
-  }
-  h4 {
-    font-size: 0.875em;
-  }
-  .mensaje-pdf {
-    font-size: 0.875em;
-    padding: 0.625em 1.125em;
-    max-width: 21.875em;
-  }
-}
-@media (min-width: 900px) {
-  h4.mensaje-fecha {
-    text-align: left;
-  }
-    h2 {
-    font-size: 1.125em;
-    text-align: right;
-}
 }
 
 .comprobante-container {
@@ -542,4 +358,217 @@ form button:hover {
   background-repeat: no-repeat;
   background-position: right 0.7em center;
   background-size: 1.5em 1.5em;
+}
+
+/* =========================
+   ESTILOS PARA LIBRERÍAS - SWEETALERT2
+   ========================= */
+/* Personalización de SweetAlert2 para que combine con la identidad visual del sitio */
+.swal2-popup {
+  font-family: Arial, sans-serif;
+  border-radius: 0.5em;
+  background: #ffffff;
+  color: #a12a2a;
+  border: 2px solid #e32724;
+}
+.swal2-title {
+  color: #a12a2a;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+.swal2-html-container {
+  color: #a12a2a;
+  font-size: 1em;
+}
+.swal2-confirm {
+  background-color: #e32724 !important;
+  color: #ffffff !important;
+  border-radius: 0.3em !important;
+  font-weight: bold;
+  font-family: inherit;
+}
+.swal2-cancel {
+  background-color: #ffffff !important;
+  color: #a12a2a !important;
+  border: 1.5px solid #e32724 !important;
+  border-radius: 0.3em !important;
+  font-family: inherit;
+}
+.swal2-styled:focus {
+  box-shadow: 0 0 0 2px #e32724 !important;
+}
+.swal2-icon.swal2-info,
+.swal2-icon.swal2-warning,
+.swal2-icon.swal2-success,
+.swal2-icon.swal2-error {
+  border-color: #e32724 !important;
+  color: #e32724 !important;
+}
+.swal2-icon.swal2-info {
+  background-color: #ffffff !important;
+}
+.swal2-icon.swal2-warning {
+  background-color: #ffffff !important;
+}
+.swal2-icon.swal2-success {
+  background-color: #ffffff !important;
+}
+.swal2-icon.swal2-error {
+  background-color: #ffffff !important;
+}
+
+/* =========================
+   MEDIA QUERIES (SOLO DESKTOP)
+   ========================= */
+@media (min-width: 900px) {
+  /* Header y layout */
+  .header-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2em;
+  }
+  .header-row .logo {
+    margin-bottom: 0;
+    width: 15em;
+    max-width: 100%;
+  }
+  .header-row h1 {
+    margin: 0;
+    font-size: 1.7em;
+    text-align: right;
+    flex: 1 1 auto;
+  }
+  header {
+    max-width: 1200px;
+  }
+  .main-form {
+    flex: 0 1 65%;
+    max-width: none;
+    min-width: 320px;
+  }
+  .main-lateral {
+    flex: 0 1 35%;
+    max-width: none;
+    min-width: 240px;
+  }
+  .main-form, .main-lateral {
+    padding: 1em 1em 1.2em 1em;
+    margin: 0.5em 0;
+  }
+  .main-flex-externo {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2em 0;
+    box-sizing: border-box;
+    gap: 1.2em;
+  }
+  /* Tipografía y títulos */
+  .logo {
+    width: 15em;
+  }
+  h1 {
+    font-size: 1.375em;
+  }
+  h2 {
+    font-size: 1.125em;
+    text-align: right;
+  }
+  h3 {
+    font-size: 0.875em;
+    padding: 0.625em 1.125em;
+  }
+  h4 {
+    font-size: 0.875em;
+  }
+  h4.mensaje-fecha {
+    text-align: left;
+  }
+  .mensaje-pdf {
+    font-size: 0.875em;
+    padding: 0.625em 1.125em;
+    max-width: 21.875em;
+  }
+  /* Componentes y utilidades */
+  .direccion-sucursal {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    text-align: left;
+  }
+  .direccion-sucursal .direccion,
+  .direccion-sucursal .telefono {
+    display: inline;
+  }
+  .separador-dir-tel {
+    display: inline-block;
+    margin: 0 1em;
+    color: #bbb;
+    font-weight: normal;
+    content: '|';
+    position: relative;
+  }
+  .separador-dir-tel::before {
+    content: '|';
+  }
+  .consulta-link.desktop-hide {
+    display: none !important;
+  }
+  .consulta-link.desktop-only {
+    display: block !important;
+    margin-bottom: 1.5em;
+    font-size: 1em;
+    text-align: left;
+  }
+  /* Filas de inputs */
+  .inputs-row-nombre-dni,
+  .inputs-row-tel-mail,
+  .inputs-row-fecha-horario,
+  .inputs-row-sucursal-fecha-horario {
+    flex-direction: row;
+    gap: 1em;
+  }
+  .inputs-row-nombre-dni .input-nombre,
+  .inputs-row-nombre-dni .input-apellido {
+    flex: 2 1 0;
+  }
+  .inputs-row-nombre-dni .input-dni {
+    flex: 1 1 0;
+  }
+  .inputs-row-tel-mail .input-tel {
+    flex: 2 1 0;
+  }
+  .inputs-row-tel-mail .input-mail {
+    flex: 3 1 0;
+  }
+  .inputs-row-fecha-horario input,
+  .inputs-row-fecha-horario select {
+    flex: 1 1 0;
+  }
+  .inputs-row-sucursal-fecha-horario {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .inputs-row-sucursal-fecha-horario select,
+  .inputs-row-sucursal-fecha-horario input[type="text"] {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .inputs-row-sucursal-fecha-horario .direccion-sucursal {
+    flex-basis: 100%;
+    width: 100%;
+    order: 2;
+    margin-top: 0.2em;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: left;
+    justify-content: flex-start;
+  }
 }
