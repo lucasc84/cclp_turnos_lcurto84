@@ -1,0 +1,79 @@
+/* =========================
+   FORMULARIOS Y CAMPOS
+   ========================= */
+form input,
+form select {
+  width: 100%;
+  padding: 0.5em;
+  margin: 0.4em 0;
+  border: 0.063em solid #000 !important; /* negro siempre */
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  font-size: 1em;
+  background: #fff !important; /* fondo blanco siempre */
+  color: #222;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+form input:focus,
+form select:focus {
+  border: 0.125em solid #000 !important; /* negro al enfocar */
+  box-shadow: 0 0 0 0.1em #e3272497;
+  background: #fff !important;
+}
+
+form input:valid {
+  background: #fff !important;
+}
+
+form input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+  box-shadow: 0 0 0 1000px #fff inset !important;
+  background: #fff !important;
+  color: #222 !important;
+}
+
+select option:checked,
+select option[selected] {
+  background: #e3272497 !important;
+  color: #fff !important;
+}
+
+select option:hover,
+select option:focus {
+  background: #e3272497 !important;
+  color: #fff !important;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23000" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.7em center;
+  background-size: 1.2em;
+  padding-right: 2em;
+}
+
+form button {
+  width: 100%;
+  background-color: #e32724;
+  color: white;
+  padding: 0.6em;
+  border: none;
+  border-radius: 0.25em;
+  font-size: 1em;
+  margin-top: 0.5em;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #e3272497;
+}
+
+.input-error {
+  border: 0.125em solid #e32724 !important;
+  background: #fff3f3;
+}

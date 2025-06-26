@@ -1,7 +1,7 @@
+@charset "UTF-8";
 /* =========================
    RESET Y BASE
    ========================= */
-
 body {
   font-family: Arial, sans-serif;
   background-color: #fff3f3;
@@ -20,7 +20,7 @@ header {
   max-width: 34em;
   margin: 0.5em auto 0.5em auto;
   padding: 1em 1em 1.2em 1em;
-  background: rgba(255,255,255,0.97);
+  background: rgba(255, 255, 255, 0.97);
   text-align: center;
   box-sizing: border-box;
   border-radius: 0.5em;
@@ -46,7 +46,7 @@ header {
 }
 
 .main-form, .main-lateral {
-  background-color: rgba(255,255,255,0.97);
+  background-color: rgba(255, 255, 255, 0.97);
   box-shadow: 0 0 0.625em rgba(150, 0, 0, 0.2);
   border-radius: 0.5em;
   padding: 1em 1em 1.2em 1em;
@@ -140,7 +140,7 @@ form select {
 form input:focus,
 form select:focus {
   border: 0.125em solid #000 !important; /* negro al enfocar */
-  box-shadow: 0 0 0 0.1em #e3272497;
+  box-shadow: 0 0 0 0.1em rgba(227, 39, 36, 0.5921568627);
   background: #fff !important;
 }
 
@@ -149,7 +149,6 @@ form input:valid {
 }
 
 form input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
   box-shadow: 0 0 0 1000px #fff inset !important;
   background: #fff !important;
   color: #222 !important;
@@ -157,17 +156,16 @@ form input:-webkit-autofill {
 
 select option:checked,
 select option[selected] {
-  background: #e3272497 !important;
+  background: rgba(227, 39, 36, 0.5921568627) !important;
   color: #fff !important;
 }
 
 select option:hover,
 select option:focus {
-  background: #e3272497 !important;
+  background: rgba(227, 39, 36, 0.5921568627) !important;
   color: #fff !important;
 }
 
-/* Quitar decoración nativa de select en Chrome/Edge */
 select {
   appearance: none;
   -webkit-appearance: none;
@@ -192,7 +190,7 @@ form button {
 }
 
 form button:hover {
-  background-color: #e3272497;
+  background-color: rgba(227, 39, 36, 0.5921568627);
 }
 
 .input-error {
@@ -231,6 +229,7 @@ form button:hover {
   align-items: center;
   gap: 0.2em;
 }
+
 .direccion-sucursal .direccion,
 .direccion-sucursal .telefono {
   font-weight: normal;
@@ -246,6 +245,7 @@ form button:hover {
   text-align: center;
   font-size: 0.9em;
 }
+
 .consulta-link a {
   color: #e32724;
   text-decoration: underline;
@@ -253,6 +253,7 @@ form button:hover {
   cursor: pointer;
   transition: color 0.2s;
 }
+
 .consulta-link a:hover {
   color: #a12a2a;
 }
@@ -260,6 +261,7 @@ form button:hover {
 .consulta-link.desktop-hide {
   display: block;
 }
+
 .consulta-link.desktop-only {
   display: none;
 }
@@ -293,8 +295,9 @@ form button:hover {
   text-decoration: none;
   text-transform: none;
 }
+
 .boton-interno:hover, .boton-interno:focus {
-  background-color: #e3272497;
+  background-color: rgba(227, 39, 36, 0.5921568627);
   color: white;
   text-decoration: none;
 }
@@ -306,6 +309,7 @@ form button:hover {
   margin: 0 auto;
   box-sizing: border-box;
 }
+
 .main-form, .main-lateral {
   margin: 0 auto 2em auto;
   width: 100%;
@@ -353,6 +357,7 @@ form button:hover {
   color: #a12a2a;
   cursor: not-allowed;
 }
+
 #horario.loading {
   background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="%23e32724" stroke-width="4" stroke-linecap="round" stroke-dasharray="31.415, 31.415" transform="rotate(72 12 12)"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/></circle></svg>');
   background-repeat: no-repeat;
@@ -363,7 +368,6 @@ form button:hover {
 /* =========================
    ESTILOS PARA LIBRERÍAS - SWEETALERT2
    ========================= */
-/* Personalización de SweetAlert2 para que combine con la identidad visual del sitio */
 .swal2-popup {
   font-family: Arial, sans-serif;
   border-radius: 0.5em;
@@ -371,15 +375,18 @@ form button:hover {
   color: #a12a2a;
   border: 2px solid #e32724;
 }
+
 .swal2-title {
   color: #a12a2a;
   font-weight: bold;
   font-size: 1.3em;
 }
+
 .swal2-html-container {
   color: #a12a2a;
   font-size: 1em;
 }
+
 .swal2-confirm {
   background-color: #e32724 !important;
   color: #ffffff !important;
@@ -387,6 +394,7 @@ form button:hover {
   font-weight: bold;
   font-family: inherit;
 }
+
 .swal2-cancel {
   background-color: #ffffff !important;
   color: #a12a2a !important;
@@ -394,9 +402,11 @@ form button:hover {
   border-radius: 0.3em !important;
   font-family: inherit;
 }
+
 .swal2-styled:focus {
   box-shadow: 0 0 0 2px #e32724 !important;
 }
+
 .swal2-icon.swal2-info,
 .swal2-icon.swal2-warning,
 .swal2-icon.swal2-success,
@@ -404,15 +414,19 @@ form button:hover {
   border-color: #e32724 !important;
   color: #e32724 !important;
 }
+
 .swal2-icon.swal2-info {
   background-color: #ffffff !important;
 }
+
 .swal2-icon.swal2-warning {
   background-color: #ffffff !important;
 }
+
 .swal2-icon.swal2-success {
   background-color: #ffffff !important;
 }
+
 .swal2-icon.swal2-error {
   background-color: #ffffff !important;
 }
@@ -512,11 +526,11 @@ form button:hover {
     margin: 0 1em;
     color: #bbb;
     font-weight: normal;
-    content: '|';
+    content: "|";
     position: relative;
   }
   .separador-dir-tel::before {
-    content: '|';
+    content: "|";
   }
   .consulta-link.desktop-hide {
     display: none !important;
@@ -557,7 +571,7 @@ form button:hover {
     flex-wrap: wrap;
   }
   .inputs-row-sucursal-fecha-horario select,
-  .inputs-row-sucursal-fecha-horario input[type="text"] {
+  .inputs-row-sucursal-fecha-horario input[type=text] {
     flex: 1 1 0;
     min-width: 0;
   }
@@ -571,4 +585,4 @@ form button:hover {
     text-align: left;
     justify-content: flex-start;
   }
-}
+}/*# sourceMappingURL=index.css.map */

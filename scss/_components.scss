@@ -1,0 +1,159 @@
+/* =========================
+   MENSAJES, UTILIDADES Y COMPONENTES
+   ========================= */
+.mensaje-pdf {
+  margin-top: 1em;
+  color: #a12a2a;
+  font-size: 0.9em;
+  background: #fff3f3;
+  border: 0.094em solid #e32724;
+  border-radius: 0.375em;
+  padding: 0.5em 0.75em;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 0.125em 0.5em rgba(227, 39, 36, 0.07);
+  text-align: center;
+  font-family: inherit;
+}
+
+.direccion-sucursal {
+  margin-top: 0.312em;
+  margin-bottom: 0.625em;
+  color: #444;
+  font-size: 0.8em;
+  font-style: normal;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2em;
+}
+.direccion-sucursal .direccion,
+.direccion-sucursal .telefono {
+  font-weight: normal;
+  display: block;
+}
+
+.separador-dir-tel {
+  display: none;
+}
+
+.consulta-link {
+  margin: 0.5em 0 1.5em 0;
+  text-align: center;
+  font-size: 0.9em;
+}
+.consulta-link a {
+  color: #e32724;
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.consulta-link a:hover {
+  color: #a12a2a;
+}
+
+.consulta-link.desktop-hide {
+  display: block;
+}
+.consulta-link.desktop-only {
+  display: none;
+}
+
+.container h1,
+.boton-interno {
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.boton-interno {
+  display: block;
+  width: 100%;
+  background-color: #e32724;
+  color: white;
+  padding: 0.6em;
+  border: none;
+  border-radius: 0.25em;
+  font-size: 1em;
+  margin-top: 0.5em;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 0.05em 0.2em rgba(227, 39, 36, 0.04);
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+}
+.boton-interno:hover, .boton-interno:focus {
+  background-color: #e3272497;
+  color: white;
+  text-decoration: none;
+}
+
+.main-flex-externo {
+  display: block;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.main-form, .main-lateral {
+  margin: 0 auto 2em auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.inputs-row-nombre-dni {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.inputs-row-tel-mail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.inputs-row-fecha-horario {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.inputs-row-sucursal-fecha-horario {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.comprobante-container {
+  background: #fff;
+  box-shadow: 0 0 0.625em rgba(150, 0, 0, 0.2);
+  border-radius: 0.5em;
+  padding: 1.5em 1em 2em 1em;
+  margin: 1em auto;
+  width: 100%;
+  max-width: 34em;
+  box-sizing: border-box;
+  border: 1.5px solid #fff;
+}
+
+#horario:disabled {
+  background-color: #f8dada;
+  color: #a12a2a;
+  cursor: not-allowed;
+}
+#horario.loading {
+  background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="%23e32724" stroke-width="4" stroke-linecap="round" stroke-dasharray="31.415, 31.415" transform="rotate(72 12 12)"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/></circle></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.7em center;
+  background-size: 1.5em 1.5em;
+}
