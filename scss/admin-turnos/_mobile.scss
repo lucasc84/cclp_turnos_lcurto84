@@ -54,6 +54,12 @@
   margin-right: 0.5em;
   vertical-align: middle;
 }
+.menu-hamburguesa,
+.ascdesc-mobile {
+  display: inline-block;
+  width: auto;
+  vertical-align: middle;
+}
 @media (max-width: 700px) {
   .admin-container { padding: 0.5em; }
   table, thead, tbody, th, td, tr { display: block; }
@@ -86,6 +92,12 @@
   }
   .ascdesc-mobile {
     display: inline-block;
+  }
+  .menu-hamburguesa,
+  .ascdesc-mobile {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
   }
   .tabla-admin td, .tabla-admin th {
     max-width: 90vw;
