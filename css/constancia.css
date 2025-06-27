@@ -1,9 +1,16 @@
+@charset "UTF-8";
+/* =====================
+   RESET Y BASE
+   ===================== */
 body {
   background: #fff3f3;
   min-height: 100vh;
-    font-family: Arial, sans-serif;
-
+  font-family: Arial, sans-serif;
 }
+
+/* =====================
+   LAYOUT
+   ===================== */
 .comprobante-container {
   background: #fff;
   box-shadow: 0 0 0.625em rgba(150, 0, 0, 0.2);
@@ -15,11 +22,11 @@ body {
   box-sizing: border-box;
   border: 1.5px solid #fff;
   text-align: center;
+}
 
-}
-.logo {
-  width: 15em;
-}
+/* =====================
+   TIPOGRAFÍA
+   ===================== */
 h1 {
   font-weight: bold;
   text-align: center;
@@ -34,6 +41,14 @@ h1 {
   box-sizing: border-box;
   display: block;
 }
+
+/* =====================
+   COMPONENTES
+   ===================== */
+.logo {
+  width: 15em;
+}
+
 .mensaje-pdf {
   margin-top: 1em;
   color: #a12a2a;
@@ -49,6 +64,7 @@ h1 {
   text-align: center;
   font-family: inherit;
 }
+
 button {
   width: 100%;
   background-color: #e32724;
@@ -60,12 +76,17 @@ button {
   margin-top: 0.5em;
   cursor: pointer;
 }
+
 button:hover {
-  background-color: #e3272497;
+  background-color: rgba(227, 39, 36, 0.5921568627);
 }
+
+/* =====================
+   MEDIA QUERIES
+   ===================== */
 @media print {
   button,
   .mensaje-pdf {
     display: none !important;
   }
-}
+}/*# sourceMappingURL=constancia.css.map */

@@ -1,0 +1,27 @@
+// SCSS principal para constancia
+// Orden: Reset/Base, Layout, Tipografía, Componentes, Media Queries
+
+/* =====================
+   RESET Y BASE
+   ===================== */
+@import 'constancia/reset-base';
+
+/* =====================
+   LAYOUT
+   ===================== */
+@import 'constancia/layout';
+
+/* =====================
+   TIPOGRAFÍA
+   ===================== */
+@import 'constancia/typography';
+
+/* =====================
+   COMPONENTES
+   ===================== */
+@import 'constancia/components';
+
+/* =====================
+   MEDIA QUERIES
+   ===================== */
+@import 'constancia/media-queries';

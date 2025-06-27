@@ -1,0 +1,7 @@
+// Media queries para impresión
+@media print {
+  button,
+  .mensaje-pdf {
+    display: none !important;
+  }
+}
