@@ -3,16 +3,16 @@
    ========================= */
 .mensaje-pdf {
   margin-top: 1em;
-  color: $color-principal;
+  color: #a12a2a;
   font-size: 0.9em;
-  background: $color-fondo-claro;
-  border: 0.094em solid $color-borde;
-  border-radius: $border-radius-base;
+  background: #fff3f3;
+  border: 0.094em solid #e32724;
+  border-radius: 0.375em;
   padding: 0.5em 0.75em;
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: $box-shadow-base;
+  box-shadow: 0 0.125em 0.5em rgba(227, 39, 36, 0.07);
   text-align: center;
   font-family: inherit;
 }
@@ -45,14 +45,14 @@
   font-size: 0.9em;
 }
 .consulta-link a {
-  color: $color-secundario;
+  color: #e32724;
   text-decoration: underline;
   font-weight: bold;
   cursor: pointer;
   transition: color 0.2s;
 }
 .consulta-link a:hover {
-  color: $color-principal;
+  color: #a12a2a;
 }
 
 .consulta-link.desktop-hide {

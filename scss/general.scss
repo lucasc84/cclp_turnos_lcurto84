@@ -95,3 +95,35 @@ button:hover {
 .text-left {
   text-align: left;
 }
+
+/* =========================
+   HEADER ROW FLEX (logo + h1)
+   ========================= */
+.header-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  justify-content: center;
+}
+
+@media (min-width: 900px) {
+  .header-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2em;
+  }
+  .header-row .logo {
+    margin-bottom: 0;
+    width: 15em;
+    max-width: 100%;
+  }
+  .header-row h1 {
+    margin: 0;
+    font-size: 1.7em;
+    text-align: right;
+    flex: 1 1 auto;
+    padding: 0.5em 1em;
+  }
+}
