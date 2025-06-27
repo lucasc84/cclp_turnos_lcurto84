@@ -1,0 +1,21 @@
+/* MENSAJES Y UTILIDADES */
+.mensaje-alerta {
+  color: #b71c1c;
+  background: #fdeaea;
+  border: 1.5px solid #b71c1c;
+  border-radius: 0.375em;
+  padding: 0.7em 1em;
+  margin-bottom: 1.5em;
+  text-align: center;
+  font-weight: bold;
+}
+.mensaje-error {
+  color: #e32724;
+  font-weight: bold;
+  margin: 0.5em 0;
+}
+.mensaje-exito {
+  color: #28a745;
+  font-weight: bold;
+  margin: 0.5em 0;
+}

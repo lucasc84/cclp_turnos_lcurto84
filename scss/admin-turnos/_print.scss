@@ -1,0 +1,14 @@
+/* ESTILOS PARA IMPRESIÓN */
+@media print {
+  .admin-controls, button[onclick*="print"] {
+    display: none !important;
+  }
+  .admin-container {
+    box-shadow: none;
+    padding: 0;
+    background: #fff;
+  }
+  body {
+    background: #fff !important;
+  }
+}

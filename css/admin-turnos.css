@@ -1,5 +1,5 @@
-/* Estilos específicos para admin-turnos.html */
-
+@charset "UTF-8";
+/* RESET Y BASE */
 body {
   font-family: Arial, sans-serif;
   background-color: #fff3f3;
@@ -10,112 +10,112 @@ body {
   overflow-x: hidden;
 }
 
-.admin-container { max-width: 1100px; margin: 2em auto; background: #fff; border-radius: 10px; box-shadow: 0 0 20px #0001; padding: 2em; }
-.admin-controls { display: flex; flex-wrap: wrap; gap: 1em; margin-bottom: 1.5em; align-items: center; }
-.admin-controls label { font-weight: bold; }
-.admin-controls select, .admin-controls input { padding: 0.5em; border-radius: 4px; border: 1px solid #b71c1c; }
-table { width: 100%; border-collapse: collapse; margin-top: 1em; }
-th, td { padding: 0.6em 0.4em; border-bottom: 1px solid #eee; text-align: left; }
-th { background: #fdeaea; color: #b71c1c; cursor: pointer; user-select: none; }
-tr:hover { background: #fff3f3; }
-.orden-mobile {
-  display: none;
-}
-.menu-hamburguesa {
-  background: #fdeaea;
-  color: #b71c1c;
-  border: 1.5px solid #b71c1c;
-  border-radius: 0.375em;
-  padding: 0.5em 1em;
-  font-weight: bold;
-  font-size: 1em;
-  cursor: pointer;
-  margin-left: 0.5em;
-}
-.menu-ordenar-mobile {
-  display: flex;
-  flex-direction: column;
-  background: #fff3f3;
-  border: 1.5px solid #b71c1c;
-  border-radius: 0.375em;
-  position: absolute;
-  z-index: 10;
-  margin-top: 0.5em;
-  min-width: 160px;
-  box-shadow: 0 0 10px #b71c1c22;
-}
-.menu-ordenar-mobile button {
-  background: none;
-  border: none;
-  color: #b71c1c;
-  padding: 0.7em 1em;
-  text-align: left;
-  font-size: 1em;
-  cursor: pointer;
-  border-bottom: 1px solid #fdeaea;
-}
-.menu-ordenar-mobile button:last-child {
-  border-bottom: none;
-}
-.menu-ordenar-mobile.oculto {
-  display: none;
-}
-.ascdesc-mobile {
-  background: #fdeaea;
-  color: #b71c1c;
-  border: 1.5px solid #b71c1c;
-  border-radius: 0.375em;
-  padding: 0.5em 0.8em;
-  font-weight: bold;
-  font-size: 1.1em;
-  cursor: pointer;
-  margin-left: 0.5em;
-  margin-right: 0.5em;
-  vertical-align: middle;
-}
-.mensaje-alerta {
-  color: #b71c1c;
-  background: #fdeaea;
-  border: 1.5px solid #b71c1c;
-  border-radius: 0.375em;
-  padding: 0.7em 1em;
-  margin-bottom: 1.5em;
-  text-align: center;
-  font-weight: bold;
-}
-.celda-cargando {
-  text-align: center;
-}
-.btn-cancelar-turno {
-  background: #e32724;
-  color: #fff;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-}
-.mensaje-error {
-  color: #e32724;
-  font-weight: bold;
-  margin: 0.5em 0;
-}
-.mensaje-exito {
-  color: #28a745;
-  font-weight: bold;
-  margin: 0.5em 0;
-}
-.tabla-admin td, .tabla-admin th {
-  max-width: 140px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  vertical-align: middle;
+/* LAYOUT Y CONTENEDORES */
+.admin-container {
+  max-width: 1100px;
+  margin: 2em auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.0666666667);
+  padding: 2em;
 }
 
-/* =========================
-   TIPOGRAFÍA Y TITULOS (heredados de index.css)
-   ========================= */
+/* CONTROLES Y FORMULARIOS */
+.admin-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  margin-bottom: 1.5em;
+  align-items: center;
+}
+
+.admin-controls label {
+  font-weight: bold;
+}
+
+.admin-controls select, .admin-controls input {
+  padding: 0.5em;
+  border-radius: 4px;
+  border: 1px solid #b71c1c;
+}
+
+form input,
+form select {
+  width: 100%;
+  padding: 0.5em;
+  margin: 0.4em 0;
+  border: 0.063em solid #000 !important;
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  font-size: 1em;
+  background: #fff !important;
+  color: #222;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+form input:focus,
+form select:focus {
+  border: 0.125em solid #000 !important;
+  box-shadow: 0 0 0 0.1em rgba(227, 39, 36, 0.5921568627);
+  background: #fff !important;
+}
+
+form input:valid {
+  background: #fff !important;
+}
+
+form input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px #fff inset !important;
+  background: #fff !important;
+  color: #222 !important;
+}
+
+select option:checked,
+select option[selected] {
+  background: rgba(227, 39, 36, 0.5921568627) !important;
+  color: #fff !important;
+}
+
+select option:hover,
+select option:focus {
+  background: rgba(227, 39, 36, 0.5921568627) !important;
+  color: #fff !important;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23000" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.7em center;
+  background-size: 1.2em;
+  padding-right: 2em;
+}
+
+form button {
+  width: 100%;
+  background-color: #e32724;
+  color: white;
+  padding: 0.6em;
+  border: none;
+  border-radius: 0.25em;
+  font-size: 1em;
+  margin-top: 0.5em;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: rgba(227, 39, 36, 0.5921568627);
+}
+
+.input-error {
+  border: 0.125em solid #e32724 !important;
+  background: #fff3f3;
+}
+
+/* TIPOGRAFÍA Y TÍTULOS */
 h1 {
   font-weight: bold;
   margin-bottom: 1em;
@@ -132,6 +132,7 @@ h1 {
   box-sizing: border-box;
   display: block;
 }
+
 h2 {
   font-size: 1em;
   font-weight: normal;
@@ -139,6 +140,7 @@ h2 {
   margin-bottom: 0.625em;
   text-align: center;
 }
+
 h3 {
   font-weight: bold;
   margin-bottom: 1em;
@@ -152,6 +154,7 @@ h3 {
   padding: 0.5em 0.75em;
   box-shadow: 0 0.125em 0.5em rgba(227, 39, 36, 0.07);
 }
+
 h4 {
   font-size: 0.9em;
   font-weight: normal;
@@ -159,85 +162,130 @@ h4 {
   margin-bottom: 0.5em;
   text-align: center;
 }
+
 span {
   font-weight: bold;
 }
-/* =========================
-   FORMULARIOS Y CAMPOS (heredados de index.css)
-   ========================= */
-form input,
-form select {
+
+/* TABLAS Y CELDAS */
+table {
   width: 100%;
-  padding: 0.5em;
-  margin: 0.4em 0;
-  border: 0.063em solid #000 !important;
-  border-radius: 0.25em;
-  box-sizing: border-box;
-  font-size: 1em;
-  background: #fff !important;
-  color: #222;
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  border-collapse: collapse;
+  margin-top: 1em;
 }
-form input:focus,
-form select:focus {
-  border: 0.125em solid #000 !important;
-  box-shadow: 0 0 0 0.1em #e3272497;
-  background: #fff !important;
+
+th, td {
+  padding: 0.6em 0.4em;
+  border-bottom: 1px solid #eee;
+  text-align: left;
 }
-form input:valid {
-  background: #fff !important;
-}
-form input:-webkit-autofill {
-  box-shadow: 0 0 0 1000px #fff inset !important;
-  background: #fff !important;
-  color: #222 !important;
-}
-select option:checked,
-select option[selected] {
-  background: #e3272497 !important;
-  color: #fff !important;
-}
-select option:hover,
-select option:focus {
-  background: #e3272497 !important;
-  color: #fff !important;
-}
-select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: url('data:image/svg+xml;utf8,<svg fill="%23000" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
-  background-repeat: no-repeat;
-  background-position: right 0.7em center;
-  background-size: 1.2em;
-  padding-right: 2em;
-}
-form button {
-  width: 100%;
-  background-color: #e32724;
-  color: white;
-  padding: 0.6em;
-  border: none;
-  border-radius: 0.25em;
-  font-size: 1em;
-  margin-top: 0.5em;
+
+th {
+  background: #fdeaea;
+  color: #b71c1c;
   cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
-form button:hover {
-  background-color: #e3272497;
-}
-.input-error {
-  border: 0.125em solid #e32724 !important;
+
+tr:hover {
   background: #fff3f3;
 }
 
+.celda-cargando {
+  text-align: center;
+}
+
+.tabla-admin td, .tabla-admin th {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+/* MOBILE Y RESPONSIVE */
+.orden-mobile {
+  display: none;
+}
+
+.menu-hamburguesa {
+  background: #fdeaea;
+  color: #b71c1c;
+  border: 1.5px solid #b71c1c;
+  border-radius: 0.375em;
+  padding: 0.5em 1em;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  margin-left: 0.5em;
+}
+
+.menu-ordenar-mobile {
+  display: flex;
+  flex-direction: column;
+  background: #fff3f3;
+  border: 1.5px solid #b71c1c;
+  border-radius: 0.375em;
+  position: absolute;
+  z-index: 10;
+  margin-top: 0.5em;
+  min-width: 160px;
+  box-shadow: 0 0 10px rgba(183, 28, 28, 0.1333333333);
+}
+
+.menu-ordenar-mobile button {
+  background: none;
+  border: none;
+  color: #b71c1c;
+  padding: 0.7em 1em;
+  text-align: left;
+  font-size: 1em;
+  cursor: pointer;
+  border-bottom: 1px solid #fdeaea;
+}
+
+.menu-ordenar-mobile button:last-child {
+  border-bottom: none;
+}
+
+.menu-ordenar-mobile.oculto {
+  display: none;
+}
+
+.ascdesc-mobile {
+  background: #fdeaea;
+  color: #b71c1c;
+  border: 1.5px solid #b71c1c;
+  border-radius: 0.375em;
+  padding: 0.5em 0.8em;
+  font-weight: bold;
+  font-size: 1.1em;
+  cursor: pointer;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  vertical-align: middle;
+}
+
 @media (max-width: 700px) {
-  .admin-container { padding: 0.5em; }
-  table, thead, tbody, th, td, tr { display: block; }
-  th, td { padding: 0.5em; }
-  th { position: sticky; top: 0; background: #fdeaea; }
-  tr { margin-bottom: 1em; }
+  .admin-container {
+    padding: 0.5em;
+  }
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  th, td {
+    padding: 0.5em;
+  }
+  th {
+    position: sticky;
+    top: 0;
+    background: #fdeaea;
+  }
+  tr {
+    margin-bottom: 1em;
+  }
   .encabezado-desktop {
     display: none;
   }
@@ -250,7 +298,7 @@ form button:hover {
   .tabla-admin tr {
     margin-bottom: 1.5em;
     border-radius: 0.5em;
-    box-shadow: 0 2px 8px #b71c1c22;
+    box-shadow: 0 2px 8px rgba(183, 28, 28, 0.1333333333);
     border: 2px solid #fdeaea;
     background: #fff;
     overflow: hidden;
@@ -269,8 +317,44 @@ form button:hover {
     max-width: 90vw;
   }
 }
+/* MENSAJES Y UTILIDADES */
+.mensaje-alerta {
+  color: #b71c1c;
+  background: #fdeaea;
+  border: 1.5px solid #b71c1c;
+  border-radius: 0.375em;
+  padding: 0.7em 1em;
+  margin-bottom: 1.5em;
+  text-align: center;
+  font-weight: bold;
+}
+
+.mensaje-error {
+  color: #e32724;
+  font-weight: bold;
+  margin: 0.5em 0;
+}
+
+.mensaje-exito {
+  color: #28a745;
+  font-weight: bold;
+  margin: 0.5em 0;
+}
+
+/* BOTONES Y ACCIONES */
+.btn-cancelar-turno {
+  background: #e32724;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ESTILOS PARA IMPRESIÓN */
 @media print {
-  .admin-controls, button[onclick*="print"] {
+  .admin-controls, button[onclick*=print] {
     display: none !important;
   }
   .admin-container {
@@ -281,4 +365,4 @@ form button:hover {
   body {
     background: #fff !important;
   }
-}
+}/*# sourceMappingURL=admin-turnos.css.map */

@@ -1,0 +1,30 @@
+/* TABLAS Y CELDAS */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1em;
+}
+th, td {
+  padding: 0.6em 0.4em;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+th {
+  background: #fdeaea;
+  color: #b71c1c;
+  cursor: pointer;
+  user-select: none;
+}
+tr:hover {
+  background: #fff3f3;
+}
+.celda-cargando {
+  text-align: center;
+}
+.tabla-admin td, .tabla-admin th {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
