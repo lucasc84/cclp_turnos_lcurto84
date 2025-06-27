@@ -1,9 +1,6 @@
 /* LAYOUT Y CONTENEDORES */
 .admin-container {
+  @extend .container-general;
   max-width: 1100px;
-  margin: 2em auto;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 20px #0001;
   padding: 2em;
 }

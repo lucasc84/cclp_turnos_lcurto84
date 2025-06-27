@@ -1,13 +1,7 @@
 // Layout y estructura principal
 .comprobante-container {
-  background: #fff;
-  box-shadow: 0 0 0.625em rgba(150, 0, 0, 0.2);
-  border-radius: 0.5em;
-  padding: 0.3em 0.3em;
-  margin: 1em auto;
-  width: 100%;
+  @extend .container-general;
   max-width: 44em;
-  box-sizing: border-box;
-  border: 1.5px solid #fff;
+  padding: 0.3em 0.3em;
   text-align: center;
 }

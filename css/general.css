@@ -48,7 +48,7 @@ button:hover {
 /* =========================
    CONTENEDOR GENERAL
    ========================= */
-.container-general, .comprobante-container {
+.container-general {
   background: #fff;
   box-shadow: 0 0 0.625em rgba(150, 0, 0, 0.2);
   border-radius: 0.5em;
@@ -87,69 +87,4 @@ button:hover {
 
 .text-left {
   text-align: left;
-}
-
-/* =====================
-   RESET Y BASE
-   ===================== */
-body {
-  background: #fff3f3;
-  min-height: 100vh;
-  font-family: Arial, sans-serif;
-}
-
-/* =====================
-   LAYOUT
-   ===================== */
-.comprobante-container {
-  max-width: 44em;
-  padding: 0.3em 0.3em;
-  text-align: center;
-}
-
-/* =====================
-   TIPOGRAFÍA
-   ===================== */
-h1 {
-  font-weight: bold;
-  text-align: center;
-  color: #a12a2a;
-  font-size: 1.375em;
-  background: #fff3f3;
-  border: 0.094em solid #e32724;
-  border-radius: 0.375em;
-  padding: 0.3em 0.3em;
-  box-shadow: 0 0.125em 0.5em rgba(227, 39, 36, 0.07);
-  width: 100%;
-  box-sizing: border-box;
-  display: block;
-}
-
-/* =====================
-   COMPONENTES
-   ===================== */
-.mensaje-pdf {
-  margin-top: 1em;
-  color: #a12a2a;
-  font-size: 0.9em;
-  background: #fff3f3;
-  border: 0.094em solid #e32724;
-  border-radius: 0.375em;
-  padding: 0.3em 0.3em;
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 0 0.125em 0.5em rgba(227, 39, 36, 0.07);
-  text-align: center;
-  font-family: inherit;
-}
-
-/* =====================
-   MEDIA QUERIES
-   ===================== */
-@media print {
-  button,
-  .mensaje-pdf {
-    display: none !important;
-  }
-}/*# sourceMappingURL=constancia.css.map */
+}/*# sourceMappingURL=general.css.map */

@@ -1,6 +1,3 @@
-// SCSS principal para constancia
-// Orden: Reset/Base, Layout, Tipografía, Componentes, Media Queries
-
 /* =====================
    RESET Y BASE
    ===================== */
@@ -25,8 +22,3 @@
    MEDIA QUERIES
    ===================== */
 @import 'constancia/media-queries';
-
-/* =====================
-   ESTILOS GENERALES
-   ===================== */
-@import 'general';

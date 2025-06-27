@@ -1,0 +1,97 @@
+/* =========================
+   VARIABLES GENERALES
+   ========================= */
+$color-principal: #a12a2a;
+$color-secundario: #e32724;
+$color-fondo-claro: #fff3f3;
+$color-borde: #e32724;
+$color-borde-sec: #b71c1c;
+$color-sombra: rgba(227, 39, 36, 0.07);
+$border-radius-base: 0.375em;
+$border-radius-lg: 0.5em;
+$box-shadow-base: 0 0.125em 0.5em $color-sombra;
+
+/* =========================
+   ESTILOS GENERALES COMPARTIDOS
+   ========================= */
+body {
+  font-family: Arial, sans-serif;
+  background-color: $color-fondo-claro;
+}
+
+h1 {
+  font-weight: bold;
+  text-align: center;
+  color: $color-principal;
+  background: $color-fondo-claro;
+  border: 0.094em solid $color-borde;
+  border-radius: $border-radius-base;
+  box-shadow: $box-shadow-base;
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+}
+
+button {
+  width: 100%;
+  background-color: $color-secundario;
+  color: white;
+  border-radius: $border-radius-base;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #e3272497;
+}
+
+/* =========================
+   LOGO GENERAL
+   ========================= */
+.logo {
+  width: 12em;
+  display: block;
+  margin: 0 auto 0.625em auto;
+}
+
+/* =========================
+   CONTENEDOR GENERAL
+   ========================= */
+.container-general {
+  background: #fff;
+  box-shadow: 0 0 0.625em rgba(150, 0, 0, 0.2);
+  border-radius: $border-radius-lg;
+  padding: 1em;
+  margin: 1em auto;
+  width: 100%;
+  max-width: 44em;
+  box-sizing: border-box;
+  border: 1.5px solid #fff;
+}
+
+/* =========================
+   BOTÓN SECUNDARIO GENERAL
+   ========================= */
+.btn-secundario {
+  background: $color-fondo-claro;
+  color: $color-borde-sec;
+  border: 1.5px solid $color-borde-sec;
+  border-radius: $border-radius-base;
+  padding: 0.5em 1em;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+/* =========================
+   UTILIDADES TIPOGRÁFICAS
+   ========================= */
+.bold {
+  font-weight: bold;
+}
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
