@@ -23,13 +23,14 @@ h1 {
   display: block;
 }
 
-button {
+button, .btn-imprimir-lista {
   width: 100%;
   background-color: #e32724;
   color: white;
   border-radius: 0.375em;
   font-size: 1em;
   cursor: pointer;
+  padding: 0.6em;
 }
 
 button:hover {
@@ -119,4 +120,12 @@ button:hover {
     flex: 1 1 auto;
     padding: 0.5em 1em;
   }
+  .btn-imprimir-lista {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+header, .admin-container, .comprobante-container {
+  margin-top: 1em;
 }/*# sourceMappingURL=general.css.map */

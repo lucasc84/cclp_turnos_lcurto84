@@ -21,7 +21,7 @@
   border-radius: 0.375em;
   position: absolute;
   z-index: 10;
-  margin-top: 0.5em;
+  /* margin-top: 0.5em; eliminado para que el margen global de general.scss tenga efecto */
   min-width: 160px;
   box-shadow: 0 0 10px #b71c1c22;
 }
@@ -73,7 +73,6 @@
     display: block;
     position: relative;
     width: 100%;
-    margin-top: 0.5em;
   }
   .tabla-admin tr {
     margin-bottom: 1.5em;
@@ -81,7 +80,7 @@
     box-shadow: 0 2px 8px #b71c1c22;
     border: 2px solid #fdeaea;
     background: #fff;
-    overflow: hidden;
+    /* overflow: hidden; */
   }
   .tabla-admin td {
     border: none;

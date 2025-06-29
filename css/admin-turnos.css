@@ -16,8 +16,8 @@ body {
   box-shadow: 0 0 0.625em rgba(150, 0, 0, 0.2);
   border-radius: 0.5em;
   padding: 2em;
-  margin: 2em auto;
-  max-width: 1100px;
+  margin: 1em auto;
+  max-width: 98%;
   box-sizing: border-box;
   border: 1.5px solid #fff;
 }
@@ -104,7 +104,6 @@ form button {
   border: none;
   border-radius: 0.25em;
   font-size: 1em;
-  margin-top: 0.5em;
   cursor: pointer;
 }
 
@@ -130,7 +129,6 @@ h3 {
   font-weight: bold;
   margin-bottom: 1em;
   text-align: left;
-  margin-top: 1em;
   color: #a12a2a;
   font-size: 0.9em;
   background: #fff3f3;
@@ -156,7 +154,6 @@ span {
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1em;
 }
 
 th, td {
@@ -190,6 +187,17 @@ tr:hover {
   vertical-align: middle;
 }
 
+.tabla-wrapper {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.tabla-scroll-x {
+  width: 100%;
+  overflow-x: auto;
+}
+
 /* MOBILE Y RESPONSIVE */
 .orden-mobile {
   display: none;
@@ -215,7 +223,7 @@ tr:hover {
   border-radius: 0.375em;
   position: absolute;
   z-index: 10;
-  margin-top: 0.5em;
+  /* margin-top: 0.5em; eliminado para que el margen global de general.scss tenga efecto */
   min-width: 160px;
   box-shadow: 0 0 10px rgba(183, 28, 28, 0.1333333333);
 }
@@ -285,7 +293,6 @@ tr:hover {
     display: block;
     position: relative;
     width: 100%;
-    margin-top: 0.5em;
   }
   .tabla-admin tr {
     margin-bottom: 1.5em;
@@ -293,7 +300,7 @@ tr:hover {
     box-shadow: 0 2px 8px rgba(183, 28, 28, 0.1333333333);
     border: 2px solid #fdeaea;
     background: #fff;
-    overflow: hidden;
+    /* overflow: hidden; */
   }
   .tabla-admin td {
     border: none;

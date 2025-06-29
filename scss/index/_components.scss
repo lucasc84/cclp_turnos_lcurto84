@@ -2,7 +2,6 @@
    MENSAJES, UTILIDADES Y COMPONENTES
    ========================= */
 .mensaje-pdf {
-  margin-top: 1em;
   color: #a12a2a;
   font-size: 0.9em;
   background: #fff3f3;
@@ -18,7 +17,6 @@
 }
 
 .direccion-sucursal {
-  margin-top: 0.312em;
   margin-bottom: 0.625em;
   color: #444;
   font-size: 0.8em;
@@ -82,7 +80,6 @@
   border: none;
   border-radius: 0.25em;
   font-size: 1em;
-  margin-top: 0.5em;
   cursor: pointer;
   letter-spacing: 0.04em;
   transition: background 0.2s, color 0.2s;

@@ -18,7 +18,8 @@ body {
 header {
   width: 100%;
   max-width: 34em;
-  margin: 0.5em auto 0.5em auto;
+  margin-left: auto;
+  margin-right: auto;
   padding: 1em 1em 1.2em 1em;
   background: rgba(255, 255, 255, 0.97);
   text-align: center;
@@ -80,7 +81,6 @@ h3 {
   font-weight: bold;
   margin-bottom: 1em;
   text-align: left;
-  margin-top: 1em;
   color: #a12a2a;
   font-size: 0.9em;
   background: #fff3f3;
@@ -168,7 +168,6 @@ form button {
   border: none;
   border-radius: 0.25em;
   font-size: 1em;
-  margin-top: 0.5em;
   cursor: pointer;
 }
 
@@ -185,7 +184,6 @@ form button:hover {
    MENSAJES, UTILIDADES Y COMPONENTES
    ========================= */
 .mensaje-pdf {
-  margin-top: 1em;
   color: #a12a2a;
   font-size: 0.9em;
   background: #fff3f3;
@@ -201,7 +199,6 @@ form button:hover {
 }
 
 .direccion-sucursal {
-  margin-top: 0.312em;
   margin-bottom: 0.625em;
   color: #444;
   font-size: 0.8em;
@@ -269,7 +266,6 @@ form button:hover {
   border: none;
   border-radius: 0.25em;
   font-size: 1em;
-  margin-top: 0.5em;
   cursor: pointer;
   letter-spacing: 0.04em;
   transition: background 0.2s, color 0.2s;
@@ -562,7 +558,6 @@ form button:hover {
     flex-basis: 100%;
     width: 100%;
     order: 2;
-    margin-top: 0.2em;
     margin-left: 0;
     margin-right: 0;
     text-align: left;

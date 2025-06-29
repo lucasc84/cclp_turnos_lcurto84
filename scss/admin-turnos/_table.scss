@@ -2,7 +2,6 @@
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1em;
 }
 th, td {
   padding: 0.6em 0.4em;
@@ -27,4 +26,17 @@ tr:hover {
   text-overflow: ellipsis;
   white-space: nowrap;
   vertical-align: middle;
+}
+
+// Contenedor para igualar ancho de tabla y botón
+.tabla-wrapper {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+// Scroll horizontal para la tabla si es necesario
+.tabla-scroll-x {
+  width: 100%;
+  overflow-x: auto;
 }

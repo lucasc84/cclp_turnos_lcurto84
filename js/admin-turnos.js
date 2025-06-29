@@ -103,4 +103,11 @@ document.addEventListener('DOMContentLoaded', function() {
       btnAscDescMobile.classList.toggle('desc', !sortAsc);
     });
   }
+
+  const celdas = document.querySelectorAll('.tabla-admin td');
+  celdas.forEach(function (celda) {
+    if (celda.textContent.trim().length > 0) {
+      celda.setAttribute('title', celda.textContent.trim());
+    }
+  });
 });
