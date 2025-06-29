@@ -1,9 +1,9 @@
 /* =========================
    VARIABLES GENERALES
    ========================= */
-$color-principal: #a12a2a;
+$color-principal: #000000;
 $color-secundario: #e32724;
-$color-fondo-claro: #fff3f3;
+$color-fondo-claro: #f2f0ed;
 $color-borde: #e32724;
 $color-borde-sec: #b71c1c;
 $color-sombra: rgba(227, 39, 36, 0.07);
@@ -15,10 +15,12 @@ $box-shadow-base: 0 0.125em 0.5em $color-sombra;
    ESTILOS GENERALES COMPARTIDOS
    ========================= */
 body {
-  font-family: Arial, sans-serif;
-background-color: #f2f0ed;}
+  font-family: 'Open Sans', Arial, sans-serif;
+  background-color: #f2f0ed;
+}
 
 h1 {
+  font-family: 'Nunito', 'Open Sans', Arial, sans-serif;
   font-weight: bold;
   text-align: center;
   color: $color-principal;
