@@ -4,7 +4,6 @@
    ========================= */
 body {
   font-family: Arial, sans-serif;
-  background-color: #fff3f3;
   margin: 0;
   padding: 0;
   color: #333;
@@ -132,6 +131,7 @@ form input:valid {
 }
 
 form input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
   box-shadow: 0 0 0 1000px #fff inset !important;
   background: #fff !important;
   color: #222 !important;
@@ -563,4 +563,4 @@ form button:hover {
     text-align: left;
     justify-content: flex-start;
   }
-}/*# sourceMappingURL=index.css.map */
+}
