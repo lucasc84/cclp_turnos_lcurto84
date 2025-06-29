@@ -23,7 +23,7 @@ h1 {
   display: block;
 }
 
-button, .btn-imprimir-lista {
+button, .btn-imprimir-lista, .boton-interno {
   width: 100%;
   background-color: #e32724;
   color: white;
@@ -31,10 +31,15 @@ button, .btn-imprimir-lista {
   font-size: 1em;
   cursor: pointer;
   padding: 0.6em;
+  border: none;
+  box-shadow: 0 0.05em 0.2em rgba(227, 39, 36, 0.04);
+  transition: background 0.2s, color 0.2s;
 }
 
-button:hover {
+button:hover, .btn-imprimir-lista:hover, .boton-interno:hover, .boton-interno:focus {
   background-color: rgba(227, 39, 36, 0.5921568627);
+  color: white;
+  text-decoration: none;
 }
 
 /* =========================
