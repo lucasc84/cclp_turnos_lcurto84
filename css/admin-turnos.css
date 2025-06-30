@@ -164,7 +164,9 @@ th {
   background: #fdeaea;
   color: #b71c1c;
   cursor: pointer;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 tr:hover {
@@ -366,4 +368,4 @@ tr:hover {
   body {
     background: #fff !important;
   }
-}
+}/*# sourceMappingURL=admin-turnos.css.map */
