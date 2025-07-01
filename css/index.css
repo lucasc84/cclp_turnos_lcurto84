@@ -93,9 +93,13 @@ header {
   .header-row h1 {
     font-size: 1.7em;
     text-align: right;
-    margin: 0;
-    flex: 1 1 auto;
+    margin: 0 0 0 auto;
+    flex: 1 1 0;
     word-break: normal;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-width: 0;
   }
 }
 /* =========================
