@@ -28,12 +28,14 @@
         versión final se requerirá login para acceder a esta información.
       </p>
       <div class="admin-controls">
-        <label for="filtroSucursal">Sucursal:</label>
-        <select id="filtroSucursal">
-          <option value="">Todas</option>
-        </select>
-        <label for="buscador">Buscar:</label>
-        <input type="text" id="buscador" placeholder="Nombre, DNI, Email..." />
+        <div class="filtros-row">
+          <label for="filtroSucursal">Sucursal:</label>
+          <select id="filtroSucursal">
+            <option value="">Todas</option>
+          </select>
+          <label for="buscador">Buscar:</label>
+          <input type="text" id="buscador" placeholder="Nombre, DNI, Email..." />
+        </div>
         <div class="orden-mobile">
           <button id="btnOrdenarMobile" type="button" aria-label="Ordenar por" class="menu-hamburguesa">
             &#9776; Ordenar por

@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function cargarSucursales() {
     const select = document.getElementById('filtroSucursal');
     const unicas = [...new Set(turnos.map(t => t.sucursal))];
-    select.innerHTML = '<option value="">Todas</option>' + unicas.map(s => `<option value="${s}">${s}</option>`).join('');
+    select.innerHTML = '<option value="">Todas</option>' + unicas.map(s => `<option value="${s}">${(s || '').replace(/^Sucursal /i, '')}</option>`).join('');
   }
 
   fetch(URL_TURNOS, { headers: { 'X-Master-Key': API_KEY } })
