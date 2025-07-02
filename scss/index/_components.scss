@@ -86,11 +86,41 @@
   text-align: center;
   text-decoration: none;
   text-transform: none;
+  touch-action: manipulation;
 }
-.boton-interno:hover, .boton-interno:focus {
+.boton-interno:hover,
+.boton-interno:active {
   background-color: #e3272497;
   color: white;
   text-decoration: none;
+}
+.boton-interno:focus-visible {
+  background-color: #e3272497;
+  color: white;
+  outline: 2px solid #e32724;
+}
+.boton-interno:focus:not(:hover):not(:active):not(:focus-visible) {
+  background-color: #e32724;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: #0074d9;
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  transition: color 0.2s;
+  
+  &:hover,
+  &:focus {
+    color: #005fa3;
+    outline: none;
+  }
+  &:active {
+    color: #003d6b;
+  }
 }
 
 .main-flex-externo {

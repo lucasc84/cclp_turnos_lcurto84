@@ -172,6 +172,7 @@ form input:valid {
 }
 
 form input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
   box-shadow: 0 0 0 1000px #fff inset !important;
   background: #fff !important;
   color: #222 !important;
@@ -209,10 +210,21 @@ form button {
   border-radius: 0.25em;
   font-size: 1em;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
-form button:hover {
+form button:hover,
+form button:active {
   background-color: rgba(227, 39, 36, 0.5921568627);
+}
+
+form button:focus-visible {
+  background-color: rgba(227, 39, 36, 0.5921568627);
+  outline: 2px solid #e32724;
+}
+
+form button:focus:not(:hover):not(:active):not(:focus-visible) {
+  background-color: #e32724;
 }
 
 .input-error {
@@ -312,12 +324,42 @@ form button:hover {
   text-align: center;
   text-decoration: none;
   text-transform: none;
+  touch-action: manipulation;
 }
 
-.boton-interno:hover, .boton-interno:focus {
+.boton-interno:hover,
+.boton-interno:active {
   background-color: rgba(227, 39, 36, 0.5921568627);
   color: white;
   text-decoration: none;
+}
+
+.boton-interno:focus-visible {
+  background-color: rgba(227, 39, 36, 0.5921568627);
+  color: white;
+  outline: 2px solid #e32724;
+}
+
+.boton-interno:focus:not(:hover):not(:active):not(:focus-visible) {
+  background-color: #e32724;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: #0074d9;
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  transition: color 0.2s;
+}
+.btn-link:hover, .btn-link:focus {
+  color: #005fa3;
+  outline: none;
+}
+.btn-link:active {
+  color: #003d6b;
 }
 
 .main-flex-externo {
@@ -601,4 +643,4 @@ form button:hover {
     text-align: left;
     justify-content: flex-start;
   }
-}/*# sourceMappingURL=index.css.map */
+}

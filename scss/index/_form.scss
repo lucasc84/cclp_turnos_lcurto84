@@ -66,10 +66,21 @@ form button {
   border-radius: 0.25em;
   font-size: 1em;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
-form button:hover {
+form button:hover,
+form button:active {
   background-color: #e3272497;
+}
+
+form button:focus-visible {
+  background-color: #e3272497;
+  outline: 2px solid #e32724;
+}
+
+form button:focus:not(:hover):not(:active):not(:focus-visible) {
+  background-color: #e32724;
 }
 
 .input-error {

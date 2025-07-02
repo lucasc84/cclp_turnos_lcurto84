@@ -39,7 +39,7 @@
       </h2>
       <p class="consulta-link desktop-hide">
         ¿Ya tenés un turno y querés consultarlo o cancelarlo?
-        <a href="#consultaTurno">Hacé click aquí</a>
+        <button type="button" class="btn-link" onclick="document.getElementById('consultaTurno').scrollIntoView({behavior: 'smooth'});">Hacé click aquí</button>
       </p>
     </header>
 
@@ -117,13 +117,7 @@
         <div id="usoInterno">
           <h3 class="uso-interno-titulo">USO INTERNO</h3>
           <p style="text-align:center;">
-            <a
-              href="admin-turnos.html"
-              target="_blank"
-              class="boton-interno"
-              onmouseup="this.blur()"
-              >Ir al panel de turnos confirmados</a
-            >
+            <button type="button" class="boton-interno" onclick="window.open('admin-turnos.html', '_blank');">Ir al panel de turnos confirmados</button>
           </p>
         </div>
       </div>

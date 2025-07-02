@@ -206,10 +206,21 @@ form button {
   border-radius: 0.25em;
   font-size: 1em;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
-form button:hover {
+form button:hover,
+form button:active {
   background-color: rgba(227, 39, 36, 0.5921568627);
+}
+
+form button:focus-visible {
+  background-color: rgba(227, 39, 36, 0.5921568627);
+  outline: 2px solid #e32724;
+}
+
+form button:focus:not(:hover):not(:active):not(:focus-visible) {
+  background-color: #e32724;
 }
 
 .input-error {
@@ -299,9 +310,7 @@ th {
   background: #fdeaea;
   color: #b71c1c;
   cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
 }
 
 tr:hover {
@@ -422,4 +431,4 @@ tr:hover {
   body {
     background: #fff !important;
   }
-}/*# sourceMappingURL=admin-turnos.css.map */
+}
