@@ -32,12 +32,25 @@
     padding: 0.7em 1em 0.8em 1em; // Menos padding interno
     margin: 0.2em 0; // Menos margen vertical
   }
-  .main-lateral {
+  .main-lateral,
+  .uso-interno-container {
     flex: 0 1 35%;
     max-width: 35%;
     min-width: 240px;
-    padding: 1em 1em 1.2em 1em;
     margin: 0.5em 0;
+  }
+  .main-lateral + .uso-interno-container {
+    margin-top: 0;
+  }
+  .main-lateral, .uso-interno-container {
+    float: none;
+    position: static;
+  }
+  .main-lateral {
+    margin-bottom: 1.2em;
+  }
+  .uso-interno-container {
+    margin-top: 0;
   }
   .main-flex-externo {
     display: flex;

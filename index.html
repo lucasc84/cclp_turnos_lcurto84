@@ -97,28 +97,32 @@
           <button type="submit">Reservar Turno</button>
         </form>
       </div>
-      <div class="container main-lateral">
-        <div id="consultaTurno">
-          <h3>Consultar o Cancelar Turno</h3>
-          <p class="consulta-link desktop-only">
-            ¿Tenés un turno y querés consultarlo o cancelarlo?
-          </p>
-          <form id="formConsultaTurno">
-            <input
-              type="text"
-              id="idConsulta"
-              placeholder="Ingresá el ID de tu turno o tu DNI"
-              required
-            />
-            <button type="submit">Buscar Turno</button>
-          </form>
-          <div id="resultadoConsulta"></div>
+      <div class="lateral-column">
+        <div class="container main-lateral">
+          <div id="consultaTurno">
+            <h3>Consultar o Cancelar Turno</h3>
+            <p class="consulta-link desktop-only">
+              ¿Tenés un turno y querés consultarlo o cancelarlo?
+            </p>
+            <form id="formConsultaTurno">
+              <input
+                type="text"
+                id="idConsulta"
+                placeholder="Ingresá el ID de tu turno o tu DNI"
+                required
+              />
+              <button type="submit">Buscar Turno</button>
+            </form>
+            <div id="resultadoConsulta"></div>
+          </div>
         </div>
-        <div id="usoInterno">
-          <h3 class="uso-interno-titulo">USO INTERNO</h3>
-          <p style="text-align:center;">
-            <button type="button" class="boton-interno" onclick="window.open('admin-turnos.html', '_blank');">Ir al panel de turnos confirmados</button>
-          </p>
+        <div class="container uso-interno-container">
+          <div id="usoInterno">
+            <h3 class="uso-interno-titulo">USO INTERNO</h3>
+            <p style="text-align:center;">
+              <button type="button" class="boton-interno" onclick="window.open('admin-turnos.html', '_blank');">Ir al panel de turnos confirmados</button>
+            </p>
+          </div>
         </div>
       </div>
     </div>
