@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
         case 'telefono': texto = 'Teléfono'; break;
         case 'id': texto = 'ID'; break;
       }
-      btnOrdenarMobile.innerHTML = `<span>Ordenar por:</span> <strong>${texto}</strong>`;
+      btnOrdenarMobile.innerHTML = `<span>Ordenar por: </span><strong>${texto}</strong>`;
     }
     if (btnAscDescMobile) {
       const flecha = sortAsc ? '▲' : '▼';
