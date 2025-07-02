@@ -38,7 +38,7 @@ header {
 
 .header-row .logo {
   width: 100%;
-  max-width: 12em;
+  max-width: 50em;
   height: auto;
   margin-bottom: 0.3em;
 }
