@@ -88,8 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     if (btnAscDescMobile) {
       const flecha = sortAsc ? '▲' : '▼';
-      const texto = sortAsc ? 'Ascendente' : 'Descendente';
-      btnAscDescMobile.innerHTML = `<span style="font-size:1.2em;vertical-align:middle;">${flecha}</span> <span style="font-size:0.95em;vertical-align:middle;">${texto}</span>`;
+      btnAscDescMobile.innerHTML = `<span style="font-size:1.2em;vertical-align:middle;">${flecha}</span>`;
     }
   }
 

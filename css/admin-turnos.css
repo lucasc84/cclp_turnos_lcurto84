@@ -260,6 +260,19 @@ form button:focus:not(:hover):not(:active):not(:focus-visible) {
     margin-bottom: 0;
   }
 }
+.menu-hamburguesa,
+.ascdesc-mobile {
+  display: inline-block;
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  padding: 0.4em 0.7em;
+  font-size: 0.92em;
+  white-space: nowrap;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
 /* TIPOGRAFÍA Y TÍTULOS */
 h2 {
   font-size: 1em;
