@@ -24,7 +24,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 0.3em;
+  gap: 0.5em;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
@@ -48,7 +48,6 @@ body {
   border-radius: 0.375em;
   position: absolute;
   z-index: 10;
-  min-width: 160px;
   box-shadow: 0 0 10px rgba(183, 28, 28, 0.1333333333);
 }
 
@@ -56,7 +55,6 @@ body {
   background: none;
   border: none;
   color: #b71c1c;
-  padding: 0.7em 1em;
   text-align: left;
   font-size: 1em;
   cursor: pointer;
@@ -76,17 +74,13 @@ body {
   color: #b71c1c;
   border: 1.5px solid #b71c1c;
   border-radius: 0.375em;
-  padding: 0.5em 0.8em;
   font-weight: bold;
-  font-size: 1.1em;
+  font-size: 1em;
   cursor: pointer;
   vertical-align: middle;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 50%;
-  min-width: 0;
-  height: 2.8em;
   box-sizing: border-box;
 }
 
@@ -186,8 +180,6 @@ select {
   background-image: url('data:image/svg+xml;utf8,<svg fill="%23000" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
   background-repeat: no-repeat;
   background-position: right 0.7em center;
-  background-size: 1.2em;
-  padding-right: 2em;
 }
 
 form button {
@@ -389,7 +381,7 @@ tr:hover {
     content: attr(data-label);
     display: block;
     font-weight: bold;
-    color: #b71c1c;
+    color: #bb0909;
     margin-bottom: 0.2em;
     font-size: 0.95em;
   }
