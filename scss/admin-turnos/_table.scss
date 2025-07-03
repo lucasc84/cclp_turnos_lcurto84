@@ -67,21 +67,26 @@ tr:hover {
   .tabla-admin td {
     border: none;
     border-bottom: 1px solid #fdeaea;
-    padding: 0.7em 0.5em 0.7em 0.5em;
+    padding: 0.2em 0.2em 0.2em 0.2em;
     position: relative;
     white-space: normal;
     text-align: left;
     max-width: 100vw;
+    display: flex;
+    align-items: baseline;
+    gap: 0.3em;
   }
   .tabla-admin td:last-child {
     border-bottom: none;
   }
   .tabla-admin td:before {
-    content: attr(data-label);
-    display: block;
+    content: attr(data-label) ": ";
+    display: inline;
     font-weight: bold;
     color: #bb0909;
-    margin-bottom: 0.2em;
+    margin-bottom: 0;
     font-size: 0.95em;
+    margin-right: 0.3em;
+    flex-shrink: 0;
   }
 }
