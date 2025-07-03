@@ -243,6 +243,15 @@ form button:focus:not(:hover):not(:active):not(:focus-visible) {
     max-width: 220px;
     margin-bottom: 0;
   }
+  .btn-imprimir-lista {
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
+    margin-bottom: 0 !important;
+    display: inline-flex;
+    align-items: center;
+    margin-left: 0.5em;
+  }
   .menu-hamburguesa {
     font-size: 1em;
   }
@@ -311,7 +320,9 @@ th {
   background: #fdeaea;
   color: #b71c1c;
   cursor: pointer;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 tr:hover {
@@ -438,4 +449,4 @@ tr:hover {
   body {
     background: #fff !important;
   }
-}
+}/*# sourceMappingURL=admin-turnos.css.map */
