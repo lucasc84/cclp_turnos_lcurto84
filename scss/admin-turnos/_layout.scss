@@ -75,32 +75,3 @@
   // height: 2.8em;
   box-sizing: border-box;
 }
-
-// --- Desktop overrides ---
-@media (min-width: 900px) {
-  .orden-mobile {
-    display: none !important;
-  }
-  .header-row {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2em;
-  }
-  .header-row .logo {
-    width: 15em;
-    max-width: 100%;
-    margin-bottom: 0;
-  }
-  .header-row h1 {
-    font-size: 1.7em;
-    text-align: right;
-    margin: 0 0 0 auto;
-    flex: 1 1 0;
-    word-break: normal;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    min-width: 0;
-  }
-}

@@ -84,33 +84,6 @@ body {
   box-sizing: border-box;
 }
 
-@media (min-width: 900px) {
-  .orden-mobile {
-    display: none !important;
-  }
-  .header-row {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2em;
-  }
-  .header-row .logo {
-    width: 15em;
-    max-width: 100%;
-    margin-bottom: 0;
-  }
-  .header-row h1 {
-    font-size: 1.7em;
-    text-align: right;
-    margin: 0 0 0 auto;
-    flex: 1 1 0;
-    word-break: normal;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    min-width: 0;
-  }
-}
 /* CONTROLES Y FORMULARIOS */
 .admin-controls {
   display: flex;
@@ -229,44 +202,6 @@ form button:focus:not(:hover):not(:active):not(:focus-visible) {
   min-width: 0;
   max-width: 100%;
   margin-bottom: 0.5em;
-  box-sizing: border-box;
-}
-
-@media (min-width: 900px) {
-  .filtros-row {
-    flex-direction: row;
-    align-items: center;
-    gap: 0.5em;
-  }
-  .filtros-row select, .filtros-row input[type=text] {
-    width: auto;
-    max-width: 220px;
-    margin-bottom: 0;
-  }
-  .btn-imprimir-lista {
-    width: auto;
-    min-width: 0;
-    max-width: 100%;
-    margin-bottom: 0 !important;
-    display: inline-flex;
-    align-items: center;
-    margin-left: 0.5em;
-  }
-  .menu-hamburguesa {
-    font-size: 1em;
-  }
-}
-.menu-hamburguesa,
-.ascdesc-mobile {
-  width: auto;
-  min-width: 0;
-  max-width: 100%;
-  padding: 0.5em 1.2em;
-  font-size: 0.92em;
-  white-space: nowrap;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   box-sizing: border-box;
 }
 
@@ -439,6 +374,68 @@ tr:hover {
   filter: invert(100%) brightness(100%);
 }
 
+@media (min-width: 900px) {
+  .filtros-row {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5em;
+  }
+  .filtros-row select, .filtros-row input[type=text] {
+    width: auto;
+    max-width: 220px;
+    margin-bottom: 0;
+  }
+  .btn-imprimir-lista {
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
+    margin-bottom: 0 !important;
+    display: inline-flex;
+    align-items: center;
+    margin-left: 0.5em;
+  }
+  .menu-hamburguesa {
+    font-size: 1em;
+  }
+  .menu-hamburguesa,
+  .ascdesc-mobile {
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
+    padding: 0.5em 1.2em;
+    font-size: 0.92em;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .orden-mobile {
+    display: none !important;
+  }
+  .header-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2em;
+  }
+  .header-row .logo {
+    width: 15em;
+    max-width: 100%;
+    margin-bottom: 0;
+  }
+  .header-row h1 {
+    font-size: 1.7em;
+    text-align: right;
+    margin: 0 0 0 auto;
+    flex: 1 1 0;
+    word-break: normal;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-width: 0;
+  }
+}
 /* ESTILOS PARA IMPRESIÓN */
 @media print {
   .admin-controls, button[onclick*=print] {
