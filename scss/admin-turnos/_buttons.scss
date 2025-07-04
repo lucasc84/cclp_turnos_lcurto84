@@ -1,10 +1,14 @@
 /* BOTONES Y ACCIONES */
-.btn-cancelar-turno {
-  background: #e32724;
-  color: #fff;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
+
+.btn-imprimir-lista img {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.5em;
+    margin-left: 0.5em;
+  vertical-align: middle;
+    width: 1em;
+  height: 1em;
+  margin-right: 0.5em;
+  vertical-align: middle;
+  filter: invert(100%) brightness(100%);
 }
