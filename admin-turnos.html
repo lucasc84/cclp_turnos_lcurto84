@@ -35,15 +35,7 @@
           </select>
           <label for="buscador">Buscar:</label>
           <input type="text" id="buscador" placeholder="Nombre, DNI, Email..." />
-          <button
-            onclick="window.print()"
-            class="btn-imprimir-lista"
-            style="margin-bottom: 1em;"
-          >
-            Imprimir lista
-            <img src="assets/printer.svg" alt="Imprimir lista" />
-          
-          </button>
+
         </div>
         <div class="orden-mobile">
           <button id="btnOrdenarMobile" type="button" aria-label="Ordenar por" class="menu-hamburguesa">
@@ -62,7 +54,17 @@
             <button data-sort="email">Email</button>
             <button data-sort="telefono">Teléfono</button>
             <button data-sort="id">ID</button>
+          
           </div>
+                    <button
+            onclick="window.print()"
+            class="btn-imprimir-lista"
+            style="margin-bottom: 1em;"
+          >
+            Imprimir lista
+            <img src="assets/printer.svg" alt="Imprimir lista" />
+          
+          </button>
         </div>
       </div>
       <div class="tabla-wrapper">

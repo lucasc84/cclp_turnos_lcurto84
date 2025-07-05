@@ -20,70 +20,6 @@ body {
   border: 1.5px solid #fff;
 }
 
-.orden-mobile {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 0.5em;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-.menu-hamburguesa {
-  background: #fdeaea;
-  color: #b71c1c;
-  border: 1.5px solid #b71c1c;
-  border-radius: 0.375em;
-  font-weight: bold;
-  font-size: 0.8em;
-  cursor: pointer;
-}
-
-.menu-ordenar-mobile {
-  display: flex;
-  flex-direction: column;
-  background: #fff3f3;
-  border: 1.5px solid #b71c1c;
-  border-radius: 0.375em;
-  position: absolute;
-  z-index: 10;
-  box-shadow: 0 0 10px rgba(183, 28, 28, 0.1333333333);
-}
-
-.menu-ordenar-mobile button {
-  background: none;
-  border: none;
-  color: #b71c1c;
-  text-align: left;
-  font-size: 1em;
-  cursor: pointer;
-  border-bottom: 1px solid #fdeaea;
-}
-
-.menu-ordenar-mobile button:last-child {
-  border-bottom: none;
-}
-
-.menu-ordenar-mobile.oculto {
-  display: none;
-}
-
-.ascdesc-mobile {
-  background: #fdeaea;
-  color: #b71c1c;
-  border: 1.5px solid #b71c1c;
-  border-radius: 0.375em;
-  font-weight: bold;
-  font-size: 1em;
-  cursor: pointer;
-  vertical-align: middle;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-}
-
 /* CONTROLES Y FORMULARIOS */
 .admin-controls {
   display: flex;
@@ -361,12 +297,76 @@ tr:hover {
 }
 
 /* BOTONES Y ACCIONES */
+.orden-mobile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 0.5em;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.menu-hamburguesa {
+  background: #fdeaea;
+  color: #b71c1c;
+  border: 1.5px solid #b71c1c;
+  border-radius: 0.375em;
+  font-weight: bold;
+  font-size: 0.8em;
+  cursor: pointer;
+}
+
+.menu-ordenar-mobile {
+  display: flex;
+  flex-direction: column;
+  background: #fff3f3;
+  border: 1.5px solid #b71c1c;
+  border-radius: 0.375em;
+  position: absolute;
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(183, 28, 28, 0.1333333333);
+}
+
+.menu-ordenar-mobile button {
+  background: none;
+  border: none;
+  color: #b71c1c;
+  text-align: left;
+  font-size: 1em;
+  cursor: pointer;
+  border-bottom: 1px solid #fdeaea;
+}
+
+.menu-ordenar-mobile button:last-child {
+  border-bottom: none;
+}
+
+.menu-ordenar-mobile.oculto {
+  display: none;
+}
+
+.ascdesc-mobile {
+  background: #fdeaea;
+  color: #b71c1c;
+  border: 1.5px solid #b71c1c;
+  border-radius: 0.375em;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.btn-imprimir-lista {
+  background: #b71c1c;
+  color: #ffffff;
+  border-radius: 0.375em;
+  font-weight: bold;
+  font-size: 0.8em;
+  cursor: pointer;
+  padding: 0.5em 1em;
+}
+
 .btn-imprimir-lista img {
-  width: 1em;
-  height: 1em;
-  margin-right: 0.5em;
-  margin-left: 0.5em;
-  vertical-align: middle;
   width: 1em;
   height: 1em;
   margin-right: 0.5em;
