@@ -356,19 +356,9 @@ tr:hover {
   cursor: pointer;
 }
 
-.btn-imprimir-lista {
-  background: #b71c1c;
-  color: #ffffff;
-  border-radius: 0.375em;
-  font-weight: bold;
-  font-size: 0.8em;
-  cursor: pointer;
-  padding: 0.5em 1em;
-}
-
 .btn-imprimir-lista img {
   width: 1em;
-  height: 1em;
+  height: auto;
   margin-right: 0.5em;
   vertical-align: middle;
   filter: invert(100%) brightness(100%);
@@ -410,7 +400,7 @@ tr:hover {
     justify-content: center;
     box-sizing: border-box;
   }
-  .orden-mobile {
+  .ascdesc-mobile, .menu-hamburguesa {
     display: none !important;
   }
   .header-row {

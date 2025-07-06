@@ -10,6 +10,9 @@
   max-width: 100%;
   // margin: 0 auto 1em auto;
   box-sizing: border-box;
+
+  
+  
 }
 .menu-hamburguesa {
   background: #fdeaea;
@@ -19,7 +22,6 @@
   font-weight: bold;
   font-size: 0.8em;
     // width: auto; /* ancho */
-
   cursor: pointer;
 }
 .menu-ordenar-mobile {
@@ -73,20 +75,22 @@
     // width: auto; /* ancho */
 
 }
-.btn-imprimir-lista {
-  background: #b71c1c;
-  color: #ffffff;
-  border-radius: 0.375em;
-  font-weight: bold;
-  font-size: 0.8em;
-  cursor: pointer;
-  // width: auto; /* ancho */
-  padding: 0.5em 1em;
-}
+// .btn-imprimir-lista {
+//   background: #b71c1c;
+//   color: #ffffff;
+//   border-radius: 0.375em;
+//   font-weight: bold;
+//   font-size: 0.8em;
+//   cursor: pointer;
+//   // width: auto; /* ancho */
+//   padding: 0.5em 1em;
+// }
+
+
 
 .btn-imprimir-lista img {
   width: 1em;
-  height: 1em;
+  height: auto;
   margin-right: 0.5em;
   vertical-align: middle;
   filter: invert(100%) brightness(100%);

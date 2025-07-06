@@ -35,8 +35,10 @@
   justify-content: center;
   box-sizing: border-box;
 }
-  .orden-mobile {
+.ascdesc-mobile, .menu-hamburguesa {
     display: none !important;
+
+
   }
   .header-row {
     flex-direction: row;
