@@ -1,4 +1,14 @@
 @media (min-width: 900px) {
+
+  .admin-controls {
+    flex-direction: row;
+  }
+  .admin-controls > * {
+    flex: 1;
+  }
+
+
+
   .filtros-row {
     flex-direction: row;
     align-items: center;
@@ -35,11 +45,10 @@
   justify-content: center;
   box-sizing: border-box;
 }
-.ascdesc-mobile, .menu-hamburguesa {
-    display: none !important;
+// .ascdesc-mobile, .menu-hamburguesa {
+//     display: none !important;
+// }
 
-
-  }
   .header-row {
     flex-direction: row;
     align-items: center;
@@ -61,5 +70,5 @@
     justify-content: flex-end;
     align-items: center;
     min-width: 0;
-  }
-}
+  }  
+} 

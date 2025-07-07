@@ -1,11 +1,15 @@
 /* CONTROLES Y FORMULARIOS */
 .admin-controls {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5em;
-  margin-bottom: 1.5em;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
+
 }
+
+  .admin-controls > * {
+    width: 100%;
+  }
+
 .admin-controls label { font-weight: bold; }
 .admin-controls select, .admin-controls input {
   padding: 0.5em;

@@ -23,10 +23,12 @@ body {
 /* CONTROLES Y FORMULARIOS */
 .admin-controls {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5em;
-  margin-bottom: 1.5em;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.admin-controls > * {
+  width: 100%;
 }
 
 .admin-controls label {
@@ -365,6 +367,12 @@ tr:hover {
 }
 
 @media (min-width: 900px) {
+  .admin-controls {
+    flex-direction: row;
+  }
+  .admin-controls > * {
+    flex: 1;
+  }
   .filtros-row {
     flex-direction: row;
     align-items: center;
@@ -399,9 +407,6 @@ tr:hover {
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-  }
-  .ascdesc-mobile, .menu-hamburguesa {
-    display: none !important;
   }
   .header-row {
     flex-direction: row;
