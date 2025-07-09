@@ -402,12 +402,12 @@ tr:hover {
   .admin-controls {
     flex-direction: row;
     align-items: flex-end;
-    gap: 1em;
+    gap: 0.7em;
   }
   .filtros-row {
     flex-direction: row;
     align-items: center;
-    gap: 1em;
+    gap: 0.35em;
     width: 100%;
     display: flex;
   }
@@ -418,75 +418,39 @@ tr:hover {
     align-items: center;
     justify-content: flex-start;
     min-width: 0;
-    gap: 0.5em;
+    gap: 0.3em;
   }
   .filtros-row > .botones-row {
-    flex: 1 1 0;
+    flex: 2 1 0;
     display: flex;
     flex-direction: row;
-    gap: 0.5em;
+    gap: 0.3em;
     justify-content: flex-end;
     align-items: center;
     min-width: 0;
   }
-  .btn-ordenar-wrapper {
-    position: relative;
-    display: inline-block;
-  }
-  .menu-ordenar-mobile {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1000;
-    min-width: 180px;
-    background: #fff;
-    border: 1px solid #b71c1c;
-    border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    margin-top: 0.2em;
-    padding: 0.5em 0;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .menu-ordenar-mobile.oculto {
-    display: none !important;
-  }
-  .menu-ordenar-mobile button {
-    background: none;
-    border: none;
-    color: #222;
-    text-align: left;
-    padding: 0.5em 1em;
-    font-size: 1em;
-    cursor: pointer;
-    border-radius: 0;
-    transition: background 0.2s;
-  }
-  .menu-ordenar-mobile button:hover {
-    background: rgba(227, 39, 36, 0.5921568627);
-    color: #fff;
-  }
   .filtros-row label {
     margin-bottom: 0;
-    margin-right: 0.5em;
+    margin-right: 0.3em;
     white-space: nowrap;
   }
   .filtros-row select,
   .filtros-row input[type=text] {
-    max-width: 100%;
+    max-width: 170px;
+    min-width: 0;
     margin-bottom: 0;
+    flex: 1 1 0;
   }
-  .menu-hamburguesa,
-  .ascdesc-mobile,
+  .filtros-row > .botones-row button,
+  .filtros-row > .botones-row .menu-hamburguesa,
+  .filtros-row > .botones-row .ascdesc-mobile,
+  .filtros-row > .botones-row .btn-imprimir-lista {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 100%;
+  }
   .btn-imprimir-lista {
-    font-size: 0.92em;
-    padding: 0.5em 1em;
-    height: 2.7em;
-    min-height: 2.7em;
-    align-items: center;
-    justify-content: center;
-    display: flex;
+    min-width: 0;
   }
   .header-row {
     flex-direction: row;
