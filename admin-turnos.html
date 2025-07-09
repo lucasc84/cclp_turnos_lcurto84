@@ -29,42 +29,41 @@
       </p>
       <div class="admin-controls">
         <div class="filtros-row">
-          <label for="filtroSucursal">Sucursal:</label>
-          <select id="filtroSucursal">
-            <option value="">Todas</option>
-          </select>
-          <label for="buscador">Buscar:</label>
-          <input type="text" id="buscador" placeholder="Nombre, DNI, Email..." />
-
-        </div>
-        <div class="orden-mobile">
-          <button id="btnOrdenarMobile" type="button" aria-label="Ordenar por" class="menu-hamburguesa">
-            &#9776; Ordenar por
-          </button>
-          <button id="btnAscDescMobile" type="button" aria-label="Ascendente/Descendente" class="ascdesc-mobile" title="Cambiar orden">
-            &#8597; Orden
-          </button>
-          <div id="menuOrdenarMobile" class="menu-ordenar-mobile oculto">
-            <button data-sort="nombre">Nombre</button>
-            <button data-sort="apellido">Apellido</button>
-            <button data-sort="dni">DNI</button>
-            <button data-sort="sucursal">Sucursal</button>
-            <button data-sort="fecha">Fecha</button>
-            <button data-sort="horario">Horario</button>
-            <button data-sort="email">Email</button>
-            <button data-sort="telefono">Teléfono</button>
-            <button data-sort="id">ID</button>
-          
+          <div class="campo">
+            <label for="filtroSucursal">Sucursal:</label>
+            <select id="filtroSucursal" class="control-estandar">
+              <option value="">Todas</option>
+            </select>
           </div>
-                    <button
-            onclick="window.print()"
-            class="btn-imprimir-lista"
-            style="margin-bottom: 1em;"
-          >
-            Imprimir lista
-            <img src="assets/printer.svg" alt="Imprimir lista" />
-          
-          </button>
+          <div class="campo">
+            <label for="buscador">Buscar:</label>
+            <input type="text" id="buscador" class="control-estandar" placeholder="Nombre, DNI, Email..." />
+          </div>
+          <div class="botones-row">
+            <div class="btn-ordenar-wrapper" style="position: relative; display: inline-block;">
+              <button id="btnOrdenarMobile" type="button" aria-label="Ordenar por" class="menu-hamburguesa control-estandar">
+                <span class="icono-hamburguesa">&#9776;</span> <span>Ordenar por</span>
+              </button>
+              <div id="menuOrdenarMobile" class="menu-ordenar-mobile oculto">
+                <button data-sort="nombre">Nombre</button>
+                <button data-sort="apellido">Apellido</button>
+                <button data-sort="dni">DNI</button>
+                <button data-sort="sucursal">Sucursal</button>
+                <button data-sort="fecha">Fecha</button>
+                <button data-sort="horario">Horario</button>
+                <button data-sort="email">Email</button>
+                <button data-sort="telefono">Teléfono</button>
+                <button data-sort="id">ID</button>
+              </div>
+            </div>
+            <button id="btnAscDescMobile" type="button" aria-label="Ascendente/Descendente" class="ascdesc-mobile control-estandar" title="Cambiar orden">
+              &#8597; Orden
+            </button>
+            <button onclick="window.print()" class="btn-imprimir-lista control-estandar">
+              <img src="assets/printer.svg" alt="Imprimir lista" class="printer-icon" />
+              <span>Imprimir lista</span>
+            </button>
+          </div>
         </div>
       </div>
       <div class="tabla-wrapper">

@@ -32,25 +32,33 @@
   border-radius: 0.375em;
   position: absolute;
   z-index: 10;
-  // min-width: 160px;
-
+  min-width: 160px;
+  width: max-content;
+  max-width: 90vw;
   box-shadow: 0 0 10px #b71c1c22;
+  padding: 0.2em 0;
 }
 .menu-ordenar-mobile button {
   background: none;
   border: none;
   color: #b71c1c;
-  // padding: 0.7em 1em;
   text-align: left;
   font-size: 1em;
   cursor: pointer;
   border-bottom: 1px solid #fdeaea;
-    // width: auto; /* ancho */
-
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.7em 1em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 2.2em;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
 }
 .menu-ordenar-mobile button:last-child {
   border-bottom: none;
-  
 }
 .menu-ordenar-mobile.oculto {
   display: none;
@@ -91,7 +99,7 @@
 .btn-imprimir-lista img {
   width: 1em;
   height: auto;
-  margin-right: 0.5em;
+  // margin-right: 0.5em;
   vertical-align: middle;
   filter: invert(100%) brightness(100%);
 }
