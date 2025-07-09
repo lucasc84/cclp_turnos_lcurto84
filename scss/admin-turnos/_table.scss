@@ -89,4 +89,45 @@ tr:hover {
     margin-right: 0.3em;
     flex-shrink: 0;
   }
+  /* ANULACIÓN EN IMPRESIÓN: Forzar modo tabla desktop al imprimir */
+  @media print {
+    .tabla-admin,
+    .tabla-admin thead,
+    .tabla-admin tbody,
+    .tabla-admin tr,
+    .tabla-admin th,
+    .tabla-admin td {
+      display: table !important;
+      width: auto !important;
+      box-sizing: border-box;
+    }
+    .tabla-admin thead {
+      display: table-header-group !important;
+    }
+    .tabla-admin tbody {
+      display: table-row-group !important;
+    }
+    .tabla-admin tr {
+      display: table-row !important;
+      margin-bottom: 0 !important;
+      box-shadow: none !important;
+      border: none !important;
+      background: none !important;
+      padding: 0 !important;
+    }
+    .tabla-admin th, .tabla-admin td {
+      display: table-cell !important;
+      border-bottom: 1px solid #eee !important;
+      padding: 0.6em 0.4em !important;
+      white-space: nowrap !important;
+      text-align: left !important;
+      max-width: 140px !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      vertical-align: middle !important;
+    }
+    .tabla-admin td:before {
+      display: none !important;
+    }
+  }
 }
