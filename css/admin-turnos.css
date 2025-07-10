@@ -440,16 +440,9 @@ tr:hover {
 }
 
 @media (min-width: 900px) {
-  .admin-controls {
-    flex-direction: row;
-    align-items: flex-end;
-    gap: 0.7em;
-  }
   .filtros-row {
     flex-direction: row;
-    align-items: center;
-    gap: 0.35em;
-    width: 100%;
+    width: auto;
     display: flex;
   }
   .filtros-row > .campo {
@@ -477,8 +470,8 @@ tr:hover {
   }
   .filtros-row select,
   .filtros-row input[type=text] {
-    max-width: 170px;
-    min-width: 0;
+    max-width: 70%;
+    min-width: 170px;
     margin-bottom: 0;
     flex: 1 1 0;
   }
