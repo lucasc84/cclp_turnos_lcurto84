@@ -32,7 +32,7 @@ body {
   min-height: 2.7em;
   height: 2.7em;
   box-sizing: border-box;
-  margin: 0;
+  margin-bottom: 1em;
   transition: border-color 0.2s, box-shadow 0.2s;
   background: #fff;
   color: #222;
